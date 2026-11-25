@@ -8,7 +8,7 @@
     "sizes": [256, 384, 640, 960, 1280],
     "formats": ["image/avif", "image/webp"],
     "minimumCacheTTL": 2592000,
-    "remotePatterns": [{ "protocol": "https", "hostname": "globalnightguide.com", "pathname": "/wp-content/uploads/**" }]
+    "remotePatterns": [{ "protocol": "https", "hostname": "globalnightguide.com", "pathname": "/wp-content/uploads/**" }, { "protocol": "https", "hostname": "d8j0ntlcm91z4.cloudfront.net", "pathname": "/user_3GzEOW1cbzyPjySGkbYzv7L3rIa/**" }]
   },
   "headers": [
     {

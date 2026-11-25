@@ -12,11 +12,20 @@ function initCarousel(c) {
     return per * (item.offsetWidth + gap);
   };
   const go = (dir) => track.scrollBy({ left: dir * step(), behavior: reduced() ? 'auto' : 'smooth' });
+  // ドット（表示中の位置を示す。ページ数＝はみ出した分＋1）
+  const dots = c.querySelector('[data-dots]');
+  let pages = 0;
   const sync = () => {
     const max = track.scrollWidth - track.clientWidth - 2;
     if (prev) prev.disabled = track.scrollLeft <= 2;
     if (next) next.disabled = track.scrollLeft >= max;
     c.classList.toggle('is-static', max <= 0);
+    if (dots) {
+      const n = max <= 0 ? 0 : Math.min(8, Math.ceil(track.scrollWidth / Math.max(1, track.clientWidth)));
+      if (n !== pages) { pages = n; dots.innerHTML = '<span></span>'.repeat(n); }
+      const i = n ? Math.round((track.scrollLeft / Math.max(1, max)) * (n - 1)) : 0;
+      [...dots.children].forEach((d, k) => d.classList.toggle('is-on', k === i));
+    }
   };
   prev?.addEventListener('click', () => go(-1));
   next?.addEventListener('click', () => go(1));

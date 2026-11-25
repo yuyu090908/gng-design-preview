@@ -14,7 +14,7 @@ import { loadSite } from './lib/data.mjs';
 import { makeLinker, href } from './lib/content.mjs';
 import { PATHS } from './lib/icons.mjs';
 import { CANONICAL, INDEXABLE } from './lib/components.mjs';
-import { homePage, categoryPages, newPages, featuresPage, articlePage, staticPage, searchPage, dashboardPage, notFoundPage } from './lib/pages.mjs';
+import { setArt, homePage, categoryPages, newPages, featuresPage, areaPage, rankingPage, guidePage, faqPage, articlePage, staticPage, searchPage, dashboardPage, notFoundPage } from './lib/pages.mjs';
 
 const OUT = 'dist';
 const hash = (s) => createHash('sha256').update(s).digest('hex').slice(0, 10);
@@ -46,6 +46,8 @@ async function buildFonts() {
   // フォントは font-display: optional（間に合わなければ端末のフォントで表示し、
   // 2 ページ目以降でキャッシュから使う）。表示の遅れとレイアウトのずれを防ぐ
   for (const w of [400, 700]) await take('noto-sans-jp', `${w}.css`);
+  // 見出し用の明朝（Noto Serif JP 700）
+  await take('noto-serif-jp', '700.css');
   css = css.replace(/font-display: swap/g, 'font-display: optional');
   return { css, interPreload: '/assets/fonts/inter-latin-400-normal.woff2' };
 }
@@ -63,7 +65,18 @@ async function buildAssets() {
   await writeFile(join(OUT, names.fonts), fonts.css);
   await writeFile(join(OUT, names.js), js);
   await writeFile(join(OUT, names.boot), boot);
-  await writeFile(join(OUT, 'favicon.svg'), '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="8" fill="#0C1018"/><path d="M19.5 7.5a8.5 8.5 0 1 0 5 13.6A9 9 0 0 1 19.5 7.5Z" fill="#D7B77E"/></svg>');
+  await writeFile(join(OUT, 'favicon.svg'), '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><rect width="48" height="48" rx="10" fill="#0B1017"/><g fill="none" stroke="#D9BC80" stroke-width="2.6"><circle cx="24" cy="24" r="16"/><ellipse cx="24" cy="24" rx="7" ry="16"/><path d="M24 8v32M8 24h32M10.5 16h27M10.5 32h27"/></g></svg>');
+  // 夜景イラスト・地図（scripts/gen-art.mjs で作った SVG）
+  // ファイル名に内容のハッシュを付ける（長期キャッシュしても差し替えが反映されるように）
+  names.art = {};
+  await mkdir(join(OUT, 'assets/img'), { recursive: true });
+  for (const f of await readdir('src/img')) {
+    const buf = await readFile(join('src/img', f));
+    const [base, ext] = [f.replace(/\.[^.]+$/, ''), f.split('.').pop()];
+    const out = `/assets/img/${base}.${hash(buf)}.${ext}`;
+    await writeFile(join(OUT, out), buf);
+    names.art[base] = out;
+  }
   return names;
 }
 
@@ -74,6 +87,7 @@ async function build() {
   const link = makeLinker(site);
   await rm(OUT, { recursive: true, force: true });
   const assets = await buildAssets();
+  setArt(assets.art);
 
   const urls = []; // サイトマップ用
   const put = async (path, html, lastmod) => { await write(path, html); urls.push({ path, lastmod }); };
@@ -81,6 +95,11 @@ async function build() {
   await put('/', homePage(site, assets), site.updated);
   for (const pg of newPages(site, assets)) await put(pg.path, pg.html, site.updated);
   await put('/features/', featuresPage(site, assets), site.updated);
+  await put('/area/', areaPage(site, assets), site.updated);
+  await put('/ranking/', rankingPage(site, assets), site.updated);
+  // はじめての方へ・よくある質問（元サイトに同じ URL のページがあれば、そちらを優先）
+  if (!site.pages.some((p) => p.path === '/guide/')) await put('/guide/', guidePage(site, assets));
+  if (!site.pages.some((p) => p.path === '/faq/')) await put('/faq/', faqPage(site, assets));
   for (const c of site.cats) {
     if (!c.posts.length) continue;
     const last = c.posts.reduce((m, p) => (p.modified > m ? p.modified : m), '');

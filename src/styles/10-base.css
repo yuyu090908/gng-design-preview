@@ -3,7 +3,7 @@
 * { min-width: 0; }
 html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; scroll-padding-top: calc(var(--gh-h) + 16px); }
 html.is-locked { overflow: hidden; }
-body { margin: 0; background: var(--c-bg); color: var(--c-text); font: 400 var(--fs-base)/1.7 var(--f-sans); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; overflow-x: clip; font-feature-settings: "palt" 0; }
+body { margin: 0; background: var(--c-bg); color: var(--c-text); font: 400 15px/1.7 var(--f-sans); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; overflow-x: clip; font-feature-settings: "palt" 0; }
 img, svg { vertical-align: middle; }
 img { max-width: 100%; height: auto; }
 a { color: var(--c-link); text-underline-offset: .22em; text-decoration-thickness: 1px; }

@@ -49,10 +49,10 @@ test('年齢確認：初回に表示され、確認後は表示されない', as
   await ctx.close();
 });
 
-test('横方向にはみ出さない（7 つの画面幅 × 主要ページ）', async () => {
-  for (const width of [320, 375, 480, 768, 1024, 1280, 1536]) {
-    for (const path of ['/', cat, post, '/search/?q=a', '/my-dashboard/', '/features/', '/new/']) {
-      const { ctx, page, errors } = await open(path, { width });
+test('横方向にはみ出さない（参考画像の確認サイズ × 主要ページ）', async () => {
+  for (const [width, height] of [[320, 640], [375, 667], [390, 844], [393, 852], [430, 932], [768, 1024], [1024, 768], [1280, 800], [1440, 900], [1920, 1080]]) {
+    for (const path of ['/', cat, post, '/search/?q=a', '/my-dashboard/', '/features/', '/new/', '/area/', '/ranking/', '/guide/', '/faq/']) {
+      const { ctx, page, errors } = await open(path, { width, height });
       const sw = await page.evaluate(() => document.documentElement.scrollWidth);
       assert.ok(sw <= width, `${path} @${width}: scrollWidth ${sw}`);
       assert.deepEqual(errors, [], `${path} @${width}: ${errors.join(' | ')}`);
@@ -65,8 +65,8 @@ test('スマホ：下部ナビとドロワー（フォーカストラップ・Es
   const { ctx, page } = await open('/', { width: 375, height: 812 });
   assert.ok(await page.isVisible('.bn'));
   assert.ok(await page.isHidden('#sidebar'));
-  const hero = await page.$eval('.hero', (e) => e.getBoundingClientRect().height);
-  assert.ok(hero <= 220, `hero ${hero}px`);
+  const hero = await page.$eval('.hero__vis', (e) => e.getBoundingClientRect().height);
+  assert.ok(hero >= 180 && hero <= 240, `hero ${hero}px`);
   await page.click('[data-drawer-open]');
   assert.ok(await page.isVisible('#drawer .drawer__panel'));
   assert.equal(await page.evaluate(() => document.documentElement.classList.contains('is-locked')), true);
@@ -94,21 +94,29 @@ test('PC：サイドバーの開閉状態が保持される', async () => {
   await ctx.close();
 });
 
-test('テーマ切り替えが保持される', async () => {
-  const { ctx, page } = await open('/');
-  assert.equal(await page.getAttribute('html', 'data-theme'), 'dark');
-  await page.click('.gh [data-theme-toggle]');
-  assert.equal(await page.getAttribute('html', 'data-theme'), 'light');
-  await page.goto(base + post);
-  assert.equal(await page.getAttribute('html', 'data-theme'), 'light');
+test('カテゴリのピル：今いるカテゴリが選択状態になる', async () => {
+  const { ctx, page } = await open(cat);
+  const cur = await page.$$eval('.gh .pill[aria-current="page"]', (els) => els.length);
+  assert.ok(cur >= 1, 'current pill');
+  assert.ok(await page.isVisible('.chero h1'));
+  await ctx.close();
+});
+
+test('記事：集中閲覧モード（ボタンで切り替え、Esc で戻る）', async () => {
+  const { ctx, page } = await open(post);
+  await page.click('[data-focus]');
+  assert.equal(await page.evaluate(() => document.documentElement.classList.contains('is-focus')), true);
+  assert.ok(await page.isHidden('#sidebar'));
+  await page.keyboard.press('Escape');
+  assert.equal(await page.evaluate(() => document.documentElement.classList.contains('is-focus')), false);
   await ctx.close();
 });
 
 test('カルーセル：次へボタンとキーボードで動く', async () => {
   const { ctx, page } = await open('/', { width: 1024 });
-  const track = '#car-new';
+  const track = '#car-pick';
   const x0 = await page.$eval(track, (e) => e.scrollLeft);
-  await page.click('[data-next][aria-controls="car-new"]');
+  await page.click('[data-next][aria-controls="car-pick"]');
   await page.waitForTimeout(600);
   const x1 = await page.$eval(track, (e) => e.scrollLeft);
   assert.ok(x1 > x0, `scroll ${x0} → ${x1}`);
@@ -120,12 +128,12 @@ test('カルーセル：次へボタンとキーボードで動く', async () =>
 });
 
 test('タブ：矢印キーで切り替わる', async () => {
-  const { ctx, page } = await open('/');
-  await page.focus('#area-t0');
+  const { ctx, page } = await open('/my-dashboard/');
+  await page.focus('#dash-t0');
   await page.keyboard.press('ArrowRight');
-  assert.equal(await page.getAttribute('#area-t1', 'aria-selected'), 'true');
-  assert.ok(await page.isVisible('#area-p1'));
-  assert.ok(await page.isHidden('#area-p0'));
+  assert.equal(await page.getAttribute('#dash-t1', 'aria-selected'), 'true');
+  assert.ok(await page.isVisible('#dash-p1'));
+  assert.ok(await page.isHidden('#dash-p0'));
   await ctx.close();
 });
 
@@ -135,7 +143,8 @@ test('保存：カードから保存 → バッジ → ダッシュボードで�
   const u = await btn.getAttribute('data-u');
   await btn.click();
   assert.equal(await btn.getAttribute('aria-pressed'), 'true');
-  assert.equal((await page.textContent('.gh [data-saved-count]')).trim(), '1');
+  assert.equal((await page.textContent('.sb [data-saved-count]')).trim(), '1');
+  assert.equal(await page.locator('[data-saved-mini-list] li').count(), 1);
   assert.ok((await page.textContent('.toast')).includes('保存しました'));
   await page.goto(base + '/my-dashboard/#saved');
   await page.waitForSelector(`[data-saved-list] [data-u="${u}"]`);

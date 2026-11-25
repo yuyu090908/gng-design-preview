@@ -82,6 +82,28 @@ if (art) {
   syncFs();
 
   // 共有（使える端末では共有シート、無ければ URL をコピー）
+  // 集中閲覧モード（メニューと目次を隠して本文だけにする。Esc でも戻る）
+  const focusBtn = $('[data-focus]', art);
+  if (focusBtn) {
+    let exitBtn = null;
+    const setFocus = (on) => {
+      document.documentElement.classList.toggle('is-focus', on);
+      focusBtn.setAttribute('aria-pressed', String(on));
+      if (on && !exitBtn) {
+        exitBtn = document.createElement('button');
+        exitBtn.type = 'button';
+        exitBtn.className = 'btn btn--ghost btn--sm focus-exit';
+        exitBtn.innerHTML = `${icon('x', 16)}集中閲覧モードを終了`;
+        exitBtn.addEventListener('click', () => setFocus(false));
+        document.body.appendChild(exitBtn);
+      }
+      if (exitBtn) exitBtn.hidden = !on;
+      toast(on ? '集中閲覧モードにしました（Esc で終了）' : '集中閲覧モードを終了しました');
+    };
+    focusBtn.addEventListener('click', () => setFocus(!document.documentElement.classList.contains('is-focus')));
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && document.documentElement.classList.contains('is-focus') && !openStack.length) setFocus(false); });
+  }
+
   $('[data-share]', art)?.addEventListener('click', async () => {
     const data = { title: document.title, url: location.origin + location.pathname };
     try {

@@ -154,7 +154,7 @@ html:not(.js) .tabs__panel + .tabs__panel { margin-top: var(--s-3); }
 /* エリアのカード（画像＋日本語名＋英語名） */
 .area { position: relative; display: block; height: 104px; border-radius: 9px; overflow: hidden; border: 1px solid rgba(255, 255, 255, .14); background: var(--c-card); color: #fff; text-decoration: none; isolation: isolate; transition: border-color var(--t-base), transform var(--t-base) var(--ease); }
 .area img, .area .noimg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; }
-.area::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(7, 12, 19, 0) 30%, rgba(7, 12, 19, .88) 100%); }
+.area::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(7, 12, 19, .25) 0%, rgba(7, 12, 19, .45) 45%, rgba(7, 12, 19, .92) 100%); }
 .area__b { position: absolute; left: 0; right: 0; bottom: 8px; display: flex; flex-direction: column; align-items: center; padding: 0 8px; }
 .area__jp { font: 700 15px/1.2 var(--f-serif); letter-spacing: .04em; text-shadow: 0 1px 6px rgba(0, 0, 0, .6); }
 .area__en { display: none; align-items: center; gap: 2px; margin-top: 3px; font: 600 10px/1 var(--f-en); letter-spacing: .06em; color: #D5D9DF; }

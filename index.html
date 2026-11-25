@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>新デザイン見本</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="ctl">
+  <h1>グローバルナイトガイド 新デザイン見本</h1>
+  <div class="seg" role="group" aria-label="ページ">
+    <button id="v-top" data-p="top" aria-pressed="true">トップ</button>
+    <button id="v-article" data-p="article" aria-pressed="false">記事</button>
+    <button id="v-compare" data-p="compare" aria-pressed="false">ビフォー・アフター画像</button>
+  </div>
+  <div class="seg ba" role="group" aria-label="変更前と変更後">
+    <button id="b-before" data-v="before" aria-pressed="false">変更前</button>
+    <button id="b-after" data-v="after" aria-pressed="true">変更後</button>
+  </div>
+  <div class="seg" role="group" aria-label="表示幅" id="widthSeg">
+    <button id="w-full" data-w="full" aria-pressed="true">画面の幅</button>
+    <button id="w-phone" data-w="phone" aria-pressed="false">スマホ幅</button>
+  </div>
+  <p class="note">見本は本番の CSS を再現したもので、記事の文章や画像はダミーです。スマホで開くとそのままスマホ表示になります。本物の画面での比較は「ビフォー・アフター画像」にあります。</p>
+</div>
+
+<div class="stage" id="stage">
+<div class="site" id="site" data-show="top">
+  <header class="hd">
+    <p class="logo">グローバルナイトガイド</p>
+    <div class="navw"><nav class="nav" aria-label="メニュー">
+      <a href="#top">高級デリヘル</a><a href="#top">セフレ</a><a href="#article" class="on">ソープランド</a><a href="#top">海外風俗</a><a href="#top">自己紹介</a><a href="#top">お問い合わせ</a>
+    </nav></div>
+  </header>
+  <div class="wrap">
+    <main>
+      <section data-view="top">
+        <div class="cards" id="cards"></div>
+        <nav class="pg" aria-label="ページ送り"><a class="on" href="#top">1</a><a href="#top">2</a><a href="#top">3</a><a href="#top">›</a></nav>
+      </section>
+      <section data-view="article">
+        <article class="art">
+          <div class="crumb">ホーム › 国内風俗</div>
+          <h1>【サンプル】エリア別おすすめ店ガイド！失敗しない選び方を解説</h1>
+          <div class="date">2026年11月25日</div>
+          <div class="body">
+            <p>グローバルナイトガイド読者の諸君、こんにちは。最近、読者から<span class="em">「どの店を選べばいいですか？」</span>という質問を多くもらうようになった。</p>
+            <p>今回はその中でも、<span class="em">筆者おすすめの店</span>を、読者の要望別に分類した上で、ランキング形式で発表するゾ。</p>
+            <div class="box"><b>この記事でわかること</b><ul><li>失敗しない店選びのコツ３選</li><li>【総合】1番おすすめの店</li><li>【料金別】おすすめの店</li><li>よくある質問＆回答</li></ul></div>
+            <div class="alert"><b>料金は事前に確認しよう</b><br>同じエリアでも、店によって料金の幅はかなり大きい。予算を決めてから選ぶのがコツだ。</div>
+            <h2>【総合】おすすめの店10選！</h2>
+            <h3>サンプル店A</h3>
+            <p>「サンプル店A」は<span class="em">110分6.5万円という、エリアの中でも高級店</span>といえる。特徴はなんといっても、実物を見て選べるところ。</p>
+            <table><tbody>
+              <tr><td>料金</td><td>110分6.5万円</td></tr>
+              <tr><td>ランク</td><td>高級店</td></tr>
+              <tr><td>店の特徴</td><td>実物を見て選べる</td></tr>
+              <tr><td>営業時間</td><td>11：00〜23：00</td></tr>
+              <tr><td>住所</td><td><a href="#article">東京都〇〇区〇〇 1-2-3</a></td></tr>
+              <tr><td>公式HP</td><td><a href="#article">https://example.com/</a></td></tr>
+            </tbody></table>
+            <h3>サンプル店B</h3>
+            <p>中級店ながら接客の評判が高く、初めての人にも選びやすい。迷ったらまずここから試してみてほしい。</p>
+          </div>
+        </article>
+      </section>
+    </main>
+    <aside class="side">
+      <div class="w"><h3>人気の記事ランキング</h3><ol id="rank"></ol></div>
+    </aside>
+  </div>
+  <footer class="ft">© 2026 グローバルナイトガイド All rights reserved.</footer>
+  <p class="sample">記事タイトル・本文・画像はダミーです</p>
+</div>
+</div>
+
+<section class="gal" id="gal" hidden>
+  <h2>本物の画面でのビフォー・アフター</h2>
+  <p>本番ページに新しい CSS を差し込んで撮影しました。左が変更前（いまの本番）、右が変更後です。黄色いマーカーは撮影のためにアニメーションを止めたため最初から表示されています。</p>
+  <div id="imgs"></div>
+</section>
+
+<script>
+{
+// 比較画像（images/ に置いた画像を差し替えれば更新できる）
+const IMGS = Object.fromEntries([["01_スマホ_記事", "images/01-mobile-article.jpg"], ["02_スマホ_トップ", "images/02-mobile-top.jpg"], ["03_タブレット_記事", "images/03-tablet-article.jpg"], ["04_PC_トップ", "images/04-pc-top.jpg"], ["05_PC_記事", "images/05-pc-article.jpg"]]);
+const caps = {"01_スマホ_記事":"スマホ（375px）記事ページ","02_スマホ_トップ":"スマホ（375px）トップページ","03_タブレット_記事":"タブレット・iPad（768px）記事ページ（変更前はメニューが出ていない）","04_PC_トップ":"PC（1280px）トップページ","05_PC_記事":"PC（1280px）記事ページ"};
+const titles = ["ノリちゃん｜バンコクA5マッサージおすすめセラピスト","スカイちゃん｜バンコクA5マッサージおすすめセラピスト","おすすめセラピスト特集｜バンコクA5マッサージ","【2024年8月】タイ（バンコク）風俗の全種類・料金・遊び方まで徹底調査！","ベトナム（ハノイ・ホーチミン）風俗の種類・料金・遊び方まで徹底解説！","【2024年8月】全体験！台湾（台北）風俗の種類・料金・場所・遊び方まで解説"];
+const cats = ["タイ風俗","タイ風俗","タイ風俗","タイ風俗","ベトナム風俗","台湾風俗"];
+const dates = ["2026年9月22日","2026年9月3日","2026年9月3日","2026年8月27日","2026年8月24日","2026年8月20日"];
+const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+document.getElementById('cards').innerHTML = titles.map((t,i)=>`<a class="card" href="#article"><div class="thumb"><span>サンプル画像</span></div><span class="cat">${esc(cats[i])}</span><div class="ct"><time>${esc(dates[i])}</time><h2>${esc(t)}</h2></div></a>`).join('');
+document.getElementById('rank').innerHTML = titles.slice(3).concat(["【2024年8月】吉原おすすめ店80選！失敗しない遊び方を伝授","【2024年8月】韓国（ソウル・釜山）風俗を完全解説！"]).map((t,i)=>`<li><b>${i+1}</b><div class="thumb"><span>画像</span></div><div>${esc(t)}</div></li>`).join('');
+document.getElementById('imgs').innerHTML = Object.keys(IMGS).map(k=>`<figure><figcaption>${esc(caps[k]||k)}</figcaption><img src="${IMGS[k]}" alt="${esc(caps[k]||k)}の変更前と変更後" loading="lazy"></figure>`).join('');
+
+const site = document.getElementById('site'), stage = document.getElementById('stage'), gal = document.getElementById('gal');
+const press = (sel, btn) => document.querySelectorAll(sel).forEach(b => b.setAttribute('aria-pressed', b === btn));
+function show(p){
+  if(!['top','article','compare'].includes(p)) p='top';
+  press('[data-p]', document.getElementById('v-'+p));
+  const cmp = p==='compare';
+  stage.hidden = cmp; gal.hidden = !cmp;
+  document.querySelectorAll('.ba,#widthSeg').forEach(e=>e.style.display = cmp?'none':'');
+  if(!cmp){ site.dataset.show = p; document.querySelectorAll('.nav a').forEach(a=>a.classList.toggle('on', a.getAttribute('href')==='#'+p && a.textContent==='ソープランド')); }
+  window.scrollTo(0,0); site.scrollTop = 0;
+}
+document.querySelectorAll('[data-p]').forEach(b=>b.addEventListener('click',()=>{ location.hash = b.dataset.p; show(b.dataset.p); }));
+document.querySelectorAll('[data-v]').forEach(b=>b.addEventListener('click',()=>{ press('[data-v]',b); site.classList.toggle('before', b.dataset.v==='before'); }));
+document.querySelectorAll('[data-w]').forEach(b=>b.addEventListener('click',()=>{ press('[data-w]',b); stage.classList.toggle('phone', b.dataset.w==='phone'); }));
+site.addEventListener('click', e => { const a = e.target.closest('a[href^="#"]'); if(a){ e.preventDefault(); const p=a.getAttribute('href').slice(1); location.hash=p; show(p);} });
+window.addEventListener('hashchange', ()=>show(location.hash.slice(1)));
+show(location.hash.slice(1));
+}
+</script>
+</body>
+</html>

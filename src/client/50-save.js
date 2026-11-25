@@ -25,7 +25,7 @@ function toggleSave(b) {
     }
   });
   syncSaveButtons();
-  toast(added ? '保存しました。マイダッシュボードで確認できます' : '保存を解除しました');
+  toast(added ? '保存しました。マイページで確認できます' : '保存を解除しました');
 }
 document.addEventListener('click', (e) => {
   const b = e.target.closest('[data-save]');

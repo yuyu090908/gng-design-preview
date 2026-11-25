@@ -64,22 +64,48 @@ if (art) {
     heads.forEach((h) => io.observe(h));
   }
 
-  // 文字サイズ（小→標準→大→特大）
-  const FS = ['s', 'm', 'l', 'xl'], FSL = { s: '小', m: '標準', l: '大', xl: '特大' };
-  const fsBtn = $('[data-fontsize]', art);
+  // 表示設定（文字サイズ・テーマ・集中モード）はボトムシートで選ぶ
+  const FSL = { s: '小', m: '標準', l: '大', xl: '特大' };
   const syncFs = () => {
     const f = store.read().settings.fontSize || 'm';
     root.dataset.fs = f;
-    if (fsBtn) $('[data-fontsize-label]', fsBtn).textContent = FSL[f];
+    $$('[data-fontsize-label]').forEach((el) => { el.textContent = FSL[f] || '標準'; });
   };
-  fsBtn?.addEventListener('click', () => {
-    const cur = store.read().settings.fontSize || 'm';
-    const next = FS[(FS.indexOf(cur) + 1) % FS.length];
-    store.update((v) => { v.settings.fontSize = next; });
-    syncFs();
-    toast(`文字サイズ：${FSL[next]}`);
-  });
+  $$('[data-read-settings]').forEach((btn) => btn.addEventListener('click', () => {
+    const st = store.read().settings;
+    openSheet({
+      title: '表示設定',
+      html: `<fieldset class="opt"><legend>文字サイズ</legend>${chips('rs-fs', Object.entries(FSL), st.fontSize || 'm')}</fieldset>`
+        + `<fieldset class="opt"><legend>表示モード</legend>${chips('rs-theme', [['system', '端末に合わせる'], ['dark', 'ダーク'], ['light', 'ライト']], st.theme || 'dark')}</fieldset>`
+        + `<div class="opt"><p class="opt__t">集中モード</p><button class="btn btn--ghost btn--block" type="button" data-rs-focus>${icon('focus', 16)}${root.classList.contains('is-focus') ? '集中モードを終了する' : '本文だけを表示する'}</button></div>`,
+      onOpen: (body, close) => {
+        body.addEventListener('change', (e) => {
+          if (e.target.name === 'rs-fs') { store.update((v) => { v.settings.fontSize = e.target.value; }); syncFs(); }
+          if (e.target.name === 'rs-theme') { store.update((v) => { v.settings.theme = e.target.value; }); applySettings(); }
+        });
+        $('[data-rs-focus]', body).addEventListener('click', () => { close(); $('[data-focus]', art)?.click(); });
+      },
+    });
+  }));
   syncFs();
+
+  // 前回の続きから読む（閲覧履歴がオンで、途中まで読んだ記録があるときだけ。勝手にはスクロールしない）
+  const resume = $('[data-resume]', art);
+  {
+    const v = store.read();
+    const pct = u && v.settings.historyEnabled ? v.progress[u] || 0 : 0;
+    if (resume && pct > 5 && pct < 95) {
+      resume.hidden = false;
+      $('[data-resume-label]', resume).textContent = `前回の続き（${Math.round(pct)}%）から読む`;
+      $('[data-resume-btn]', resume).addEventListener('click', () => {
+        const r = entry.getBoundingClientRect();
+        const vh = window.innerHeight;
+        const y = window.scrollY + r.top - vh * 0.3 + (pct / 100) * (r.height - vh * 0.6);
+        window.scrollTo({ top: Math.max(0, y), behavior: reduced() ? 'auto' : 'smooth' });
+        resume.hidden = true;
+      });
+    }
+  }
 
   // 共有（使える端末では共有シート、無ければ URL をコピー）
   // 集中閲覧モード（メニューと目次を隠して本文だけにする。Esc でも戻る）

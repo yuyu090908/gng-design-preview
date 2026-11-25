@@ -41,3 +41,19 @@
   .mrow__act { flex-direction: row; align-items: center; }
   .prog { width: 96px; }
 }
+
+/* ライブラリのパネル（表示／非表示・並び替え） */
+.dpanels { display: grid; gap: 12px; margin: 0 0 var(--s-6); }
+.dpanel { display: flex; flex-direction: column; }
+.dpanel__hd { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin: -6px -6px 6px 0; }
+.dpanel__hd .lib__t { margin: 0; }
+.dpanel__act { display: flex; gap: 2px; }
+.dpanel__mv { display: none; }
+.dpanel .ibtn--sm { width: 36px; height: 36px; color: var(--c-text-3); }
+.dfold { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+.dfold__b { display: flex; align-items: center; gap: 8px; width: 100%; min-height: 44px; padding: 0 8px; border: 0; border-radius: var(--r-sm); background: transparent; color: var(--c-text); font-size: 14px; text-align: left; }
+.dfold__b:hover { background: var(--c-hover); }
+.dfold__b .i { color: var(--gold); }
+.dfold__b span:first-of-type { flex: 1; }
+@media (min-width: 768px) { .dpanels { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); } }
+@media (min-width: 1024px) { .dpanel__mv { display: inline-grid; } }

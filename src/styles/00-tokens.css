@@ -1,25 +1,26 @@
 /* =========================================================
-   GLOBAL NIGHT GUIDE — REFERENCE-LOCK UI SYSTEM V2.0
-   参考デザインの色・寸法をこの変数に固定する（ダーク既定）
+   GLOBAL NIGHT GUIDE — DESIGN SYSTEM 3.0 "PREMIUM DARK EDITORIAL"
+   色・余白・角丸・文字・動きはすべてここで決める（ダーク既定）
+   金は「主要操作・選択中・重要情報」だけに使う
    ========================================================= */
 :root {
   /* 背景 */
-  --c-app: #0B1017;
-  --c-sidebar: #0D1117;
+  --c-app: #0B0F15;
+  --c-sidebar: #0E131B;
   --c-header: #10151D;
-  --c-panel: #141A23;
-  --c-card: #171E28;
-  --c-elev: #1D2530;
-  --c-hover: #222B37;
-  /* 金 */
-  --gold: #D9BC80;
-  --gold-l: #F2D99A;
-  --gold-d: #A9894F;
-  --gold-bg: rgba(217, 188, 128, .12);
-  --gold-bd: rgba(217, 188, 128, .65);
-  --gold-line: rgba(217, 188, 128, .45);
-  --grad-gold: linear-gradient(135deg, #F2D99A 0%, #D9BC80 55%, #B99553 100%);
-  --grad-sel: linear-gradient(180deg, rgba(242, 217, 154, .26) 0%, rgba(217, 188, 128, .12) 100%);
+  --c-panel: #151B24;
+  --c-card: #151B24;
+  --c-elev: #1C2430;
+  --c-hover: #232D39;
+  /* 金（光彩・グラデーションは使わない） */
+  --gold: #D4B578;
+  --gold-l: #E8CF99;
+  --gold-d: #A88A51;
+  --gold-bg: rgba(212, 181, 120, .10);
+  --gold-bd: rgba(212, 181, 120, .50);
+  --gold-line: rgba(212, 181, 120, .50);
+  --grad-gold: var(--gold);
+  --grad-sel: var(--gold-bg);
 
   /* 既存コンポーネント向けの別名 */
   --c-bg: var(--c-app);
@@ -30,22 +31,22 @@
   --c-accent-ink: var(--gold);
   --c-accent-soft: var(--gold-bg);
   --c-on-accent: #1A1408;
-  --c-text: #F4F5F7;
-  --c-text-2: #B6BCC5;
-  --c-text-3: #848D9A;
-  --c-border: rgba(255, 255, 255, .10);
-  --c-border-strong: rgba(255, 255, 255, .18);
+  --c-text: #F3F4F6;
+  --c-text-2: #B9C2CE;
+  --c-text-3: #929EAD;
+  --c-border: rgba(255, 255, 255, .08);
+  --c-border-strong: rgba(255, 255, 255, .14);
   --c-success: #45B985;
   --c-warning: #E5AD55;
   --c-danger: #E36D6D;
   --c-link: #9CC3FF;
-  --c-mark: rgba(217, 188, 128, .28);
+  --c-mark: rgba(212, 181, 120, .26);
   --c-emph: #FFB4A9;
   --c-overlay: rgba(4, 6, 10, .7);
-  --c-skel: #1A212B;
+  --c-skel: #19202A;
   --c-skel-2: #232C38;
   --shadow-1: 0 1px 2px rgba(0, 0, 0, .3);
-  --shadow-2: 0 10px 24px -12px rgba(0, 0, 0, .7);
+  --shadow-2: 0 8px 20px -12px rgba(0, 0, 0, .6);
   --shadow-3: 0 24px 48px -20px rgba(0, 0, 0, .8);
 
   /* 文字 */
@@ -66,40 +67,45 @@
   --s-1: 4px; --s-2: 8px; --s-3: 12px; --s-4: 16px; --s-5: 20px; --s-6: 24px; --s-8: 32px; --s-10: 40px; --s-12: 48px; --s-16: 64px;
 
   /* 形 */
-  --r-panel: 12px;
-  --r-card: 10px;
+  --r-sm: 6px;
+  --r-panel: 14px;
+  --r-modal: 18px;
+  --r-card: 12px;
   --r-btn: 8px;
   --r-pill: 999px;
 
-  --t-fast: 150ms;
+  --t-fast: 140ms;
   --t-base: 180ms;
-  --t-slow: 240ms;
+  --t-slow: 220ms;
+  --t-drawer: 250ms;
   --ease: cubic-bezier(.2, .7, .2, 1);
 
   /* 配置 */
   --gh-h: 56px;
   --bn-h: 64px;
-  --sb-w: 216px;
-  --sb-w-c: 64px;
+  --sb-w: 232px;
+  --sb-w-c: 68px;
   --pad: 12px;
   --gap: 12px;
-  --sec-gap: 18px;
-  --read-max: 800px;
+  --sec-gap: 24px;
+  --read-max: 760px;
   --safe-b: env(safe-area-inset-bottom, 0px);
   color-scheme: dark;
 }
 
-/* ライト表示（設定画面から選んだ場合だけ。既定はダーク） */
+/* ライト表示（暖かいオフホワイト＋チャコール。専用トークン） */
 [data-theme="light"] {
-  --c-app: #F4F3EF; --c-sidebar: #ECEAE4; --c-header: #F4F3EF; --c-panel: #FFFFFF; --c-card: #FFFFFF; --c-elev: #FFFFFF; --c-hover: #F1EEE7;
-  --c-accent-ink: #7A5A1E; --gold-bg: rgba(184, 146, 75, .14);
-  --c-on-accent: #1A1408;
-  --c-text: #141922; --c-text-2: #4F5867; --c-text-3: #5E6776;
-  --c-border: #E1DED6; --c-border-strong: #CFCBC0;
-  --c-link: #1F55C2; --c-emph: #B4232F; --c-overlay: rgba(12, 16, 24, .5);
-  --c-skel: #ECE9E2; --c-skel-2: #F4F2ED;
+  --c-app: #F6F3EC; --c-sidebar: #EFEBE2; --c-header: #F6F3EC; --c-panel: #FFFDF8; --c-card: #FFFDF8; --c-elev: #FFFFFF; --c-hover: #ECE6DA;
+  --gold: #8A6A2E; --gold-l: #7A5A1E; --gold-d: #6B4E1A;
+  --gold-bg: rgba(168, 138, 81, .14); --gold-bd: rgba(138, 106, 46, .55); --gold-line: rgba(138, 106, 46, .45);
+  --c-accent-ink: #7A5A1E; --c-on-accent: #FFFFFF;
+  --c-text: #1E2228; --c-text-2: #4A515C; --c-text-3: #5B626D;
+  --c-border: rgba(30, 34, 40, .10); --c-border-strong: rgba(30, 34, 40, .18);
+  --c-link: #1F55C2; --c-emph: #B4232F; --c-overlay: rgba(20, 22, 26, .45); --c-mark: rgba(168, 138, 81, .25);
+  --c-skel: #ECE7DD; --c-skel-2: #F4F0E8;
+  --shadow-2: 0 8px 20px -12px rgba(40, 30, 10, .25); --shadow-3: 0 20px 40px -20px rgba(40, 30, 10, .3);
   color-scheme: light;
 }
 
 @media (min-width: 768px) { :root { --pad: 16px; } }
-@media (min-width: 1024px) { :root { --gh-h: 60px; --pad: 20px; --sec-gap: 20px; } }
+@media (min-width: 1024px) { :root { --gh-h: 60px; --pad: 24px; --sec-gap: 32px; } }

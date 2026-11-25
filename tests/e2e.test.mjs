@@ -50,7 +50,7 @@ test('年齢確認：初回に表示され、確認後は表示されない', as
 });
 
 test('横方向にはみ出さない（参考画像の確認サイズ × 主要ページ）', async () => {
-  for (const [width, height] of [[320, 640], [375, 667], [390, 844], [393, 852], [430, 932], [768, 1024], [1024, 768], [1280, 800], [1440, 900], [1920, 1080]]) {
+  for (const [width, height] of [[320, 640], [375, 667], [390, 844], [393, 852], [430, 932], [768, 1024], [1024, 768], [1280, 800], [1440, 900], [1920, 1080], [2560, 1440]]) {
     for (const path of ['/', cat, post, '/search/?q=a', '/my-dashboard/', '/features/', '/new/', '/area/', '/ranking/', '/guide/', '/faq/']) {
       const { ctx, page, errors } = await open(path, { width, height });
       const sw = await page.evaluate(() => document.documentElement.scrollWidth);
@@ -65,8 +65,9 @@ test('スマホ：下部ナビとドロワー（フォーカストラップ・Es
   const { ctx, page } = await open('/', { width: 375, height: 812 });
   assert.ok(await page.isVisible('.bn'));
   assert.ok(await page.isHidden('#sidebar'));
-  const hero = await page.$eval('.hero__vis', (e) => e.getBoundingClientRect().height);
-  assert.ok(hero >= 180 && hero <= 240, `hero ${hero}px`);
+  const hero = await page.$eval('.hero', (e) => e.getBoundingClientRect().height);
+  assert.ok(hero >= 180 && hero <= 300, `hero ${hero}px`);
+  assert.deepEqual(await page.$$eval('.bn a span:not(.badge)', (els) => els.map((e) => e.textContent)), ['ホーム', '新着', '探す', '保存', 'マイページ']);
   await page.click('[data-drawer-open]');
   assert.ok(await page.isVisible('#drawer .drawer__panel'));
   assert.equal(await page.evaluate(() => document.documentElement.classList.contains('is-locked')), true);
@@ -94,11 +95,43 @@ test('PC：サイドバーの開閉状態が保持される', async () => {
   await ctx.close();
 });
 
-test('カテゴリのピル：今いるカテゴリが選択状態になる', async () => {
+test('サイドバー：今いるカテゴリのまとまりが開き、現在地が選択状態になる', async () => {
   const { ctx, page } = await open(cat);
-  const cur = await page.$$eval('.gh .pill[aria-current="page"]', (els) => els.length);
-  assert.ok(cur >= 1, 'current pill');
+  const cur = await page.$$eval('.sb .nv__s[aria-current="page"]', (els) => els.length);
+  assert.ok(cur >= 1, 'current category');
+  assert.equal(await page.$eval('.sb .nv__s[aria-current="page"]', (e) => e.closest('details').open), true);
+  assert.equal(await page.$$eval('.gh .pill', (els) => els.length), 0, 'ヘッダーにカテゴリのピルを重複させない');
   assert.ok(await page.isVisible('.chero h1'));
+  const h = await page.$eval('.chero', (e) => e.getBoundingClientRect().height);
+  assert.ok(h >= 140 && h <= 220, `category hero ${h}px`);
+  await ctx.close();
+});
+
+test('カテゴリのタブ：URL に反映され、戻る・進むで元に戻る', async () => {
+  const { ctx, page } = await open(cat, { width: 1280 });
+  await page.click('[data-tab="feature"]');
+  await page.waitForSelector('[data-list-client] .ac, [data-list-client] .state');
+  assert.ok(page.url().includes('tab=feature'));
+  assert.equal(await page.getAttribute('[data-tab="feature"]', 'aria-selected'), 'true');
+  assert.equal(await page.isHidden('[data-list-server]'), true);
+  await page.click('[data-tab="updated"]');
+  assert.ok(page.url().includes('tab=updated'));
+  await page.goBack();
+  await page.waitForFunction(() => document.querySelector('[data-tab="feature"]').getAttribute('aria-selected') === 'true');
+  await page.goBack();
+  await page.waitForFunction(() => document.querySelector('[data-tab="all"]').getAttribute('aria-selected') === 'true');
+  assert.equal(await page.isVisible('[data-list-server]'), true);
+  await ctx.close();
+});
+
+test('スマホ：並び替え・表示のボトムシート（背景タップで閉じる）', async () => {
+  const { ctx, page } = await open(cat, { width: 390, height: 844 });
+  await page.click('[data-list-sheet]');
+  assert.ok(await page.isVisible('#sheet .bs__panel'));
+  await page.click('#sheet label:has(input[name="bs-view"][value="list"])');
+  assert.equal(await page.getAttribute('[data-listing]', 'data-view'), 'list');
+  await page.mouse.click(195, 40);
+  assert.ok(await page.isHidden('#sheet'));
   await ctx.close();
 });
 
@@ -114,9 +147,9 @@ test('記事：集中閲覧モード（ボタンで切り替え、Esc で戻る�
 
 test('カルーセル：次へボタンとキーボードで動く', async () => {
   const { ctx, page } = await open('/', { width: 1024 });
-  const track = '#car-pick';
+  const track = '#car-area';
   const x0 = await page.$eval(track, (e) => e.scrollLeft);
-  await page.click('[data-next][aria-controls="car-pick"]');
+  await page.click('[data-next][aria-controls="car-area"]');
   await page.waitForTimeout(600);
   const x1 = await page.$eval(track, (e) => e.scrollLeft);
   assert.ok(x1 > x0, `scroll ${x0} → ${x1}`);
@@ -139,7 +172,7 @@ test('タブ：矢印キーで切り替わる', async () => {
 
 test('保存：カードから保存 → バッジ → ダッシュボードで表示・フォルダ移動・削除', async () => {
   const { ctx, page } = await open('/', { width: 1280 });
-  const btn = page.locator('.carousel [data-save]').first();
+  const btn = page.locator('[aria-labelledby="sec-new"] [data-save]').first();
   const u = await btn.getAttribute('data-u');
   await btn.click();
   assert.equal(await btn.getAttribute('aria-pressed'), 'true');
@@ -158,6 +191,25 @@ test('保存：カードから保存 → バッジ → ダッシュボードで�
   assert.equal(await page.locator('[data-saved-list] .mrow').count(), 1);
   await page.click(`[data-saved-list] [data-u="${u}"] [data-del]`);
   assert.ok(await page.isVisible('[data-saved-list] .state'));
+  await ctx.close();
+});
+
+test('マイページ：パネルの非表示・並び替え・設定からの再表示が保存される', async () => {
+  const { ctx, page } = await open('/my-dashboard/', { width: 1280 });
+  await page.waitForSelector('[data-panels] .dpanel');
+  const titles = () => page.$$eval('[data-panels] .dpanel h2', (els) => els.map((e) => e.textContent));
+  assert.deepEqual(await titles(), ['続きから読む', '最近保存した記事', 'コレクション']);
+  await page.click('[data-panel-move="recent"][data-dir="-1"]');
+  assert.deepEqual(await titles(), ['最近保存した記事', '続きから読む', 'コレクション']);
+  await page.click('[data-panel-hide="continue"]');
+  assert.deepEqual(await titles(), ['最近保存した記事', 'コレクション']);
+  await page.reload();
+  assert.deepEqual(await titles(), ['最近保存した記事', 'コレクション']);
+  await page.goto(base + '/my-dashboard/#settings');
+  await page.check('[data-panel-opt][value="continue"]', { force: true });
+  assert.equal((await titles()).length, 3);
+  // 閲覧履歴は初期オフ：パネルにもその旨を表示する
+  assert.ok((await page.textContent('[data-panels]')).includes('閲覧履歴はオフ'));
   await ctx.close();
 });
 
@@ -185,8 +237,18 @@ test('設定：文字サイズ・すべて削除', async () => {
   assert.equal(await page.getAttribute('html', 'data-fs'), 'l');
   await page.goto(base + post);
   assert.equal(await page.getAttribute('html', 'data-fs'), 'l');
-  await page.click('[data-fontsize]');
+  // 表示設定はボトムシート：Esc・×で閉じ、背景はスクロールしない
+  await page.click('[data-read-settings]');
+  assert.equal(await page.isVisible('#sheet .bs__panel'), true);
+  assert.equal(await page.evaluate(() => document.documentElement.classList.contains('is-locked')), true);
+  await page.click('#sheet label:has(input[name="rs-fs"][value="xl"])');
   assert.equal(await page.getAttribute('html', 'data-fs'), 'xl');
+  await page.click('#sheet label:has(input[name="rs-theme"][value="light"])');
+  assert.equal(await page.getAttribute('html', 'data-theme'), 'light');
+  await page.keyboard.press('Escape');
+  assert.equal(await page.isHidden('#sheet'), true);
+  await page.reload();
+  assert.equal(await page.getAttribute('html', 'data-theme'), 'light');
   await page.goto(base + '/my-dashboard/#settings');
   await page.click('[data-wipe]');
   await page.click('[data-confirm-wrap] [data-yes]');

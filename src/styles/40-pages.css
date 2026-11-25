@@ -137,13 +137,13 @@
 @media (min-width: 1024px) {
   .hero { min-height: 240px; max-height: 300px; padding: var(--s-8) var(--s-10); }
   .hero__stats { grid-template-columns: repeat(4, minmax(110px, 1fr)); }
-  .bento { grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr) minmax(0, 1fr); grid-template-areas: "lead subs subs" "lead subs subs" "area area info"; }
+  .bento { grid-template-columns: minmax(0, 1fr) minmax(0, .62fr) minmax(0, .62fr); grid-template-areas: "lead subs subs" "lead subs subs" "area area info"; }
   .bento__lead { grid-area: lead; grid-column: auto; }
   .bento__subs { grid-area: subs; grid-column: auto; grid-template-columns: repeat(2, minmax(0, 1fr)); align-content: stretch; }
   .bento__subs .ac--mini { grid-template-columns: 1fr; grid-template-rows: auto 1fr; padding: 0; gap: 0; overflow: hidden; }
   .bento__subs .ac--mini .ac__media { border-radius: 0; }
   .bento__subs .ac--mini .ac__body { padding: var(--s-3) var(--s-4) var(--s-3); }
-  .bento__subs .ac--mini .ac__title { font-size: var(--fs-md); }
+  .bento__subs .ac--mini .ac__title { font-size: var(--fs-md); -webkit-line-clamp: 3; }
   .bento__subs .ac--mini .save { top: 8px; right: 8px; background: rgba(12, 16, 24, .62); color: #F4F5F7; backdrop-filter: blur(6px); }
   .bento__subs .ac--mini .save[aria-pressed="true"] { color: var(--c-accent); }
   .bento__area { grid-area: area; }
@@ -153,7 +153,7 @@
   .rank { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (min-width: 1536px) {
-  .bento { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr) minmax(0, 1fr); }
+  .bento { grid-template-columns: minmax(0, 1fr) minmax(0, .7fr) minmax(0, .7fr); }
 }
 
 /* スマホのヒーローは 150〜200px に収める（説明文は 768px 以上で表示） */

@@ -1,12 +1,28 @@
-# 新デザイン見本（Vercel で公開するページ）
+# グローバルナイトガイド 新デザイン（Vercel 確認用サイト）
 
-テーマの新しい見た目（`wp-content/themes/sango-theme/library/css/gng-refresh.css`）を、リンクで確認するための静的ページ。
-WordPress とは関係なく、このフォルダだけで動く。
+本番サイト（https://globalnightguide.com）の次のページを取得し、新しいデザインで表示する静的サイト。
 
-- `index.html`：見本のページ（トップ・記事・ビフォー・アフター画像の切り替え）
-- `style.css`：見本の見た目。デザインを変えるときはここを編集する
-- `images/`：本番で撮ったビフォー・アフター画像
+| このサイト | 元のページ |
+| --- | --- |
+| `/` | トップ |
+| `/about/` | 自己紹介 |
+| `/contact/` | お問い合わせ（送信は本番のフォームへ案内） |
+| `/category/海外風俗/` | 海外風俗カテゴリ |
+| `/2965/` | 吉原おすすめソープランド80選 |
+| `/design/` | 変更前・変更後の比較画像 |
 
-Vercel では Framework Preset を「Other」（ビルドなし）にし、Root Directory はそのまま（`./`）にする。
-元のテーマの CSS は rinov/globalnightguide の `wp-content/themes/sango-theme/library/css/gng-refresh.css`。
-GitHub に push すると自動で公開し直される。
+ここに無いページへのリンクは本番サイトを開く。
+
+## しくみ
+
+- Vercel のビルド（`npm run build` → `build.mjs`）で本番のページを取得し、本文を取り出して `dist/` に書き出す
+- 本番の記事を書き換えたら、Vercel で Redeploy するだけで中身も最新になる
+- 見た目は `src/site.css`、目次の折りたたみなどは `src/site.js`
+- ページを増やすときは `build.mjs` の `PAGES` に足す
+
+## 手元で試す
+
+```
+npm install
+npm run build   # dist/ ができる
+```

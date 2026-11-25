@@ -1,0 +1,14 @@
+{
+  "name": "gng-design-preview",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs"
+  },
+  "engines": {
+    "node": ">=18.17"
+  },
+  "dependencies": {
+    "cheerio": "1.1.2"
+  }
+}

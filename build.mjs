@@ -43,21 +43,27 @@ async function buildFonts() {
     css += c.replace(/url\(\.\/files\//g, 'url(/assets/fonts/');
   };
   for (const w of [400, 600, 700]) await take('inter', `latin-${w}.css`);
+  // フォントは font-display: optional（間に合わなければ端末のフォントで表示し、
+  // 2 ページ目以降でキャッシュから使う）。表示の遅れとレイアウトのずれを防ぐ
   for (const w of [400, 700]) await take('noto-sans-jp', `${w}.css`);
+  css = css.replace(/font-display: swap/g, 'font-display: optional');
   return { css, interPreload: '/assets/fonts/inter-latin-400-normal.woff2' };
 }
 
 async function buildAssets() {
   await mkdir(join(OUT, 'assets'), { recursive: true });
   const fonts = await buildFonts();
-  const css = fonts.css + '\n' + (await concat('src/styles'));
+  // コメントと余分な空白を取り除く（簡易的な圧縮）
+  const css = (await concat('src/styles')).replace(/\/\*[\s\S]*?\*\//g, '').replace(/\s*\n\s*/g, '\n').replace(/\n+/g, '\n').replace(/[ \t]{2,}/g, ' ').trim();
   const icons = `const ICON_PATHS = ${JSON.stringify(PATHS)};\n`;
   const js = `(() => {\n'use strict';\n${icons}${await concat('src/client')}\n})();\n`;
   const boot = await readFile('src/client/_boot.js', 'utf8');
-  const names = { css: `/assets/app.${hash(css)}.css`, js: `/assets/app.${hash(js)}.js`, boot: `/assets/boot.${hash(boot)}.js`, fontInter: fonts.interPreload };
+  const names = { fonts: `/assets/fonts.${hash(fonts.css)}.css`, css: `/assets/app.${hash(css)}.css`, js: `/assets/app.${hash(js)}.js`, boot: `/assets/boot.${hash(boot)}.js`, fontInter: fonts.interPreload };
   await writeFile(join(OUT, names.css), css);
+  await writeFile(join(OUT, names.fonts), fonts.css);
   await writeFile(join(OUT, names.js), js);
   await writeFile(join(OUT, names.boot), boot);
+  await writeFile(join(OUT, 'favicon.svg'), '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="8" fill="#0C1018"/><path d="M19.5 7.5a8.5 8.5 0 1 0 5 13.6A9 9 0 0 1 19.5 7.5Z" fill="#D7B77E"/></svg>');
   return names;
 }
 

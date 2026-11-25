@@ -70,7 +70,7 @@ if (art) {
   const syncFs = () => {
     const f = store.read().settings.fontSize || 'm';
     root.dataset.fs = f;
-    if (fsBtn) { fsBtn.setAttribute('aria-label', `文字サイズを変更（現在：${FSL[f]}）`); $('[data-fontsize-label]', fsBtn).textContent = FSL[f]; }
+    if (fsBtn) $('[data-fontsize-label]', fsBtn).textContent = FSL[f];
   };
   fsBtn?.addEventListener('click', () => {
     const cur = store.read().settings.fontSize || 'm';

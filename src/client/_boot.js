@@ -8,4 +8,7 @@
   d.dataset.fs = s.fontSize || 'm';
   if (s.sidebarCollapsed) d.classList.add('sb-collapsed');
   d.classList.add('js');
+  try { if (localStorage.getItem('gng:age') !== '1') d.classList.add('age-pending'); } catch (e) {}
+  // フォント（日本語は容量が大きいので、描画を止めないよう後から読み込む）
+  if (d.dataset.fonts) { var l = document.createElement('link'); l.rel = 'stylesheet'; l.href = d.dataset.fonts; document.head.appendChild(l); }
 })();

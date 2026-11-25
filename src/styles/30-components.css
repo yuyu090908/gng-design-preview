@@ -167,6 +167,8 @@ html:not(.js) .tabs__panel + .tabs__panel { margin-top: var(--s-3); }
 .notice .i { color: var(--c-warning); margin-top: 3px; }
 
 /* モーダル */
+html.age-pending #age-gate[hidden] { display: grid !important; }
+#age-gate .modal__bg, #age-gate .modal__panel { animation: none; }
 .modal { position: fixed; inset: 0; z-index: 90; display: grid; place-items: end center; padding: 0; }
 .modal__bg { position: absolute; inset: 0; background: var(--c-overlay); animation: fadeIn var(--t-base) var(--ease); }
 .modal__panel { position: relative; width: 100%; max-width: 520px; max-height: 92vh; overflow-y: auto; padding: var(--s-6) var(--s-5) calc(var(--s-6) + var(--safe-b)); background: var(--c-surface); border: 1px solid var(--c-border); border-radius: var(--r-panel) var(--r-panel) 0 0; box-shadow: var(--shadow-3); animation: modalIn var(--t-slow) var(--ease); outline: none; }

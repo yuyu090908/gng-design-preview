@@ -3,7 +3,7 @@ import { readdir, readFile, writeFile } from 'node:fs/promises';
 
 const dir = process.argv[2] || 'lh';
 const rows = [];
-for (const f of (await readdir(dir)).filter((x) => x.endsWith('.json')).sort()) {
+for (const f of (await readdir(dir)).filter((x) => x.endsWith('.json') && !x.startsWith('summary')).sort()) {
   const r = JSON.parse(await readFile(`${dir}/${f}`, 'utf8'));
   const c = r.categories, a = r.audits;
   const s = (k) => Math.round((c[k]?.score ?? 0) * 100);

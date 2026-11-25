@@ -7,7 +7,7 @@ function applySettings() {
   if (t === 'system') t = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
   root.dataset.theme = t;
   root.dataset.fs = s.fontSize || 'm';
-  $$('[data-theme-toggle]').forEach((b) => b.setAttribute('aria-label', t === 'dark' ? 'ライトモードに切り替え' : 'ダークモードに切り替え'));
+  $$('[data-theme-toggle]:not([data-theme-text])').forEach((b) => b.setAttribute('aria-label', t === 'dark' ? 'ライトモードに切り替え' : 'ダークモードに切り替え'));
 }
 matchMedia('(prefers-color-scheme: light)').addEventListener?.('change', applySettings);
 
@@ -66,9 +66,10 @@ drawer?.addEventListener('click', (e) => {
 const gate = $('#age-gate');
 let ageOk = false;
 try { ageOk = localStorage.getItem(AGE_KEY) === '1'; } catch { ageOk = true; }
+if (ageOk) root.classList.remove('age-pending');
 if (gate && !ageOk) {
   const close = openModal(gate, { noEsc: true });
-  gate.querySelector('[data-age-ok]').addEventListener('click', () => { try { localStorage.setItem(AGE_KEY, '1'); } catch {} close && close(); });
+  gate.querySelector('[data-age-ok]').addEventListener('click', () => { try { localStorage.setItem(AGE_KEY, '1'); } catch {} root.classList.remove('age-pending'); close && close(); });
 }
 
 // 「/」キーで検索欄へ

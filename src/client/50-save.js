@@ -6,7 +6,7 @@ function syncSaveButtons(rootEl = document) {
     const on = set.has(b.dataset.u);
     b.setAttribute('aria-pressed', String(on));
     const t = b.dataset.t || '記事';
-    b.setAttribute('aria-label', on ? `「${t}」の保存を解除` : `「${t}」を保存`);
+    b.setAttribute('aria-label', on ? `保存済み「${t}」（押すと解除）` : `保存「${t}」`);
     const l = b.querySelector('.save__l');
     if (l) l.textContent = on ? '保存済み' : '保存';
   });

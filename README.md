@@ -55,4 +55,4 @@ npm run test:e2e     # 画面の操作テスト（Playwright）
 | `CANONICAL_ORIGIN` | `https://globalnightguide.com` | canonical・サイトマップの URL |
 | `IMG_OPT` | Vercel 上で有効 | Vercel の画像最適化（AVIF / WebP）を使うか |
 
-GitHub Actions（`.github/workflows/quality.yml`）が push ごとに本番データでビルドとテストを行い、公開後に Lighthouse を計測して `ci-results` ブランチに結果を保存します。
+Lighthouse の集計は `npx lighthouse ... --output=json` の結果フォルダに対して `node scripts/lighthouse-summary.mjs <フォルダ>` で表にできます。

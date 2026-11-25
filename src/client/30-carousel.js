@@ -1,0 +1,60 @@
+// ---------- 横スワイプのカルーセル（CSS Scroll Snap が基本。ボタン・キーボード・マウスのドラッグにも対応） ----------
+function initCarousel(c) {
+  const track = c.querySelector('.carousel__track');
+  const prev = c.querySelector('[data-prev]');
+  const next = c.querySelector('[data-next]');
+  if (!track) return;
+  const step = () => {
+    const item = track.querySelector('.carousel__item');
+    if (!item) return track.clientWidth;
+    const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+    const per = Math.max(1, Math.floor((track.clientWidth + gap) / (item.offsetWidth + gap)));
+    return per * (item.offsetWidth + gap);
+  };
+  const go = (dir) => track.scrollBy({ left: dir * step(), behavior: reduced() ? 'auto' : 'smooth' });
+  const sync = () => {
+    const max = track.scrollWidth - track.clientWidth - 2;
+    if (prev) prev.disabled = track.scrollLeft <= 2;
+    if (next) next.disabled = track.scrollLeft >= max;
+    c.classList.toggle('is-static', max <= 0);
+  };
+  prev?.addEventListener('click', () => go(-1));
+  next?.addEventListener('click', () => go(1));
+  track.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') { e.preventDefault(); go(1); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); go(-1); }
+  });
+  let raf = 0;
+  track.addEventListener('scroll', () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(sync); }, { passive: true });
+  new ResizeObserver(sync).observe(track);
+  sync();
+
+  // マウスでのドラッグ（タッチは標準のスクロールに任せる）
+  let down = null, moved = false;
+  track.addEventListener('pointerdown', (e) => {
+    if (e.pointerType !== 'mouse' || e.button !== 0) return;
+    down = { x: e.clientX, left: track.scrollLeft };
+    moved = false;
+  });
+  window.addEventListener('pointermove', (e) => {
+    if (!down) return;
+    const dx = e.clientX - down.x;
+    if (!moved && Math.abs(dx) > 6) { moved = true; track.classList.add('is-dragging'); }
+    if (moved) track.scrollLeft = down.left - dx;
+  });
+  window.addEventListener('pointerup', () => {
+    if (!down) return;
+    down = null;
+    if (moved) {
+      track.classList.remove('is-dragging');
+      // ドラッグ後に一番近いカードの位置へ合わせる
+      const items = [...track.children];
+      const left = track.scrollLeft;
+      const near = items.reduce((a, b) => (Math.abs(b.offsetLeft - track.offsetLeft - left) < Math.abs(a.offsetLeft - track.offsetLeft - left) ? b : a), items[0]);
+      if (near) track.scrollTo({ left: near.offsetLeft - track.offsetLeft - parseFloat(getComputedStyle(track).scrollPaddingLeft || 0), behavior: reduced() ? 'auto' : 'smooth' });
+    }
+  });
+  // ドラッグした直後のクリックでリンクが開かないようにする
+  track.addEventListener('click', (e) => { if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; } }, true);
+}
+$$('[data-carousel]').forEach(initCarousel);

@@ -1,0 +1,108 @@
+/* =========================================================
+   GLOBAL NIGHT GUIDE 2.0 — Design Tokens
+   コンセプト：Premium International Night Editorial
+   テーマはこの変数だけで切り替える（ダーク既定・ライト対応）
+   ========================================================= */
+:root {
+  /* 色（ダーク） */
+  --c-bg: #0C1018;
+  --c-bg-2: #131923;
+  --c-surface: #1A2230;
+  --c-elevated: #242D3B;
+  --c-accent: #D7B77E;
+  --c-accent-ink: #D7B77E;     /* 文字として使うアクセント */
+  --c-accent-soft: rgba(215, 183, 126, .12);
+  --c-on-accent: #14100A;
+  --c-text: #F4F5F7;
+  --c-text-2: #A3ADBA;
+  --c-text-3: #8692A1;
+  --c-border: #2D3745;
+  --c-border-strong: #3A4657;
+  --c-success: #45B985;
+  --c-warning: #E5AD55;
+  --c-danger: #E36D6D;
+  --c-link: #9CC3FF;
+  --c-mark: rgba(215, 183, 126, .28);
+  --c-emph: #FFB4A9;
+  --c-overlay: rgba(4, 6, 10, .66);
+  --c-skel: #222B39;
+  --c-skel-2: #2A3444;
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, .3);
+  --shadow-2: 0 8px 24px -12px rgba(0, 0, 0, .6);
+  --shadow-3: 0 24px 48px -20px rgba(0, 0, 0, .75);
+
+  /* 文字 */
+  --f-sans: "Inter", "Noto Sans JP", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, system-ui, sans-serif;
+  --f-en: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --fs-xs: .75rem;    /* 12 */
+  --fs-sm: .8125rem;  /* 13 */
+  --fs-md: .875rem;   /* 14 */
+  --fs-base: 1rem;    /* 16 */
+  --fs-lg: 1.125rem;  /* 18 */
+  --fs-xl: 1.375rem;  /* 22 */
+  --fs-2xl: 1.75rem;  /* 28 */
+  --fs-3xl: 2.25rem;  /* 36 */
+  --lh-body: 1.85;
+  --lh-tight: 1.4;
+
+  /* 余白（4px 基準） */
+  --s-1: 4px; --s-2: 8px; --s-3: 12px; --s-4: 16px; --s-5: 20px; --s-6: 24px; --s-8: 32px; --s-10: 40px; --s-12: 48px; --s-16: 64px;
+
+  /* 形 */
+  --r-panel: 14px;
+  --r-card: 12px;
+  --r-btn: 10px;
+  --r-pill: 999px;
+
+  /* 動き（150〜250ms） */
+  --t-fast: 150ms;
+  --t-base: 200ms;
+  --t-slow: 250ms;
+  --ease: cubic-bezier(.2, .7, .2, 1);
+
+  /* 配置 */
+  --gh-h: 52px;
+  --bn-h: 60px;
+  --sb-w: 240px;
+  --sb-w-c: 68px;
+  --main-max: 1520px;
+  --read-max: 800px;
+  --safe-b: env(safe-area-inset-bottom, 0px);
+
+  color-scheme: dark;
+}
+
+[data-theme="light"] {
+  --c-bg: #F6F5F2;
+  --c-bg-2: #EEECE7;
+  --c-surface: #FFFFFF;
+  --c-elevated: #FFFFFF;
+  --c-accent: #B8924B;
+  --c-accent-ink: #7A5A1E;
+  --c-accent-soft: rgba(184, 146, 75, .14);
+  --c-on-accent: #FFFFFF;
+  --c-text: #141922;
+  --c-text-2: #4F5867;
+  --c-text-3: #5E6776;
+  --c-border: #E1DED6;
+  --c-border-strong: #CFCBC0;
+  --c-success: #1F8A5B;
+  --c-warning: #A86A10;
+  --c-danger: #C23B3B;
+  --c-link: #1F55C2;
+  --c-mark: rgba(215, 183, 126, .45);
+  --c-emph: #B4232F;
+  --c-overlay: rgba(12, 16, 24, .5);
+  --c-skel: #ECE9E2;
+  --c-skel-2: #F4F2ED;
+  --shadow-1: 0 1px 2px rgba(20, 25, 34, .06);
+  --shadow-2: 0 8px 24px -14px rgba(20, 25, 34, .22);
+  --shadow-3: 0 24px 48px -20px rgba(20, 25, 34, .35);
+  color-scheme: light;
+}
+
+[data-theme="light"] .btn--primary { --c-accent: #8C6A2B; }
+
+@media (min-width: 1024px) {
+  :root { --gh-h: 60px; }
+}

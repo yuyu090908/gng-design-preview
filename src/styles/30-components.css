@@ -80,7 +80,7 @@ html:not(.js) .tabs__panel + .tabs__panel { margin-top: var(--s-3); }
 .ac:focus-within { border-color: var(--c-accent); }
 .ac__media { position: relative; aspect-ratio: 16 / 9; border-radius: 8px; overflow: hidden; background: var(--c-bg-2); align-self: start; }
 .ac__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.ph { display: grid; place-items: center; width: 100%; height: 100%; background: radial-gradient(120% 100% at 80% 0%, #2B3650 0%, transparent 60%), linear-gradient(160deg, #182030, #0E131C); color: rgba(215, 183, 126, .55); }
+.noimg { display: grid; place-items: center; width: 100%; height: 100%; background: radial-gradient(120% 100% at 80% 0%, #2B3650 0%, transparent 60%), linear-gradient(160deg, #182030, #0E131C); color: rgba(215, 183, 126, .55); }
 .ac__body { display: flex; flex-direction: column; gap: 4px; padding: 2px var(--s-8) 2px 0; }
 .ac__cat { display: inline-flex; align-items: center; gap: 5px; align-self: flex-start; margin: 0; font-size: 11.5px; font-weight: 600; color: var(--c-accent-ink); letter-spacing: .02em; }
 .ac__cat .flag { height: 14px; min-width: 20px; font-size: 8.5px; }

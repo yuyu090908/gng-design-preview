@@ -20,7 +20,7 @@ if (dash) {
     if (!u) return '';
     const im = safeImg(it.i);
     return `<li class="mrow" data-u="${esc(u)}">
-<a class="mrow__a" href="${esc(u)}"><span class="mrow__m">${im ? `<img src="${esc(im)}" alt="" width="160" height="90" loading="lazy">` : `<span class="ph">${icon('moon', 20)}</span>`}</span>
+<a class="mrow__a" href="${esc(u)}"><span class="mrow__m">${im ? `<img src="${esc(im)}" alt="" width="160" height="90" loading="lazy">` : `<span class="noimg">${icon('moon', 20)}</span>`}</span>
 <span class="mrow__b">${it.c ? `<span class="ac__cat">${esc(it.c)}</span>` : ''}<span class="mrow__t">${esc(it.t)}</span><span class="mrow__meta">${kind === 'saved' ? `保存 ${ymd(it.at)}` : `閲覧 ${ymd(it.at)}`}${pct != null ? ` ・ ${progressBar(pct)}` : ''}</span></span></a>
 <span class="mrow__act">${kind === 'saved' ? `<label class="sel sel--sm"><span class="sr">フォルダを移動</span>${icon('folder', 16)}<select data-move>${folders.map((f) => `<option${f === it.f ? ' selected' : ''}>${esc(f)}</option>`).join('')}</select></label>` : ''}<button class="ibtn ibtn--sm" type="button" data-del aria-label="「${esc(it.t)}」を${kind === 'saved' ? '保存から削除' : '履歴から削除'}">${icon('trash', 18)}</button></span>
 </li>`;

@@ -118,3 +118,4 @@ test('架空のデモデータが残っていない', () => {
     assert.ok(!/lorem ipsum|ダミー|サンプル記事|dummy/i.test(t), f);
   }
 });
+test("一覧ページの見出しの形", () => { for (const { f, $ } of pages) if ($("[data-listing]").length) assert.ok($("header.ph h1").length, f); });

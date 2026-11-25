@@ -194,6 +194,7 @@
 /* ---------- スマホ：新着は 4 件まで（すべて見るへ） ---------- */
 @media (max-width: 767px) {
   .agrid--limit > :nth-child(n+5) { display: none; }
+  .chero__en { display: none; }
 }
 @media (max-width: 359px) {
   .hero__t { font-size: 23px; }

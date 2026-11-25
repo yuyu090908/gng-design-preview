@@ -7,5 +7,6 @@ WordPress とは関係なく、このフォルダだけで動く。
 - `style.css`：見本の見た目。デザインを変えるときはここを編集する
 - `images/`：本番で撮ったビフォー・アフター画像
 
-Vercel では Root Directory を `preview` にし、Framework Preset は「Other」（ビルドなし）にする。
+Vercel では Framework Preset を「Other」（ビルドなし）にし、Root Directory はそのまま（`./`）にする。
+元のテーマの CSS は rinov/globalnightguide の `wp-content/themes/sango-theme/library/css/gng-refresh.css`。
 GitHub に push すると自動で公開し直される。

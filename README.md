@@ -67,3 +67,32 @@ npm run test:e2e     # 画面の操作テスト（Playwright）
 | `IMG_OPT` | Vercel 上で有効 | Vercel の画像最適化（AVIF / WebP）を使うか |
 
 Lighthouse の集計は `npx lighthouse ... --output=json` の結果フォルダに対して `node scripts/lighthouse-summary.mjs <フォルダ>` で表にできます。
+
+## GLOBAL NIGHT COMMUNITY（Phase 1・機能フラグで段階公開）
+
+コミュニティ（掲示板・口コミ・コメント・参考になった・保存・通報・ブロック・プロフィール・管理画面）は、
+ブラウザから Supabase（PostgreSQL・Auth・Storage）に直接つなぐ。**既定ではすべて OFF** で、OFF のビルドは従来とまったく同じ HTML になる。
+
+| 変数 | 説明 |
+| --- | --- |
+| `GNG_FEATURES` | `all`（Phase 1 すべて）、または `community,reviews,admin` を選んで有効化。空なら無効 |
+| `SUPABASE_URL` | `https://<project>.supabase.co` |
+| `SUPABASE_ANON_KEY` | 公開用の anon キー（**service_role キーは入れない**。入れるとビルドを止める） |
+
+- DB：`supabase/migrations/*.sql` を Supabase の SQL Editor で順に実行する。追加だけで、既存のデータは変更しない
+- 権限：読み取りは RLS、書き込みはすべて DB 関数（RPC）経由。本人確認・入力検証・回数制限・集計・監査ログを DB 側で行う
+- 最初の管理者：SQL Editor で `insert into user_roles (user_id, role) select id, 'admin' from user_profiles where handle = '<ユーザー名>';`
+- ページ：`/community/`（一覧）、`/community/new/`（投稿）、`/community/post/?id=`、`/community/u/?h=`、`/community/me/`、`/community/login/`、`/community/rules/`、`/admin/community/`。記事ページに「口コミ・質問」欄、TOP にダイジェスト
+
+### テスト
+
+```
+npm run test:db          # DB の権限・不正防止（PostgreSQL が必要：PGHOST / PGPORT / PGUSER）
+npm run test:community   # コミュニティを有効にしたビルドの画面テスト（本物の PostgreSQL + tests/support の API 代替）
+```
+
+### ロールバック
+
+- 画面だけ戻す：Vercel の環境変数 `GNG_FEATURES` を消して Redeploy（コミュニティのページと導線が消え、従来の表示に戻る）
+- コードを戻す：`backup/pre-community-2026-11-26` ブランチ（タグ `pre-community-v4.3`）が導入前の main
+- DB：追加したテーブルは既存サイトから参照されないので、残しておいても表示に影響しない

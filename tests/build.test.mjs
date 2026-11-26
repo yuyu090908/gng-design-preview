@@ -6,7 +6,7 @@ import { readFile, readdir, stat } from 'node:fs/promises';
 import { join } from 'node:path';
 import * as cheerio from 'cheerio';
 
-const DIST = 'dist';
+const DIST = process.env.GNG_OUT || 'dist';
 async function walk(dir) {
   const out = [];
   for (const e of await readdir(dir, { withFileTypes: true })) {
@@ -59,7 +59,7 @@ test('危険なリンク・インラインスクリプト・style 属性が無�
     assert.equal($('a[href^="javascript:"]').length, 0, f);
     $('script').each((_, s) => {
       const t = $(s).attr('type');
-      if (t === 'application/ld+json') return;
+      if (t === 'application/ld+json' || t === 'application/json') return; // データ（実行されない）
       assert.ok($(s).attr('src'), `${f}: inline script`);
     });
     assert.equal($('[style]').length, 0, `${f}: style 属性`);
@@ -123,4 +123,12 @@ test("一覧ページの見出しの形", () => { for (const { f, $ } of pages) 
 // 4.2：画像・映像の上に説明の文字を重ねない／国別ページはその国のヒーローを使う
 test('画像・映像の上に「イメージ映像（AI生成）」などの表記がない', () => {
   for (const { f, $ } of pages) assert.equal($('.art-note').length, 0, f);
+});
+
+test('機能フラグ：コミュニティを有効にしていないビルドには、コミュニティへの導線が無い', async () => {
+  if (await exists(join(DIST, 'community'))) return;
+  for (const { f, $ } of pages) {
+    assert.equal($('a[href^="/community/"], a[href^="/admin/"]').length, 0, f);
+    assert.equal($('#gn-config').length, 0, f);
+  }
 });

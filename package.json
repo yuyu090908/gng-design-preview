@@ -6,7 +6,10 @@
     "build": "node build.mjs",
     "test": "node --test tests/build.test.mjs",
     "test:e2e": "node --test --test-concurrency=1 tests/e2e.test.mjs",
-    "check": "node --check build.mjs && for f in lib/*.mjs; do node --check $f; done"
+    "check": "node --check build.mjs && for f in lib/*.mjs; do node --check $f; done",
+    "build:community": "GNG_OUT=dist-community GNG_FEATURES=all SUPABASE_URL=http://localhost:54400 SUPABASE_ANON_KEY=test-anon node build.mjs",
+    "test:community": "npm run build:community && node --test --test-concurrency=1 tests/community.e2e.test.mjs",
+    "test:db": "bash supabase/tests/run.sh"
   },
   "engines": {
     "node": ">=18.17"
@@ -18,6 +21,7 @@
     "cheerio": "1.1.2"
   },
   "devDependencies": {
+    "pg": "^8.23.1",
     "playwright": "1.63.0"
   }
 }

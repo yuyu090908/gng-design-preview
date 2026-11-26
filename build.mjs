@@ -20,7 +20,7 @@ import { communityPage, postPage, composerPage, loginPage, mePage, profilePage, 
 import { CANONICAL, INDEXABLE } from './lib/components.mjs';
 import { setArt, homePage, categoryPages, newPages, featuresPage, areaPage, rankingPage, guidePage, faqPage, articlePage, staticPage, searchPage, dashboardPage, notFoundPage } from './lib/pages.mjs';
 
-const OUT = 'dist';
+const OUT = process.env.GNG_OUT || 'dist';
 const hash = (s) => createHash('sha256').update(s).digest('hex').slice(0, 10);
 
 async function write(path, body) {

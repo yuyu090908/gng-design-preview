@@ -26,7 +26,7 @@ select.input { padding-right: 28px; }
   .clay { grid-template-columns: minmax(0, 1fr) 300px; }
   .clay__side { position: sticky; top: calc(var(--gh-h) + 16px); }
 }
-.clay--narrow { max-width: 760px; }
+.clay--narrow { max-width: 760px; grid-template-columns: minmax(0, 1fr) !important; }
 .cph { max-width: 980px; }
 
 /* ---------- コミュニティのヒーロー（小さめ。最新の投稿がすぐ見えるように） ---------- */
@@ -47,7 +47,7 @@ select.input { padding-right: 28px; }
 .ctabs { position: relative; margin: 0 calc(-1 * var(--pad)) var(--s-3); }
 .ctabs__list { display: flex; gap: 6px; margin: 0; padding: 2px var(--pad) 8px; list-style: none; overflow-x: auto; scrollbar-width: none; scroll-snap-type: x proximity; }
 .ctabs__list::-webkit-scrollbar { display: none; }
-.ctabs__list li { scroll-snap-align: start; }
+.ctabs__list li { flex: none; scroll-snap-align: start; }
 .ctab { flex: none; min-height: 40px; padding: 0 16px; border-radius: var(--r-pill); border: 1px solid var(--c-border-strong); background: var(--c-card); color: var(--c-text-2); font-size: 14px; font-weight: 600; white-space: nowrap; cursor: pointer; transition: background var(--n-t), color var(--n-t), border-color var(--n-t); }
 .ctab:hover { color: var(--c-text); border-color: var(--gold-line); }
 .ctab[aria-pressed="true"] { background: var(--gold); color: var(--c-on-accent); border-color: var(--gold); }
@@ -124,6 +124,12 @@ a.ptag:hover { border-color: var(--gold-line); color: var(--c-text); }
 .pc--detail .pc__title { font-size: 20px; }
 .pc--detail .pc__title a::after { display: none; }
 
+[data-lift], .pc__menu { position: relative; z-index: 1; }
+.pc__cover { position: absolute; inset: 0; border-radius: inherit; }
+.pc__cover:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+.pmenu { position: absolute; z-index: 20; right: 12px; top: 52px; display: grid; min-width: 200px; padding: 6px; border-radius: 12px; background: var(--c-elev); border: 1px solid var(--c-border-strong); box-shadow: var(--shadow-3); }
+.pmenu [data-danger] { color: var(--n-err); }
+
 /* アバター（登録時に決まる模様。写真は使わない） */
 .av { flex: none; display: inline-block; width: 40px; height: 40px; border-radius: 50%; overflow: hidden; background: var(--c-elev); }
 .av svg { display: block; width: 100%; height: 100%; }
@@ -141,8 +147,8 @@ a.ptag:hover { border-color: var(--gold-line); color: var(--c-text); }
 .cside__t { display: flex; align-items: center; gap: 6px; margin: 0 0 10px; font-size: 14px; }
 .cside__t .i { color: var(--gold); }
 .cside__list { display: grid; gap: 2px; margin: 0; padding: 0; list-style: none; counter-reset: cs; }
-.cside__list a { display: grid; grid-template-columns: 1.6em 1fr auto; gap: 6px; align-items: baseline; padding: 8px 6px; border-radius: 8px; color: var(--c-text); text-decoration: none; font-size: 13.5px; line-height: 1.5; }
-.cside__list a::before { counter-increment: cs; content: counter(cs); font: 700 12px var(--f-en); color: var(--n-premium); }
+.cside__list a, .cside__row { display: grid; grid-template-columns: 1.6em 1fr auto; gap: 6px; align-items: baseline; padding: 8px 6px; border-radius: 8px; color: var(--c-text); text-decoration: none; font-size: 13.5px; line-height: 1.5; }
+.cside__list a::before, .cside__row::before { counter-increment: cs; content: counter(cs); font: 700 12px var(--f-en); color: var(--n-premium); }
 .cside__list a:hover { background: var(--c-hover); }
 .cside__list small { color: var(--c-text-3); font: 500 12px var(--f-en); }
 .cside__empty { padding: 4px 0; color: var(--c-text-3); font-size: 13px; }
@@ -316,3 +322,13 @@ a.ptag:hover { border-color: var(--gold-line); color: var(--c-text); }
 
 /* 動きを減らす設定 */
 @media (prefers-reduced-motion: reduce) { .btn, .ctab, .pact, .fab, .stars__s { transition: none; } .btn.is-loading::after { animation-duration: 2s; } }
+
+/* フォームの細部 */
+legend.cform__h { float: left; width: 100%; }
+legend.cform__h + * { clear: both; }
+.cform__grid { align-items: start; }
+.cform__grid > .field:has(.cf__region), .cform__grid > .field:has([data-region]) { grid-column: 1 / -1; }
+.field .input, .field select { font-weight: 400; }
+.field { align-content: start; }
+@media (min-width: 768px) { .arev__sum.has-data { grid-template-columns: 220px 1fr; } }
+.target__chosen .tbtn { border: 0; background: none; color: var(--gold-l); font-weight: 700; cursor: pointer; min-height: 36px; }

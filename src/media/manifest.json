@@ -1,12 +1,7 @@
 {
  "version": "4.1",
  "generated": "2026-11-26",
- "note": "映像・写真素材の台帳。本体は pack（無圧縮 ZIP）にまとめ、ビルド時に取得して各ファイルの SHA-256 を検証してから dist/assets/media/ に書き出す。取得できないときは従来の画像で表示する。",
- "pack": {
-  "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3GzEOW1cbzyPjySGkbYzv7L3rIa/2b5ecb46-30db-4878-bf5e-715f112d856a.zip",
-  "sha256": "4994530eb7ab0cab9e8570891c911981748f58a59debedafe3ca11bb495b7cd0",
-  "bytes": 15474599
- },
+ "note": "映像・写真素材の台帳。素材は src/media/<種類>/ に置き、ビルド時に各ファイルの SHA-256 を照合してから dist/assets/media/ に書き出す。",
  "encoding": {
   "video": "H.264 High / yuv420p / 24fps / 2-pass / +faststart / 音声なし",
   "image": "WebP（q66〜74）＋ AVIF（ポスター）"

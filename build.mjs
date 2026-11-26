@@ -11,7 +11,6 @@
 //   GNG_MEDIA=0       映像・写真素材を使わない（従来のイラスト・記事画像で表示）
 import { mkdir, writeFile, readFile, cp, rm, readdir } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
-import { inflateRawSync } from 'node:zlib';
 import { dirname, join } from 'node:path';
 import { loadSite } from './lib/data.mjs';
 import { makeLinker, href } from './lib/content.mjs';
@@ -56,9 +55,9 @@ async function buildFonts() {
 }
 
 // ---------- 映像・写真素材（Higgsfield で生成し、Web 用に圧縮したもの） ----------
-// 素材の一覧と各ファイルの SHA-256 は src/media/manifest.json。本体は 1 つの ZIP（pack.url）にまとめてあり、
-// ビルドのときに取得して中身を検証してから dist/assets/media/ に書き出す（配信はこのサイト自身のドメイン）。
-// 取得や検証に失敗したときは素材を使わず、従来のイラスト・記事画像で表示する（ビルドは止めない）
+// 素材は src/media/<種類>/ に置き、一覧と各ファイルの SHA-256 は src/media/manifest.json に記録する。
+// ビルドでは台帳とハッシュが一致するファイルだけを dist/assets/media/ に書き出す。
+// 素材が無いときは従来のイラスト・記事画像で表示する（ビルドは止めない）
 async function walkFiles(root, dir = root, out = new Map()) {
   let list = [];
   try { list = await readdir(dir, { withFileTypes: true }); } catch { return out; }
@@ -69,61 +68,20 @@ async function walkFiles(root, dir = root, out = new Map()) {
   }
   return out;
 }
-// ZIP（無圧縮 / deflate）を読む。依存パッケージを増やさないための最小限の実装
-function unzip(buf) {
-  const files = new Map();
-  let eocd = buf.length - 22;
-  while (eocd >= 0 && buf.readUInt32LE(eocd) !== 0x06054b50) eocd--;
-  if (eocd < 0) throw new Error('zip: no end record');
-  let p = buf.readUInt32LE(eocd + 16);
-  const n = buf.readUInt16LE(eocd + 10);
-  for (let i = 0; i < n; i++) {
-    if (buf.readUInt32LE(p) !== 0x02014b50) throw new Error('zip: bad central record');
-    const method = buf.readUInt16LE(p + 10), csize = buf.readUInt32LE(p + 20);
-    const nlen = buf.readUInt16LE(p + 28), xlen = buf.readUInt16LE(p + 30), clen = buf.readUInt16LE(p + 32), off = buf.readUInt32LE(p + 42);
-    const name = buf.toString('utf8', p + 46, p + 46 + nlen);
-    p += 46 + nlen + xlen + clen;
-    if (name.endsWith('/')) continue;
-    const start = off + 30 + buf.readUInt16LE(off + 26) + buf.readUInt16LE(off + 28);
-    const raw = buf.subarray(start, start + csize);
-    files.set(name, method === 0 ? Buffer.from(raw) : inflateRawSync(raw));
-  }
-  return files;
-}
 const sha256 = (b) => createHash('sha256').update(b).digest('hex');
 async function loadMedia() {
   if (process.env.GNG_MEDIA === '0') return new Map();
   if (process.env.GNG_MEDIA_DIR) return walkFiles(process.env.GNG_MEDIA_DIR.replace(/\/$/, ''));
-  const local = await walkFiles('src/media');
-  if (local.size) return local;
+  const files = await walkFiles('src/media');
   let manifest;
-  try { manifest = JSON.parse(await readFile('src/media/manifest.json', 'utf8')); } catch { return new Map(); }
-  const { pack, assets = [] } = manifest;
-  if (!pack?.url) return new Map();
-  const cache = join('node_modules/.cache/gng-media', `${pack.sha256}.zip`);
-  try {
-    let buf = await readFile(cache).catch(() => null);
-    if (!buf || sha256(buf) !== pack.sha256) {
-      const res = await fetch(pack.url, { signal: AbortSignal.timeout(90_000) });
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      buf = Buffer.from(await res.arrayBuffer());
-      if (sha256(buf) !== pack.sha256) throw new Error('pack checksum mismatch');
-      await mkdir(dirname(cache), { recursive: true });
-      await writeFile(cache, buf);
-    }
-    const files = unzip(buf);
-    // manifest に載っていて、ハッシュが一致するファイルだけを使う
-    const ok = new Map();
-    for (const a of assets) for (const f of a.files || []) {
-      const b = files.get(f.path);
-      if (b && sha256(b) === f.sha256) ok.set(f.path, b);
-      else console.warn(`media: skip ${f.path}`);
-    }
-    return ok;
-  } catch (e) {
-    console.warn(`media: not available (${e.message}). Using fallback images.`);
-    return new Map();
+  try { manifest = JSON.parse(await readFile('src/media/manifest.json', 'utf8')); } catch { return files; }
+  const ok = new Map();
+  for (const a of manifest.assets || []) for (const f of a.files || []) {
+    const b = files.get(f.path);
+    if (b && sha256(b) === f.sha256) ok.set(f.path, b);
+    else console.warn(`media: skip ${f.path}`);
   }
+  return ok;
 }
 
 async function buildAssets() {

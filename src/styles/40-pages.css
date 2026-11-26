@@ -325,3 +325,15 @@
 .ft__bg { top: auto; height: 100%; object-position: 50% 100%; opacity: .45; -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 70%); mask-image: linear-gradient(180deg, transparent 0, #000 70%); }
 [data-theme="light"] .ph__bg, [data-theme="light"] .safe__bg, [data-theme="light"] .ft__bg { opacity: .14; filter: grayscale(.4); }
 @media (min-width: 768px) { .ph--bg { margin-left: 0; margin-right: 0; padding: 6px 24px 20px; border-radius: var(--r-panel); border: 1px solid var(--c-border); } }
+/* スマホ：TOP のヒーローは 180〜230px、地球のパネルは 110〜150px に収める */
+@media (max-width: 767px) {
+  .hero__lead { display: none; }
+  .hero__t { margin-bottom: 12px; }
+  .earth { min-height: 112px; }
+  .earth__in { padding: 12px 14px; }
+  .earth__t { font-size: 16px; margin-bottom: 8px; }
+  .earth__d { display: none; }
+  .earth .art-note { bottom: 4px; }
+}
+/* PC：カテゴリのヒーローは 160〜210px */
+@media (min-width: 1024px) { .chero__in { padding-top: 14px; padding-bottom: 16px; } }

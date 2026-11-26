@@ -14,7 +14,9 @@ import { createHash } from 'node:crypto';
 import { dirname, join } from 'node:path';
 import { loadSite } from './lib/data.mjs';
 import { makeLinker, href } from './lib/content.mjs';
-import { PATHS } from './lib/icons.mjs';
+import { PATHS, COM_PATHS } from './lib/icons.mjs';
+import { COMMUNITY, feature, FEATURES, BACKEND } from './lib/features.mjs';
+import { communityPage, postPage, composerPage, loginPage, mePage, profilePage, rulesPage, adminPage } from './lib/community.mjs';
 import { CANONICAL, INDEXABLE } from './lib/components.mjs';
 import { setArt, homePage, categoryPages, newPages, featuresPage, areaPage, rankingPage, guidePage, faqPage, articlePage, staticPage, searchPage, dashboardPage, notFoundPage } from './lib/pages.mjs';
 
@@ -120,6 +122,14 @@ async function buildAssets() {
     names.media[rel] = out;
   }
   if (files.size) console.log(`media: ${files.size} files`);
+  // コミュニティ用の CSS・JS（機能フラグが有効なときだけ作る。既存ページには読み込まない）
+  if (COMMUNITY) {
+    const ccss = (await concat('src/community/styles')).replace(/\/\*[\s\S]*?\*\//g, '').replace(/\s*\n\s*/g, '\n').replace(/\n+/g, '\n').replace(/[ \t]{2,}/g, ' ').trim();
+    const cjs = `(() => {\n'use strict';\nconst ICON_PATHS = ${JSON.stringify({ ...PATHS, ...COM_PATHS })};\n${await concat('src/community/client')}\n})();\n`;
+    names.community = { css: `/assets/community.${hash(ccss)}.css`, js: `/assets/community.${hash(cjs)}.js` };
+    await writeFile(join(OUT, names.community.css), ccss);
+    await writeFile(join(OUT, names.community.js), cjs);
+  }
   return names;
 }
 
@@ -154,6 +164,15 @@ async function build() {
   await write('/my-dashboard/', dashboardPage(site, assets));
   await write('/404.html', notFoundPage(site, assets));
 
+  // GLOBAL NIGHT COMMUNITY（機能フラグ GNG_FEATURES で有効にしたものだけ）
+  if (COMMUNITY) {
+    await put('/community/', communityPage(site, assets), site.updated);
+    await put('/community/rules/', rulesPage(site, assets));
+    for (const [p, fn] of [['/community/post/', postPage], ['/community/new/', composerPage], ['/community/login/', loginPage], ['/community/me/', mePage], ['/community/u/', profilePage]]) await write(p, fn(site, assets));
+    if (feature('admin')) await write('/admin/community/', adminPage(site, assets));
+    console.log(`community: ${[...FEATURES].join(', ')}${BACKEND.ready ? '' : '（接続先が未設定のため「準備中」と表示）'}`);
+  }
+
   // 検索・並び替え用の軽い索引（本文は含めない）
   await write('/search-index.json', JSON.stringify(site.posts.map((p) => ({
     u: href(p.path), t: p.title, e: p.excerpt, c: p.cat?.name || '', k: p.catIds, i: p.thumb, d: p.date, m: p.modified, r: p.readMin,
@@ -163,7 +182,7 @@ async function build() {
   const sm = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map((u) => `<url><loc>${CANONICAL}${href(u.path)}</loc>${u.lastmod ? `<lastmod>${u.lastmod.slice(0, 10)}</lastmod>` : ''}</url>`).join('\n')}\n</urlset>\n`;
   await write('/sitemap.xml', sm);
   await write('/robots.txt', INDEXABLE
-    ? `User-agent: *\nAllow: /\nDisallow: /my-dashboard/\nDisallow: /search/\n\nSitemap: ${CANONICAL}/sitemap.xml\n`
+    ? `User-agent: *\nAllow: /\nDisallow: /my-dashboard/\nDisallow: /search/\n${COMMUNITY ? 'Disallow: /admin/\nDisallow: /community/login/\nDisallow: /community/me/\nDisallow: /community/new/\n' : ''}\nSitemap: ${CANONICAL}/sitemap.xml\n`
     : `# プレビュー環境のため、検索エンジンには登録しない（本番公開時は INDEXABLE=1 でビルド）\nUser-agent: *\nDisallow: /\n`);
 
   console.log(`built ${urls.length + 3} pages — ${site.posts.length} posts, ${site.cats.filter((c) => c.posts.length).length} categories, ${site.pages.length} pages, ranking ${site.popular.length} (${((Date.now() - t0) / 1000).toFixed(1)}s)`);

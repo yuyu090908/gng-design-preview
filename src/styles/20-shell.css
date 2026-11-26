@@ -8,6 +8,12 @@
 
 /* ロゴ */
 .globe { color: var(--gold); flex: none; }
+.gmark { overflow: visible; }
+.gmark__arc { stroke: var(--rose); }
+.gmark__h1 { fill: var(--rose); stroke: var(--c-bg); }
+.gmark__h2 { fill: var(--gold-l); stroke: var(--c-bg); }
+.sb .gmark__h1, .sb .gmark__h2 { stroke: var(--c-sidebar); }
+.gh .gmark__h1, .gh .gmark__h2 { stroke: var(--c-header, var(--c-bg)); }
 .logo { display: inline-flex; align-items: center; gap: 8px; color: var(--c-text); text-decoration: none; }
 .logo__t { display: flex; flex-direction: column; line-height: 1.1; }
 .logo__t b { font: 600 13px/1.12 var(--f-en); letter-spacing: .08em; white-space: nowrap; }

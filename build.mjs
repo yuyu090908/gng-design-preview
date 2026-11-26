@@ -97,7 +97,7 @@ async function buildAssets() {
   await writeFile(join(OUT, names.fonts), fonts.css);
   await writeFile(join(OUT, names.js), js);
   await writeFile(join(OUT, names.boot), boot);
-  await writeFile(join(OUT, 'favicon.svg'), '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><rect width="48" height="48" rx="10" fill="#0B1017"/><g fill="none" stroke="#D9BC80" stroke-width="2.6"><circle cx="24" cy="24" r="16"/><ellipse cx="24" cy="24" rx="7" ry="16"/><path d="M24 8v32M8 24h32M10.5 16h27M10.5 32h27"/></g></svg>');
+  await writeFile(join(OUT, 'favicon.svg'), '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><rect width="48" height="48" rx="10" fill="#0B1017"/><g fill="none" stroke="#D9BC80" stroke-width="2.6"><circle cx="22" cy="27" r="14"/><ellipse cx="22" cy="27" rx="6" ry="14"/><path d="M22 13v28M8 27h28"/></g><path d="M12 21.2C6.2 16.9 2.5 13.4 2.5 9.1 2.5 6.1 4.8 3.8 7.7 3.8c1.8 0 3.3.9 4.3 2.3 1-1.4 2.5-2.3 4.3-2.3 2.9 0 5.2 2.3 5.2 5.3 0 4.3-3.7 7.8-9.5 12.1z" transform="translate(27 3) rotate(14 6 6) scale(.68)" fill="#D98E96" stroke="#0B1017" stroke-width="2.4"/><path d="M12 21.2C6.2 16.9 2.5 13.4 2.5 9.1 2.5 6.1 4.8 3.8 7.7 3.8c1.8 0 3.3.9 4.3 2.3 1-1.4 2.5-2.3 4.3-2.3 2.9 0 5.2 2.3 5.2 5.3 0 4.3-3.7 7.8-9.5 12.1z" transform="translate(37.5 17) rotate(-12 4 4) scale(.38)" fill="#E8CF99" stroke="#0B1017" stroke-width="3"/></svg>');
   // 夜景イラスト・地図（scripts/gen-art.mjs で作った SVG）
   // ファイル名に内容のハッシュを付ける（長期キャッシュしても差し替えが反映されるように）
   names.art = {};

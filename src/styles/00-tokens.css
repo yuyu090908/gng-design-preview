@@ -16,6 +16,7 @@
   --gold: #D4B578;
   --gold-l: #E8CF99;
   --gold-d: #A88A51;
+  --rose: #D98E96;
   --gold-bg: rgba(212, 181, 120, .10);
   --gold-bd: rgba(212, 181, 120, .50);
   --gold-line: rgba(212, 181, 120, .50);
@@ -96,7 +97,7 @@
 /* ライト表示（暖かいオフホワイト＋チャコール。専用トークン） */
 [data-theme="light"] {
   --c-app: #F6F3EC; --c-sidebar: #EFEBE2; --c-header: #F6F3EC; --c-panel: #FFFDF8; --c-card: #FFFDF8; --c-elev: #FFFFFF; --c-hover: #ECE6DA;
-  --gold: #8A6A2E; --gold-l: #7A5A1E; --gold-d: #6B4E1A;
+  --gold: #8A6A2E; --gold-l: #7A5A1E; --gold-d: #6B4E1A; --rose: #A8505C;
   --gold-bg: rgba(168, 138, 81, .14); --gold-bd: rgba(138, 106, 46, .55); --gold-line: rgba(138, 106, 46, .45);
   --c-accent-ink: #7A5A1E; --c-on-accent: #FFFFFF;
   --c-text: #1E2228; --c-text-2: #4A515C; --c-text-3: #5B626D;

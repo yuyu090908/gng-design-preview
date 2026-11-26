@@ -91,7 +91,7 @@ syncBadges();
 
 // ヒーローの写真が読み込めないときはイラストに切り替える
 $$('img[data-fallback]').forEach((im) => {
-  const swap = () => { im.removeAttribute('srcset'); im.classList.remove('is-photo'); im.src = im.dataset.fallback; const n = im.nextElementSibling; if (n?.classList.contains('art-note')) n.textContent = 'イメージイラスト'; };
+  const swap = () => { im.removeAttribute('srcset'); im.classList.remove('is-photo'); im.src = im.dataset.fallback; };
   if (im.complete && !im.naturalWidth) swap(); else im.addEventListener('error', swap, { once: true });
 });
 

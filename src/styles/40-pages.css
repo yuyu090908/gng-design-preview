@@ -1,5 +1,4 @@
 /* ---------- 共通：ヒーロー（TOP は低め、カテゴリはさらに低め。画像は右側、文字は左） ---------- */
-.art-note { position: absolute; z-index: 1; right: 8px; bottom: 6px; padding: 1px 6px; border-radius: 4px; background: rgba(8, 11, 16, .6); color: rgba(243, 244, 246, .75); font-size: 10px; letter-spacing: .04em; pointer-events: none; }
 .hero, .chero { position: relative; isolation: isolate; overflow: hidden; margin: calc(-1 * var(--pad)) calc(-1 * var(--pad)) 0; background: #080B10; color: #F3F4F6; }
 .hero__bg, .chero__bg { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; object-position: 75% 40%; }
 .hero::before, .chero::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(8, 11, 16, .94) 0%, rgba(8, 11, 16, .72) 55%, rgba(8, 11, 16, .3) 100%), linear-gradient(180deg, rgba(8, 11, 16, 0) 50%, rgba(8, 11, 16, .7) 100%); }
@@ -333,7 +332,10 @@
   .earth__in { padding: 12px 14px; }
   .earth__t { font-size: 16px; margin-bottom: 8px; }
   .earth__d { display: none; }
-  .earth .art-note { bottom: 4px; }
 }
 /* PC：カテゴリのヒーローは 160〜210px */
 @media (min-width: 1024px) { .chero__in { padding-top: 14px; padding-bottom: 16px; } }
+
+/* マイページの見出しの映像（黒と金の抽象。文字の後ろで薄く動く） */
+.ph--bg .cv { -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 55%); mask-image: linear-gradient(90deg, transparent 0, #000 55%); --cv-pos: 100% 50%; }
+[data-theme="light"] .ph--bg .cv { opacity: .16; filter: grayscale(.4); }

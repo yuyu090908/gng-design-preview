@@ -1,0 +1,825 @@
+{
+ "version": "4.0",
+ "generated": "2026-11-26",
+ "note": "映像・写真素材の台帳。本体は pack（無圧縮 ZIP）にまとめ、ビルド時に取得して各ファイルの SHA-256 を検証してから dist/assets/media/ に書き出す。取得できないときは従来の画像で表示する。",
+ "pack": {
+  "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3GzEOW1cbzyPjySGkbYzv7L3rIa/f7feb64d-2c2f-44b0-bdfd-7a940c9c9b86.zip",
+  "sha256": "cfbee3f5ef2253dfeeb5610f58f18959bddf7cf33c5c10db17e23c45676940bc",
+  "bytes": 15153516
+ },
+ "encoding": {
+  "video": "H.264 High / yuv420p / 24fps / 2-pass / +faststart / 音声なし",
+  "image": "WebP（q66〜74）＋ AVIF（ポスター）"
+ },
+ "assets": [
+  {
+   "id": "GNG-VIDEO-001",
+   "key": "heroes/home-tokyo",
+   "type": "video",
+   "page": "TOP（/）",
+   "component": "CinematicVideoBackground（ヒーロー）",
+   "playbackPriority": 1,
+   "model": {
+    "still": "gpt_image_2_6 (Higgsfield)",
+    "video": "minimax_h3_max 768p (Higgsfield)"
+   },
+   "source": {
+    "stillJob": "ddaef5ea-e85b-42d3-b5dd-c792c2858062",
+    "videoJob": "a6ebd44d-601d-4588-9139-d1181f14f3ba",
+    "loop": "start_image = end_image（同じ静止画）"
+   },
+   "prompt": {
+    "still": "Ultra-photorealistic cinematic Tokyo skyline at blue hour transitioning into midnight, iconic Tokyo Tower positioned on the right third of the composition, sophisticated modern architecture, deep midnight navy atmosphere, warm champagne-gold illuminated windows, realistic city lights, elegant premium travel editorial photography, controlled highlights, realistic atmospheric depth, subtle reflections, dark clean negative space on the left for website typography, wide panoramic composition, architectural accuracy, high-end cinematic color grading. No text, no logo, no watermark, no interface elements, no neon signs, no people in foreground, no oversaturation, no distorted architecture.",
+    "video": "Animate the reference Tokyo skyline into a refined cinematic website background. Maintain the original architecture, framing, color palette and composition. Extremely slow, subtle lateral camera drift with a very gentle push, returning to the original framing at the end. Gentle atmospheric movement, realistic distant traffic lights and delicate changes in city window illumination, slowly drifting thin clouds. Keep Tokyo Tower stable and geometrically consistent. Keep the dark negative space on the left. No sudden camera movement, no zoom jump, no cuts, no flashing lights, no architectural morphing, no text, no logos, no audio."
+   },
+   "size": {
+    "desktop": "1280x720",
+    "mobile": "768x432",
+    "poster": "1280x731 / 640x366"
+   },
+   "durationSec": 10.125,
+   "fps": 24,
+   "audio": false,
+   "poster": "heroes/home-tokyo-poster-1280.webp",
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真ではない。サイト上では「イメージ映像／イメージ画像（AI生成）」と表示",
+   "status": "implemented",
+   "files": [
+    {
+     "path": "heroes/home-tokyo-desktop.mp4",
+     "bytes": 2379935,
+     "sha256": "7c49388535e3d4af14daec982386ab5869d0f061924a72282b8b1a664c8eaf5e"
+    },
+    {
+     "path": "heroes/home-tokyo-mobile.mp4",
+     "bytes": 961377,
+     "sha256": "01ce9b4a6976627c3a9ff363c2c898697929bbdd840d4b7a0983cb87d36673f5"
+    },
+    {
+     "path": "heroes/home-tokyo-poster-1280.avif",
+     "bytes": 43224,
+     "sha256": "1c8ed64b31929cd7752ae39cec4eea46fc047575d4e599537abef0b186f1bbeb"
+    },
+    {
+     "path": "heroes/home-tokyo-poster-1280.webp",
+     "bytes": 62470,
+     "sha256": "c7081b0e632df616b5a4e18856746d2c0e6688891c3b8eb78203d2010343e6ec"
+    },
+    {
+     "path": "heroes/home-tokyo-poster-640.avif",
+     "bytes": 15607,
+     "sha256": "4fdea4cbbb54a010b50d2bffd837576c37a839024bd295ecfaafaf9077e93ecb"
+    },
+    {
+     "path": "heroes/home-tokyo-poster-640.webp",
+     "bytes": 21302,
+     "sha256": "243537d02e669fe5780a8f50a9b2de18b35bf119ab58e8d1dedf9982add67f42"
+    }
+   ]
+  },
+  {
+   "id": "GNG-VIDEO-002",
+   "key": "heroes/domestic",
+   "type": "video",
+   "page": "国内カテゴリ",
+   "component": "CinematicVideoBackground（カテゴリヒーロー）",
+   "playbackPriority": 1,
+   "model": {
+    "still": "gpt_image_2_6 (Higgsfield)",
+    "video": "minimax_h3_max 768p (Higgsfield)"
+   },
+   "source": {
+    "stillJob": "25a5b515-a716-4bd7-b04e-28289f397ab6",
+    "videoJob": "cccfce1e-3637-4062-ab34-82a3f7737ee2",
+    "loop": "start_image = end_image（同じ静止画）"
+   },
+   "prompt": {
+    "still": "Photorealistic cinematic Japanese metropolitan street at blue hour, refined Tokyo Ginza-inspired architecture, elegant urban buildings, warm amber architectural lighting, realistic wet pavement reflections, deep midnight navy sky, calm sophisticated atmosphere, premium Japanese travel editorial photography, clean dark negative space on the left, main architectural details on the right, realistic geometry, controlled saturation. No readable text, no brand logos, no signage text, no watermark, no interface, no neon advertising, no people in foreground.",
+    "video": "Preserve the reference image and animate it into a calm premium architectural film. Nearly static stabilized camera with an extremely subtle forward breathing movement that returns to the original framing. Subtle realistic shimmering reflections on the wet pavement, gently swaying street trees, distant ambient urban light movement, warm steady lighting. Keep buildings and the clock tower geometrically stable. Keep the left-side dark sky quiet. No rapid movement, no cuts, no flashing signs, no rain, no people or cars in the foreground, no deformation, no text, no audio."
+   },
+   "size": {
+    "desktop": "1280x720",
+    "mobile": "768x432",
+    "poster": "1280x731 / 640x366"
+   },
+   "durationSec": 8.0,
+   "fps": 24,
+   "audio": false,
+   "poster": "heroes/domestic-poster-1280.webp",
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真ではない。サイト上では「イメージ映像／イメージ画像（AI生成）」と表示",
+   "status": "implemented",
+   "files": [
+    {
+     "path": "heroes/domestic-desktop.mp4",
+     "bytes": 2077730,
+     "sha256": "94b662c489ad37e7fbd5faf9b254bc564026c92e998db6ae4ae722c8b75d626f"
+    },
+    {
+     "path": "heroes/domestic-mobile.mp4",
+     "bytes": 894974,
+     "sha256": "446df95f1ffa9bc10b858b4030e119f911f9ed860c4740717d86587c244c5947"
+    },
+    {
+     "path": "heroes/domestic-poster-1280.avif",
+     "bytes": 38818,
+     "sha256": "72baf6f36e7c793129ee657c88f0486b1f35b940f709de253d9f729568b3f5a2"
+    },
+    {
+     "path": "heroes/domestic-poster-1280.webp",
+     "bytes": 60146,
+     "sha256": "f6423f43ccef7de07822f4c08f31693568ceb4755bdc5c82925e049d75ff7754"
+    },
+    {
+     "path": "heroes/domestic-poster-640.avif",
+     "bytes": 15132,
+     "sha256": "cce2ef59a192d4732b46164d3033a50c0b0ccadf7f72f1d335ae3714f61e9121"
+    },
+    {
+     "path": "heroes/domestic-poster-640.webp",
+     "bytes": 21428,
+     "sha256": "51bee390d81291de6c7273f76316f75c147b1103d4d8b77412bf239a87aafbee"
+    }
+   ]
+  },
+  {
+   "id": "GNG-VIDEO-003",
+   "key": "heroes/overseas-bangkok",
+   "type": "video",
+   "page": "海外カテゴリ・国別ページ",
+   "component": "CinematicVideoBackground（カテゴリヒーロー）",
+   "playbackPriority": 1,
+   "model": {
+    "still": "gpt_image_2_6 (Higgsfield)",
+    "video": "minimax_h3_max 768p (Higgsfield)"
+   },
+   "source": {
+    "stillJob": "468ce18b-2738-46db-bd7b-55c5592964c0",
+    "videoJob": "8e8e59fa-8c11-4895-849f-84e72999946a",
+    "loop": "start_image = end_image（同じ静止画）"
+   },
+   "prompt": {
+    "still": "Ultra-photorealistic panoramic Bangkok skyline beside the Chao Phraya River at blue hour, illuminated Wat Arun temple and elegant city architecture, warm golden lights reflecting naturally on calm water, deep midnight blue sky, premium international travel editorial photography, refined cinematic contrast, atmospheric perspective, main temple positioned toward the right, dark negative space on the left for website typography, geographically coherent composition. No text, no logo, no watermark, no boats in the foreground, no oversaturation, no distorted architecture.",
+    "video": "Create a calm cinematic background film from the reference Bangkok riverside scene. Nearly static camera with a very slow, subtle sideways glide that returns to the original framing at the end. Preserve the Wat Arun temple architecture and the original composition. Gentle river ripples with shimmering golden reflections, slowly drifting clouds, constant lighting and color grading. Keep the left side dark and quiet. No boats in the foreground, no camera shake, no cuts, no flashing lights, no building distortion, no text, no audio."
+   },
+   "size": {
+    "desktop": "1280x720",
+    "mobile": "768x432",
+    "poster": "1280x731 / 640x366"
+   },
+   "durationSec": 10.125,
+   "fps": 24,
+   "audio": false,
+   "poster": "heroes/overseas-bangkok-poster-1280.webp",
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真ではない。サイト上では「イメージ映像／イメージ画像（AI生成）」と表示",
+   "status": "implemented",
+   "files": [
+    {
+     "path": "heroes/overseas-bangkok-desktop.mp4",
+     "bytes": 2389449,
+     "sha256": "c2483507d8cbcc299b3af838dfda2bfa6aa22cd61a17218b8b3214fb944a9921"
+    },
+    {
+     "path": "heroes/overseas-bangkok-mobile.mp4",
+     "bytes": 965158,
+     "sha256": "d55936f3142297e919e65418a6b26510c0bcf1a23c7e2a54da0922e72b245817"
+    },
+    {
+     "path": "heroes/overseas-bangkok-poster-1280.avif",
+     "bytes": 33448,
+     "sha256": "21b7b655698d919ceb5cccf8e2e5df5376588c8d7b247ebb7cc66e90da60b3ae"
+    },
+    {
+     "path": "heroes/overseas-bangkok-poster-1280.webp",
+     "bytes": 52926,
+     "sha256": "9635da97f3b9513836962f323c5ba0ee94c537825eb3369491008fd75f4ac425"
+    },
+    {
+     "path": "heroes/overseas-bangkok-poster-640.avif",
+     "bytes": 12547,
+     "sha256": "130b317f14abf2b3d578ee6db48b8bd4f6e54269870caf138394fe6fc2c1d53b"
+    },
+    {
+     "path": "heroes/overseas-bangkok-poster-640.webp",
+     "bytes": 19030,
+     "sha256": "fcf5815fcb22aa972205f5a31a21cdd3cd46249040c78ec114afaa865f72cfc2"
+    }
+   ]
+  },
+  {
+   "id": "GNG-VIDEO-004",
+   "key": "features/asia-earth",
+   "type": "video",
+   "page": "TOP・エリア情報（/area/）",
+   "component": "EarthPanel",
+   "playbackPriority": 2,
+   "model": {
+    "still": "gpt_image_2_6 (Higgsfield)",
+    "video": "minimax_h3_max 768p (Higgsfield)"
+   },
+   "source": {
+    "stillJob": "19765780-16ee-4feb-a276-3759e047a479",
+    "videoJob": "3c2d9849-7fdd-4701-be6b-6b57da6471cc",
+    "loop": "start_image = end_image（同じ静止画）"
+   },
+   "prompt": {
+    "still": "Premium cinematic visualization of planet Earth at night seen from space, centered on East Asia and Southeast Asia with Japan, Korea, China coast, Taiwan, Philippines, Thailand and Vietnam visible, realistic geographic outlines, subtle champagne-gold city lights, deep midnight navy space, elegant thin blue atmospheric edge lighting, restrained sophisticated look, globe positioned toward the right side, clean dark negative space on the left for editorial text, realistic planetary scale and lighting. No labels, no text, no logo, no interface elements, no glowing network lines, no particles.",
+    "video": "Animate the reference Earth at night with an extremely slow, elegant movement: fixed camera, slowly drifting cloud layers and gentle natural twinkling variation in the city lights, subtle shimmer of the thin blue atmospheric edge. Preserve the continental outlines exactly and keep the globe on the right side, the left side dark and clean. No rotation jump, no glowing network lines, no particles, no flashes, no zoom, no camera shake, no text, no audio."
+   },
+   "size": {
+    "desktop": "1280x720",
+    "mobile": "640x360",
+    "poster": "1280x731 / 640x366"
+   },
+   "durationSec": 8.0,
+   "fps": 24,
+   "audio": false,
+   "poster": "features/asia-earth-poster-1280.webp",
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真ではない。サイト上では「イメージ映像／イメージ画像（AI生成）」と表示",
+   "status": "implemented",
+   "files": [
+    {
+     "path": "features/asia-earth-desktop.mp4",
+     "bytes": 1002337,
+     "sha256": "d65a0dadb3ea591638d4d210070ca1e51fdf3a90cf51c044eeb54f4fc057bd8a"
+    },
+    {
+     "path": "features/asia-earth-mobile.mp4",
+     "bytes": 712677,
+     "sha256": "4ec9ebb94269c72a5552d3f35fc13691bbabc12c77cf843efe71c42a092bac7a"
+    },
+    {
+     "path": "features/asia-earth-poster-1280.avif",
+     "bytes": 29042,
+     "sha256": "a7aee79eed09466571989c5885241882b136803573441d1e3bfaadc52c67a09e"
+    },
+    {
+     "path": "features/asia-earth-poster-1280.webp",
+     "bytes": 41810,
+     "sha256": "3c4565d0535ae1763c5e89198d9b587f55484f1db1005b00990c8bd160296b78"
+    },
+    {
+     "path": "features/asia-earth-poster-640.avif",
+     "bytes": 10273,
+     "sha256": "d8b84b43c6cbbcfb0428186424eeca801ecc6b735f95facfdecec3f95249ade8"
+    },
+    {
+     "path": "features/asia-earth-poster-640.webp",
+     "bytes": 14086,
+     "sha256": "55ee9754f778254c1a22f8841779f9db4f3eec134a14e2857b3cd0b4b6440588"
+    }
+   ]
+  },
+  {
+   "id": "GNG-VIDEO-005",
+   "key": "features/editorial-feature",
+   "type": "video",
+   "page": "特集（/features/）",
+   "component": "CinePageHead（特集の見出し）",
+   "playbackPriority": 1,
+   "model": {
+    "still": "gpt_image_2_6 (Higgsfield)",
+    "video": "minimax_h3_max 768p (Higgsfield)"
+   },
+   "source": {
+    "stillJob": "74d89f5f-0c50-4d93-aa55-d7e414f83344",
+    "videoJob": "9c9c5b66-cc6c-4a1e-b79e-56ff35dea75f",
+    "loop": "start_image = end_image（同じ静止画）"
+   },
+   "prompt": {
+    "still": "High-end cinematic international travel editorial image of an elegant Asian riverside old town at night, historic shophouse architecture with warm lantern-like window light, calm river reflections, atmospheric depth, sophisticated composition, midnight navy sky and warm champagne-gold palette, natural realism, strong focal point on the right, suitable for a premium feature article banner. No text, no logos, no signage text, no interface, no people in foreground, no neon.",
+    "video": "Create a premium cinematic motion preview from the reference riverside old town at night. Nearly static stabilized camera with a very subtle dolly that returns to the original framing. Gentle river ripples and reflections, softly flickering warm lantern light, flowers and leaves moving slightly in a light breeze. Preserve the composition and architectural geometry. No people, no strong camera movement, no cuts, no exaggerated lighting, no text, no audio."
+   },
+   "size": {
+    "desktop": "1280x720",
+    "mobile": "640x360",
+    "poster": "1280x731 / 640x366"
+   },
+   "durationSec": 6.584,
+   "fps": 24,
+   "audio": false,
+   "poster": "features/editorial-feature-poster-1280.webp",
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真ではない。サイト上では「イメージ映像／イメージ画像（AI生成）」と表示",
+   "status": "implemented",
+   "files": [
+    {
+     "path": "features/editorial-feature-desktop.mp4",
+     "bytes": 1053846,
+     "sha256": "e7227da651b67e2bc7217a1419e64cf6a3af058371df02b8e63bfe80750eec69"
+    },
+    {
+     "path": "features/editorial-feature-mobile.mp4",
+     "bytes": 737960,
+     "sha256": "57a0050dd9d292cf1115d26db3bcaf495eb274f95f2eb278f5949d28b51dc160"
+    },
+    {
+     "path": "features/editorial-feature-poster-1280.avif",
+     "bytes": 61179,
+     "sha256": "806f294e364aee18651e4c2ea91368c75919cc2f694b9d16a03d6266c8cd6e7f"
+    },
+    {
+     "path": "features/editorial-feature-poster-1280.webp",
+     "bytes": 91102,
+     "sha256": "25d1f3977c60512de6991e38776980abee6578463a060c2483b8e7046338fa46"
+    },
+    {
+     "path": "features/editorial-feature-poster-640.avif",
+     "bytes": 23301,
+     "sha256": "a3687dc9940e00b010044fe6518909e7573a7de82e67bb56c9a47e921a1aa7bd"
+    },
+    {
+     "path": "features/editorial-feature-poster-640.webp",
+     "bytes": 33316,
+     "sha256": "f1b137cfcef8e728d877dc624e2b3855da5917760adc3aa4f05f38f958efae06"
+    }
+   ]
+  },
+  {
+   "id": "GNG-AREA-001",
+   "key": "regions/japan",
+   "type": "image",
+   "page": "TOP・特集・エリア情報・カテゴリのエリア一覧",
+   "component": "AreaCard",
+   "model": "gpt_image_2_6 (Higgsfield)",
+   "source": {
+    "job": "6dd147c3"
+   },
+   "prompt": "Ultra-photorealistic premium travel editorial photograph of Kyoto, Japan, Yasaka Pagoda and traditional Higashiyama streets at blue hour, featuring recognizable architecture and authentic cultural atmosphere, deep midnight navy sky, elegant warm golden city illumination, realistic natural colors, controlled highlights, sophisticated architectural composition, landmark in the upper two-thirds, darker calm lower area suitable for a compact website destination card caption, consistent cinematic color grading, no text, no logos, no watermark, no UI, no people in foreground, no neon advertising.",
+   "size": "960x723 / 480x362（4:3）",
+   "poster": null,
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真ではない。サイト上では「イメージ映像／イメージ画像（AI生成）」と表示",
+   "status": "implemented",
+   "files": [
+    {
+     "path": "regions/japan-480.webp",
+     "bytes": 29822,
+     "sha256": "5473fb0172a71b57e39893c29efcfaa88a5e89d5560d7b9b75344b3f8ea5edfb"
+    },
+    {
+     "path": "regions/japan-960.webp",
+     "bytes": 101832,
+     "sha256": "164968cfe3394425839a3d3c090e20f8025cc1605dc6a3ebbce910d329850b19"
+    }
+   ]
+  },
+  {
+   "id": "GNG-AREA-002",
+   "key": "regions/thailand",
+   "type": "image",
+   "page": "TOP・特集・エリア情報・カテゴリのエリア一覧",
+   "component": "AreaCard",
+   "model": "gpt_image_2_6 (Higgsfield)",
+   "source": {
+    "job": "7a474e92"
+   },
+   "prompt": "Ultra-photorealistic premium travel editorial photograph of Bangkok, Thailand, Wat Arun temple across the Chao Phraya River at blue hour, featuring recognizable architecture and authentic cultural atmosphere, deep midnight navy sky, elegant warm golden city illumination, realistic natural colors, controlled highlights, sophisticated architectural composition, landmark in the upper two-thirds, darker calm lower area suitable for a compact website destination card caption, consistent cinematic color grading, no text, no logos, no watermark, no UI, no people in foreground, no neon advertising.",
+   "size": "960x723 / 480x362（4:3）",
+   "poster": null,
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真ではない。サイト上では「イメージ映像／イメージ画像（AI生成）」と表示",
+   "status": "implemented",
+   "files": [
+    {
+     "path": "regions/thailand-480.webp",
+     "bytes": 18794,
+     "sha256": "3abc4eb35dcd5915d01205bcf4584a21bdfb6915febd44b9c6c7a3e8b5e8ef14"
+    },
+    {
+     "path": "regions/thailand-960.webp",
+     "bytes": 60448,
+     "sha256": "2d784eaa6974e296db413227cc0aa58ecf6850452db6fb4cfd97f444ed61d0b8"
+    }
+   ]
+  },
+  {
+   "id": "GNG-AREA-003",
+   "key": "regions/korea",
+   "type": "image",
+   "page": "TOP・特集・エリア情報・カテゴリのエリア一覧",
+   "component": "AreaCard",
+   "model": "gpt_image_2_6 (Higgsfield)",
+   "source": {
+    "job": "30fe433c"
+   },
+   "prompt": "Ultra-photorealistic premium travel editorial photograph of Seoul, South Korea, Gyeongbokgung palace gate with N Seoul Tower in the distance at blue hour, featuring recognizable architecture and authentic cultural atmosphere, deep midnight navy sky, elegant warm golden city illumination, realistic natural colors, controlled highlights, sophisticated architectural composition, landmark in the upper two-thirds, darker calm lower area suitable for a compact website destination card caption, consistent cinematic color grading, no text, no logos, no watermark, no UI, no people in foreground, no neon advertising.",
+   "size": "960x723 / 480x362（4:3）",
+   "poster": null,
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真ではない。サイト上では「イメージ映像／イメージ画像（AI生成）」と表示",
+   "status": "implemented",
+   "files": [
+    {
+     "path": "regions/korea-480.webp",
+     "bytes": 16970,
+     "sha256": "8dc5792c60fb872d86679371ca449a81e4f981edba6aec5b5a623bf6edbb886b"
+    },
+    {
+     "path": "regions/korea-960.webp",
+     "bytes": 60260,
+     "sha256": "32130200c5c858720a0f8600e3f776c870db2c8b1c079a73e6dc781a7fdf0ce5"
+    }
+   ]
+  },
+  {
+   "id": "GNG-AREA-004",
+   "key": "regions/taiwan",
+   "type": "image",
+   "page": "TOP・特集・エリア情報・カテゴリのエリア一覧",
+   "component": "AreaCard",
+   "model": "gpt_image_2_6 (Higgsfield)",
+   "source": {
+    "job": "ccd1152c"
+   },
+   "prompt": "Ultra-photorealistic premium travel editorial photograph of Taipei, Taiwan, Taipei 101 tower above the city at blue hour, featuring recognizable architecture and authentic cultural atmosphere, deep midnight navy sky, elegant warm golden city illumination, realistic natural colors, controlled highlights, sophisticated architectural composition, landmark in the upper two-thirds, darker calm lower area suitable for a compact website destination card caption, consistent cinematic color grading, no text, no logos, no watermark, no UI, no people in foreground, no neon advertising.",
+   "size": "960x723 / 480x362（4:3）",
+   "poster": null,
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真ではない。サイト上では「イメージ映像／イメージ画像（AI生成）」と表示",
+   "status": "implemented",
+   "files": [
+    {
+     "path": "regions/taiwan-480.webp",
+     "bytes": 16318,
+     "sha256": "420cc52893176070993d25540fd65f169b46d13f4b8b11d8b6bdc3597eb1861d"
+    },
+    {
+     "path": "regions/taiwan-960.webp",
+     "bytes": 55102,
+     "sha256": "c2eeebbb3451d27e98874d00769998400d0954dba1dbdf2978fb0a313ddfbbcb"
+    }
+   ]
+  },
+  {
+   "id": "GNG-AREA-005",
+   "key": "regions/vietnam",
+   "type": "image",
+   "page": "TOP・特集・エリア情報・カテゴリのエリア一覧",
+   "component": "AreaCard",
+   "model": "gpt_image_2_6 (Higgsfield)",
+   "source": {
+    "job": "2dc06585"
+   },
+   "prompt": "Ultra-photorealistic premium travel editorial photograph of Hoi An, Vietnam, historic old town riverside with traditional lanterns at blue hour, featuring recognizable architecture and authentic cultural atmosphere, deep midnight navy sky, elegant warm golden city illumination, realistic natural colors, controlled highlights, sophisticated architectural composition, landmark in the upper two-thirds, darker calm lower area suitable for a compact website destination card caption, consistent cinematic color grading, no text, no logos, no watermark, no UI, no people in foreground, no neon advertising.",
+   "size": "960x723 / 480x362（4:3）",
+   "poster": null,
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真ではない。サイト上では「イメージ映像／イメージ画像（AI生成）」と表示",
+   "status": "implemented",
+   "files": [
+    {
+     "path": "regions/vietnam-480.webp",
+     "bytes": 22982,
+     "sha256": "f03d6e567bf2ab4dd5126525f7ae22baeb3996ba355ce890d5ba7122d5d29264"
+    },
+    {
+     "path": "regions/vietnam-960.webp",
+     "bytes": 76584,
+     "sha256": "9cc2255faeb3fa8834a685d3c9c1cb2c618f1d5b1ebd6a761ff9e9d29b3c2e7b"
+    }
+   ]
+  },
+  {
+   "id": "GNG-AREA-006",
+   "key": "regions/philippines",
+   "type": "image",
+   "page": "TOP・特集・エリア情報・カテゴリのエリア一覧",
+   "component": "AreaCard",
+   "model": "gpt_image_2_6 (Higgsfield)",
+   "source": {
+    "job": "e050661d"
+   },
+   "prompt": "Ultra-photorealistic premium travel editorial photograph of Manila, Philippines, Manila Bay waterfront skyline at blue hour, featuring recognizable architecture and authentic cultural atmosphere, deep midnight navy sky, elegant warm golden city illumination, realistic natural colors, controlled highlights, sophisticated architectural composition, landmark in the upper two-thirds, darker calm lower area suitable for a compact website destination card caption, consistent cinematic color grading, no text, no logos, no watermark, no UI, no people in foreground, no neon advertising.",
+   "size": "960x723 / 480x362（4:3）",
+   "poster": null,
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真ではない。サイト上では「イメージ映像／イメージ画像（AI生成）」と表示",
+   "status": "implemented",
+   "files": [
+    {
+     "path": "regions/philippines-480.webp",
+     "bytes": 20014,
+     "sha256": "731338b66a032025dedbec13a032005c5d1bbdf46a852e28974a8ad036530308"
+    },
+    {
+     "path": "regions/philippines-960.webp",
+     "bytes": 65126,
+     "sha256": "6d656eb5de7b6ad983ec4ed12a84656410b18e455214be9557b2f46230ca62b8"
+    }
+   ]
+  },
+  {
+   "id": "GNG-AREA-007",
+   "key": "regions/cambodia",
+   "type": "image",
+   "page": "TOP・特集・エリア情報・カテゴリのエリア一覧",
+   "component": "AreaCard",
+   "model": "gpt_image_2_6 (Higgsfield)",
+   "source": {
+    "job": "5192d0d9"
+   },
+   "prompt": "Ultra-photorealistic premium travel editorial photograph of Siem Reap, Cambodia, Angkor Wat temple silhouette at blue hour, featuring recognizable architecture and authentic cultural atmosphere, deep midnight navy sky, elegant warm golden city illumination, realistic natural colors, controlled highlights, sophisticated architectural composition, landmark in the upper two-thirds, darker calm lower area suitable for a compact website destination card caption, consistent cinematic color grading, no text, no logos, no watermark, no UI, no people in foreground, no neon advertising.",
+   "size": "960x723 / 480x362（4:3）",
+   "poster": null,
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真ではない。サイト上では「イメージ映像／イメージ画像（AI生成）」と表示",
+   "status": "implemented",
+   "files": [
+    {
+     "path": "regions/cambodia-480.webp",
+     "bytes": 19752,
+     "sha256": "3c562e4a94726ee4568bb424827363dd0c269910f1242e242639c1fa0ecd0008"
+    },
+    {
+     "path": "regions/cambodia-960.webp",
+     "bytes": 64870,
+     "sha256": "ef9f0d2d1604e4a2344150c4b1b1b336a2109e92c0ec6278463ebd3b9c7ec0df"
+    }
+   ]
+  },
+  {
+   "id": "GNG-AREA-008",
+   "key": "regions/indonesia",
+   "type": "image",
+   "page": "TOP・特集・エリア情報・カテゴリのエリア一覧",
+   "component": "AreaCard",
+   "model": "gpt_image_2_6 (Higgsfield)",
+   "source": {
+    "job": "b98aa330"
+   },
+   "prompt": "Ultra-photorealistic premium travel editorial photograph of Jakarta, Indonesia, National Monument (Monas) and city skyline at blue hour, featuring recognizable architecture and authentic cultural atmosphere, deep midnight navy sky, elegant warm golden city illumination, realistic natural colors, controlled highlights, sophisticated architectural composition, landmark in the upper two-thirds, darker calm lower area suitable for a compact website destination card caption, consistent cinematic color grading, no text, no logos, no watermark, no UI, no people in foreground, no neon advertising.",
+   "size": "960x723 / 480x362（4:3）",
+   "poster": null,
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真ではない。サイト上では「イメージ映像／イメージ画像（AI生成）」と表示",
+   "status": "implemented",
+   "files": [
+    {
+     "path": "regions/indonesia-480.webp",
+     "bytes": 10998,
+     "sha256": "f95a0ba2c07deaec19bb1b38d089074e7750ab8079675e5e18c4f6d64dad1924"
+    },
+    {
+     "path": "regions/indonesia-960.webp",
+     "bytes": 33836,
+     "sha256": "7c7cd65a82aafdd9d082954234b6274eda07a2fe1629a600ac769cbd063a9e72"
+    }
+   ]
+  },
+  {
+   "id": "GNG-AREA-009",
+   "key": "regions/singapore",
+   "type": "image",
+   "page": "TOP・特集・エリア情報・カテゴリのエリア一覧",
+   "component": "AreaCard",
+   "model": "gpt_image_2_6 (Higgsfield)",
+   "source": {
+    "job": "3fcb9983"
+   },
+   "prompt": "Ultra-photorealistic premium travel editorial photograph of Singapore, Marina Bay waterfront skyline at blue hour, featuring recognizable architecture and authentic cultural atmosphere, deep midnight navy sky, elegant warm golden city illumination, realistic natural colors, controlled highlights, sophisticated architectural composition, landmark in the upper two-thirds, darker calm lower area suitable for a compact website destination card caption, consistent cinematic color grading, no text, no logos, no watermark, no UI, no people in foreground, no neon advertising.",
+   "size": "960x723 / 480x362（4:3）",
+   "poster": null,
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真ではない。サイト上では「イメージ映像／イメージ画像（AI生成）」と表示",
+   "status": "implemented",
+   "files": [
+    {
+     "path": "regions/singapore-480.webp",
+     "bytes": 16642,
+     "sha256": "7425c43b4402216b10f919ef14d99b0d39ec2ec2122c189b0d7b6447605cf75b"
+    },
+    {
+     "path": "regions/singapore-960.webp",
+     "bytes": 56666,
+     "sha256": "77955c341701d3a74b910d29cc015de764fddbb4e6756af87ba147374f465291"
+    }
+   ]
+  },
+  {
+   "id": "GNG-AREA-010",
+   "key": "regions/germany",
+   "type": "image",
+   "page": "TOP・特集・エリア情報・カテゴリのエリア一覧",
+   "component": "AreaCard",
+   "model": "gpt_image_2_6 (Higgsfield)",
+   "source": {
+    "job": "7a16c89d"
+   },
+   "prompt": "Ultra-photorealistic premium travel editorial photograph of Berlin, Germany, Brandenburg Gate at blue hour, featuring recognizable architecture and authentic cultural atmosphere, deep midnight navy sky, elegant warm golden city illumination, realistic natural colors, controlled highlights, sophisticated architectural composition, landmark in the upper two-thirds, darker calm lower area suitable for a compact website destination card caption, consistent cinematic color grading, no text, no logos, no watermark, no UI, no people in foreground, no neon advertising.",
+   "size": "960x723 / 480x362（4:3）",
+   "poster": null,
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真ではない。サイト上では「イメージ映像／イメージ画像（AI生成）」と表示",
+   "status": "implemented",
+   "files": [
+    {
+     "path": "regions/germany-480.webp",
+     "bytes": 16042,
+     "sha256": "0250d6497724f24dab00ce950275d30ee59b1a3f6aa69abd210759267d4bb9fd"
+    },
+    {
+     "path": "regions/germany-960.webp",
+     "bytes": 51518,
+     "sha256": "e9a3d0cce7f0958754786c1cd26b7c4c9803de5bd97b85b3dbeedcc5f9eafd23"
+    }
+   ]
+  },
+  {
+   "id": "GNG-AREA-011",
+   "key": "regions/malaysia",
+   "type": "image",
+   "page": "TOP・特集・エリア情報・カテゴリのエリア一覧",
+   "component": "AreaCard",
+   "model": "gpt_image_2_6 (Higgsfield)",
+   "source": {
+    "job": "3e68397b"
+   },
+   "prompt": "Ultra-photorealistic premium travel editorial photograph of Kuala Lumpur, Malaysia, Petronas Twin Towers at blue hour, featuring recognizable architecture and authentic cultural atmosphere, deep midnight navy sky, elegant warm golden city illumination, realistic natural colors, controlled highlights, sophisticated architectural composition, landmark in the upper two-thirds, darker calm lower area suitable for a compact website destination card caption, consistent cinematic color grading, no text, no logos, no watermark, no UI, no people in foreground, no neon advertising.",
+   "size": "960x723 / 480x362（4:3）",
+   "poster": null,
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真ではない。サイト上では「イメージ映像／イメージ画像（AI生成）」と表示",
+   "status": "implemented",
+   "files": [
+    {
+     "path": "regions/malaysia-480.webp",
+     "bytes": 25888,
+     "sha256": "d8454a03da5e21405ea74bf8ba66a8b62de7ee5274afde46b7d3c73c3c6a14b9"
+    },
+    {
+     "path": "regions/malaysia-960.webp",
+     "bytes": 88552,
+     "sha256": "320588c7ae157f7014367bd452ae7c6f6d46d0380e2afd117f2e0db43fcd7b09"
+    }
+   ]
+  },
+  {
+   "id": "GNG-AREA-012",
+   "key": "regions/uzbekistan",
+   "type": "image",
+   "page": "TOP・特集・エリア情報・カテゴリのエリア一覧",
+   "component": "AreaCard",
+   "model": "gpt_image_2_6 (Higgsfield)",
+   "source": {
+    "job": "33f30f52"
+   },
+   "prompt": "Ultra-photorealistic premium travel editorial photograph of Samarkand, Uzbekistan, Registan square madrasahs at blue hour, featuring recognizable architecture and authentic cultural atmosphere, deep midnight navy sky, elegant warm golden city illumination, realistic natural colors, controlled highlights, sophisticated architectural composition, landmark in the upper two-thirds, darker calm lower area suitable for a compact website destination card caption, consistent cinematic color grading, no text, no logos, no watermark, no UI, no people in foreground, no neon advertising.",
+   "size": "960x723 / 480x362（4:3）",
+   "poster": null,
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真ではない。サイト上では「イメージ映像／イメージ画像（AI生成）」と表示",
+   "status": "implemented",
+   "files": [
+    {
+     "path": "regions/uzbekistan-480.webp",
+     "bytes": 13802,
+     "sha256": "9c9d80387903970d51f80500159218fc97a7cc2aff257cf2020c82777e066214"
+    },
+    {
+     "path": "regions/uzbekistan-960.webp",
+     "bytes": 55150,
+     "sha256": "4e14ffc6fdf9f280afb8b4134b814e645e906d3b34c1cf3399b7910ac81e8482"
+    }
+   ]
+  },
+  {
+   "id": "GNG-AREA-013",
+   "key": "regions/myanmar",
+   "type": "image",
+   "page": "TOP・特集・エリア情報・カテゴリのエリア一覧",
+   "component": "AreaCard",
+   "model": "gpt_image_2_6 (Higgsfield)",
+   "source": {
+    "job": "df395cde"
+   },
+   "prompt": "Ultra-photorealistic premium travel editorial photograph of Yangon, Myanmar, Shwedagon Pagoda at blue hour, featuring recognizable architecture and authentic cultural atmosphere, deep midnight navy sky, elegant warm golden city illumination, realistic natural colors, controlled highlights, sophisticated architectural composition, landmark in the upper two-thirds, darker calm lower area suitable for a compact website destination card caption, consistent cinematic color grading, no text, no logos, no watermark, no UI, no people in foreground, no neon advertising.",
+   "size": "960x723 / 480x362（4:3）",
+   "poster": null,
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真ではない。サイト上では「イメージ映像／イメージ画像（AI生成）」と表示",
+   "status": "implemented",
+   "files": [
+    {
+     "path": "regions/myanmar-480.webp",
+     "bytes": 18886,
+     "sha256": "4b214af564ea61c4802a5ceead1a4bdac195196856f20b541302e59daa3a6128"
+    },
+    {
+     "path": "regions/myanmar-960.webp",
+     "bytes": 61164,
+     "sha256": "7bdb6212a995542be74caf79f6f92260bde3db29ab8940788dd0bdf493fb6301"
+    }
+   ]
+  },
+  {
+   "id": "GNG-AREA-014",
+   "key": "regions/mongolia",
+   "type": "image",
+   "page": "TOP・特集・エリア情報・カテゴリのエリア一覧",
+   "component": "AreaCard",
+   "model": "gpt_image_2_6 (Higgsfield)",
+   "source": {
+    "job": "065e79e5"
+   },
+   "prompt": "Ultra-photorealistic premium travel editorial photograph of Ulaanbaatar, Mongolia, city with Sukhbaatar Square and surrounding hills at blue hour, featuring recognizable architecture and authentic cultural atmosphere, deep midnight navy sky, elegant warm golden city illumination, realistic natural colors, controlled highlights, sophisticated architectural composition, landmark in the upper two-thirds, darker calm lower area suitable for a compact website destination card caption, consistent cinematic color grading, no text, no logos, no watermark, no UI, no people in foreground, no neon advertising.",
+   "size": "960x723 / 480x362（4:3）",
+   "poster": null,
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真ではない。サイト上では「イメージ映像／イメージ画像（AI生成）」と表示",
+   "status": "implemented",
+   "files": [
+    {
+     "path": "regions/mongolia-480.webp",
+     "bytes": 15232,
+     "sha256": "398f53594f33c9e08cc4be861a38a91aa79d04b24bbae9b2c4d80f64ccb0dd37"
+    },
+    {
+     "path": "regions/mongolia-960.webp",
+     "bytes": 49516,
+     "sha256": "256399cdfde59de430ca0552e8992f0383675cfc66b36f81f8995bffcb73812b"
+    }
+   ]
+  },
+  {
+   "id": "GNG-AREA-015",
+   "key": "regions/laos",
+   "type": "image",
+   "page": "TOP・特集・エリア情報・カテゴリのエリア一覧",
+   "component": "AreaCard",
+   "model": "gpt_image_2_6 (Higgsfield)",
+   "source": {
+    "job": "c445dcd8"
+   },
+   "prompt": "Ultra-photorealistic premium travel editorial photograph of Vientiane, Laos, Pha That Luang golden stupa at blue hour, featuring recognizable architecture and authentic cultural atmosphere, deep midnight navy sky, elegant warm golden city illumination, realistic natural colors, controlled highlights, sophisticated architectural composition, landmark in the upper two-thirds, darker calm lower area suitable for a compact website destination card caption, consistent cinematic color grading, no text, no logos, no watermark, no UI, no people in foreground, no neon advertising.",
+   "size": "960x723 / 480x362（4:3）",
+   "poster": null,
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真ではない。サイト上では「イメージ映像／イメージ画像（AI生成）」と表示",
+   "status": "implemented",
+   "files": [
+    {
+     "path": "regions/laos-480.webp",
+     "bytes": 16896,
+     "sha256": "c8519b199d20861873e3b993c6f52c566d5c7b0aa3dd6cbe4fdb40d8e45b5970"
+    },
+    {
+     "path": "regions/laos-960.webp",
+     "bytes": 52540,
+     "sha256": "fef449decf7ace53b9da5a8d8d6818a92538e2fdac5f80f125da0f95b939048f"
+    }
+   ]
+  },
+  {
+   "id": "GNG-IMAGE-001",
+   "key": "backgrounds/dashboard-matte-gold.webp",
+   "type": "image",
+   "page": "マイページ",
+   "component": "ページ見出しの背景",
+   "model": "gpt_image_2_6 (Higgsfield)",
+   "source": {
+    "job": "776db8c1-4987-403c-b667-7d39ac8b7c85"
+   },
+   "prompt": "Ultra-minimal luxury abstract background, deep matte black and midnight navy surfaces, extremely subtle champagne-gold flowing light contours on the right side, refined brushed metallic texture, restrained architectural depth, elegant negative space, soft diffused illumination, premium editorial brand aesthetic, low visual noise, wide banner composition. No objects, no text, no logos, no interface elements.",
+   "size": "1600x400",
+   "poster": null,
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真ではない。サイト上では「イメージ映像／イメージ画像（AI生成）」と表示",
+   "status": "implemented",
+   "files": [
+    {
+     "path": "backgrounds/dashboard-matte-gold.webp",
+     "bytes": 10348,
+     "sha256": "da852ec44ba27c561bae56f6cc5bdee14d10ac3f4aad683fe5d422a46aab08d1"
+    }
+   ]
+  },
+  {
+   "id": "GNG-IMAGE-002",
+   "key": "backgrounds/editorial-information.webp",
+   "type": "image",
+   "page": "TOP",
+   "component": "安全・法律・文化の情報（SafetyPanel）の背景",
+   "model": "gpt_image_2_6 (Higgsfield)",
+   "source": {
+    "job": "da61086f-3ca8-4259-8808-130784eab935"
+   },
+   "prompt": "Sophisticated editorial travel information background, dark navy atmosphere, elegant abstract topographic contour lines in faint warm gold on the right, refined minimal composition, trustworthy and calm tone, premium international travel publication aesthetic, generous dark negative space on the left. No readable text, no logos, no symbols, no emblems, no interface elements.",
+   "size": "1280x716",
+   "poster": null,
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真ではない。サイト上では「イメージ映像／イメージ画像（AI生成）」と表示",
+   "status": "implemented",
+   "files": [
+    {
+     "path": "backgrounds/editorial-information.webp",
+     "bytes": 28422,
+     "sha256": "b228be7d9b63942a836bcb4908199ef6c04981fb044d78d641f83a1fafc39841"
+    }
+   ]
+  },
+  {
+   "id": "GNG-IMAGE-003",
+   "key": "backgrounds/footer-skyline.webp",
+   "type": "image",
+   "page": "全ページ",
+   "component": "フッターの背景（静止画のみ）",
+   "model": "gpt_image_2_6 (Higgsfield)",
+   "source": {
+    "job": "d4ddb265-33ae-4164-9a98-5232b80c2665"
+   },
+   "prompt": "Minimal wide panoramic silhouette of an international city skyline at midnight along the bottom edge, almost black deep navy background, extremely subtle warm golden window lights near the lower edge, elegant atmospheric fade into darkness toward the top, premium travel editorial aesthetic, understated and refined. No text, no logo, no interface elements.",
+   "size": "1600x480",
+   "poster": null,
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真ではない。サイト上では「イメージ映像／イメージ画像（AI生成）」と表示",
+   "status": "implemented",
+   "files": [
+    {
+     "path": "backgrounds/footer-skyline.webp",
+     "bytes": 17958,
+     "sha256": "15a3e8ceb6c938f1dfcc725daa61be4e6f393ca04bc0bfee9ed05b0728181e5d"
+    }
+   ]
+  }
+ ]
+}

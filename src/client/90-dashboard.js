@@ -82,6 +82,7 @@ if (dash) {
       : emptyState('history', s.historyEnabled ? 'まだ閲覧履歴はありません' : '閲覧履歴は記録されていません', s.historyEnabled ? '記事を開くと、ここに表示されます。' : '上のスイッチをオンにすると、読んだ記事と進み具合を記録できます。');
     // 設定
     $$('[data-setting="historyEnabled"]', dash).forEach((b) => b.setAttribute('aria-checked', String(!!s.historyEnabled)));
+    $$('[data-setting="video"]', dash).forEach((b) => b.setAttribute('aria-checked', String(s.video !== 'off')));
     $$('input[data-setting="theme"]', dash).forEach((r) => { r.checked = r.value === (s.theme || 'dark'); r.closest('.seg__b')?.classList.toggle('is-on', r.checked); });
     $$('input[data-setting="fontSize"]', dash).forEach((r) => { r.checked = r.value === (s.fontSize || 'm'); r.closest('.seg__b')?.classList.toggle('is-on', r.checked); });
     $$('[data-pct]', dash).forEach((el) => { el.style.width = `${Math.min(100, Number(el.dataset.pct) || 0)}%`; });
@@ -119,6 +120,13 @@ if (dash) {
       const inSaved = !!li.closest('[data-saved-list]');
       store.update((v) => { if (inSaved) v.saved = v.saved.filter((x) => x.u !== u); else { v.history = v.history.filter((x) => x.u !== u); delete v.progress[u]; } });
       toast(inSaved ? '保存から削除しました' : '履歴から削除しました');
+      return;
+    }
+    const vsw = t.closest('[data-setting="video"]');
+    if (vsw) {
+      const on = vsw.getAttribute('aria-checked') !== 'true';
+      store.update((v) => { v.settings.video = on ? 'auto' : 'off'; });
+      toast(on ? '背景の映像を再生します' : '背景の映像を停止しました（静止画を表示します）');
       return;
     }
     const sw = t.closest('[data-setting="historyEnabled"]');

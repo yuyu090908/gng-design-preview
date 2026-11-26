@@ -1,6 +1,8 @@
 // 画面の回帰テスト（Playwright）：ナビゲーション、スワイプ、保存、履歴、設定、レスポンシブ
 // 実行：npm run build のあと npm run test:e2e
-import { test, before, after } from 'node:test';
+import { test as nodeTest, before, after } from 'node:test';
+// E2E_ONLY=文字列 で、名前にその文字列を含むテストだけを実行する
+const test = (name, ...a) => (process.env.E2E_ONLY && !name.includes(process.env.E2E_ONLY) ? undefined : nodeTest(name, ...a));
 import assert from 'node:assert/strict';
 import http from 'node:http';
 import { readFile, stat } from 'node:fs/promises';
@@ -8,10 +10,11 @@ import { join, extname } from 'node:path';
 import { chromium } from 'playwright';
 
 const DIST = 'dist';
-const TYPES = { '.css': 'text/css', '.js': 'text/javascript', '.json': 'application/json', '.woff2': 'font/woff2', '.xml': 'application/xml', '.txt': 'text/plain' };
+const TYPES = { '.css': 'text/css', '.js': 'text/javascript', '.json': 'application/json', '.woff2': 'font/woff2', '.xml': 'application/xml', '.txt': 'text/plain', '.webp': 'image/webp', '.avif': 'image/avif', '.mp4': 'video/mp4' };
 let server, browser, base;
 const index = JSON.parse(await readFile(join(DIST, 'search-index.json'), 'utf8'));
 const post = index[0].u;
+const hasCv = (await readFile(join(DIST, 'index.html'), 'utf8')).includes('data-cv ');
 const cat = await (async () => { const h = await readFile(join(DIST, 'index.html'), 'utf8'); return h.match(/href="(\/category\/[^"]+\/)"/)[1]; })();
 
 before(async () => {
@@ -27,8 +30,9 @@ before(async () => {
 });
 after(async () => { await browser?.close(); server?.close(); });
 
-async function open(path, { width = 1440, height = 900, age = true, storage = null } = {}) {
-  const ctx = await browser.newContext({ viewport: { width, height }, hasTouch: width < 768 });
+async function open(path, { width = 1440, height = 900, age = true, storage = null, reducedMotion = 'no-preference', block = null } = {}) {
+  const ctx = await browser.newContext({ viewport: { width, height }, hasTouch: width < 768, reducedMotion });
+  if (block) await ctx.route(block, (r) => r.fulfill({ status: 404, body: '' }));
   await ctx.addInitScript(([a, s]) => { if (a) localStorage.setItem('gng:age', '1'); if (s) localStorage.setItem('gng:v1', s); }, [age, storage]);
   await ctx.route(/^https?:\/\/(?!localhost)/, (r) => r.abort());
   const page = await ctx.newPage();
@@ -302,5 +306,72 @@ test('検索：キーワードで結果が出て、該当なしは空状態', as
   assert.ok((await page.textContent('#search-status')).includes('件'));
   await page.fill('#q', 'zzzzzzzzzz該当なし');
   await page.waitForSelector('[data-search-results] .state');
+  await ctx.close();
+});
+
+
+// ---------- 4.0：背景映像（CinematicVideoBackground と再生制御） ----------
+
+test('背景映像：ポスターが先に出て、画面内の映像だけが読み込まれる（PC は最大 2 本）', { skip: !hasCv && '素材なしのビルド' }, async () => {
+  const { ctx, page, errors } = await open('/', { width: 1280, height: 600 });
+  assert.ok(await page.isVisible('.hero .cv__poster'));
+  await page.waitForSelector('.hero .cv video.cv__video', { state: 'attached' });
+  const v = await page.$eval('.hero .cv video', (el) => ({ muted: el.muted, loop: el.loop, inline: el.playsInline, src: el.getAttribute('src') }));
+  assert.deepEqual([v.muted, v.loop, v.inline], [true, true, true]);
+  assert.match(v.src, /home-tokyo-desktop\.[0-9a-f]+\.mp4$/);
+  // 地球のパネルは画面外なので、まだ動画を作らない
+  assert.equal(await page.$('.earth .cv video'), null);
+  await page.locator('.earth').scrollIntoViewIfNeeded();
+  await page.waitForSelector('.earth .cv video', { state: 'attached' });
+  const playing = await page.$$eval('.cv video', (vs) => vs.filter((x) => !x.paused).length);
+  assert.ok(playing <= 2, `playing ${playing}`);
+  assert.deepEqual(errors, []);
+  await ctx.close();
+});
+
+test('背景映像：スマホは小さい動画を使い、同時に 1 本まで', { skip: !hasCv && '素材なしのビルド' }, async () => {
+  const { ctx, page } = await open('/area/', { width: 390, height: 844 });
+  await page.locator('.earth').scrollIntoViewIfNeeded();
+  await page.waitForSelector('.earth .cv video', { state: 'attached' });
+  assert.match(await page.getAttribute('.earth .cv video', 'src'), /asia-earth-mobile\./);
+  await page.waitForTimeout(300);
+  const playing = await page.$$eval('.cv video', (vs) => vs.filter((x) => !x.paused).length);
+  assert.ok(playing <= 1, `playing ${playing}`);
+  await ctx.close();
+});
+
+test('背景映像：停止ボタンで止まり、設定が保存されて次のページでも静止画のまま', { skip: !hasCv && '素材なしのビルド' }, async () => {
+  const { ctx, page } = await open('/');
+  await page.waitForSelector('.hero .cv video', { state: 'attached' });
+  await page.click('[data-cv-toggle]');
+  assert.equal(await page.getAttribute('[data-cv-toggle]', 'aria-pressed'), 'true');
+  assert.equal(await page.$eval('.hero .cv video', (v) => v.paused), true);
+  assert.equal(await page.evaluate(() => JSON.parse(localStorage.getItem('gng:v1')).settings.video), 'off');
+  await page.goto(base + cat);
+  await page.waitForTimeout(300);
+  assert.equal(await page.$('.chero .cv video'), null);
+  assert.ok(await page.isVisible('.chero .cv__poster'));
+  // マイページの設定からも戻せる
+  await page.goto(base + '/my-dashboard/#settings');
+  await page.click('[data-setting="video"]');
+  assert.equal(await page.evaluate(() => JSON.parse(localStorage.getItem('gng:v1')).settings.video), 'auto');
+  await ctx.close();
+});
+
+test('背景映像：「視差効果を減らす」設定では動画を読み込まず、停止ボタンも出さない', { skip: !hasCv && '素材なしのビルド' }, async () => {
+  const { ctx, page } = await open('/', { reducedMotion: 'reduce' });
+  await page.waitForTimeout(400);
+  assert.equal(await page.$('.cv video'), null);
+  assert.ok(await page.isVisible('.hero .cv__poster'));
+  assert.ok(await page.isHidden('[data-cv-toggle]'));
+  await ctx.close();
+});
+
+test('背景映像：動画が読み込めないときはポスター画像のまま（エラーを出さない）', { skip: !hasCv && '素材なしのビルド' }, async () => {
+  const { ctx, page, errors } = await open('/', { block: /\.mp4$/ });
+  await page.waitForSelector('.hero .cv.is-failed');
+  assert.equal(await page.$('.hero .cv video'), null);
+  assert.ok(await page.isVisible('.hero .cv__poster'));
+  assert.deepEqual(errors, []);
   await ctx.close();
 });

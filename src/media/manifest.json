@@ -1,5 +1,5 @@
 {
- "version": "4.1",
+ "version": "4.2",
  "generated": "2026-11-26",
  "note": "映像・写真素材の台帳。素材は src/media/<種類>/ に置き、ビルド時に各ファイルの SHA-256 を照合してから dist/assets/media/ に書き出す。",
  "encoding": {
@@ -863,6 +863,879 @@
      "path": "backgrounds/footer-skyline.webp",
      "bytes": 17958,
      "sha256": "15a3e8ceb6c938f1dfcc725daa61be4e6f393ca04bc0bfee9ed05b0728181e5d"
+    }
+   ]
+  },
+  {
+   "id": "GNG-COUNTRY-001",
+   "key": "heroes/country-korea",
+   "type": "video",
+   "page": "国別ページ（korea）のヒーロー",
+   "component": "CinematicVideoBackground（カテゴリヒーロー）",
+   "model": {
+    "still": "gpt_image_2_6 (Higgsfield)",
+    "video": "minimax_h3_max 768p (Higgsfield)"
+   },
+   "source": {
+    "stillJob": "68bc675b-fc0a-4ad5-9ec6-7472df812f9f",
+    "videoJob": "d4aaed2b-6325-4ad7-ab52-badfbcd111a5",
+    "loop": "start_image = end_image"
+   },
+   "prompt": {
+    "still": "Ultra-photorealistic premium travel editorial photograph of Seoul, South Korea, Gyeongbokgung Palace gate with Bukhansan mountain and the distant N Seoul Tower at blue hour, deep midnight navy sky, elegant warm champagne-gold illumination, realistic natural colors, controlled highlights, calm water or street reflections where natural. Main landmark placed on the right third, the left 45% kept as dark, quiet negative space for website typography. Wide 16:9 cinematic composition, architecturally accurate, consistent color grading with the rest of the series. No text, no letters, no signage text, no logos, no watermark, no UI, no neon advertising, no people in the foreground, no oversaturation, no distorted architecture.",
+    "video": "Animate the reference image into a calm premium cinematic background loop. Locked-off, stabilized camera with an extremely slow, subtle drift that returns exactly to the original framing at the end. Only gentle natural motion: slowly drifting thin clouds, soft shimmer on water or wet pavement, a few distant lights changing naturally. Preserve the landmark's geometry, the composition, the lighting and the color grading exactly. Keep the left side dark and still. No cuts, no zoom jumps, no camera shake, no flashing or blinking lights, no new objects, no people, no vehicles in the foreground, no morphing, no text, no audio."
+   },
+   "size": {
+    "desktop": "1280x720",
+    "mobile": "768x432",
+    "poster": "1280 / 960 / 640"
+   },
+   "durationSec": 6.584,
+   "fps": 24,
+   "audio": false,
+   "poster": "heroes/country-korea-poster-1280.webp",
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真ではない。フッターに「背景の映像・画像は AI で生成したイメージです」と記載",
+   "status": "implemented",
+   "files": [
+    {
+     "path": "heroes/country-korea-desktop.mp4",
+     "bytes": 1381997,
+     "sha256": "b3ea8e5329bb7439c373ef0b6566cab8571bc36380aa6e5f87595daed85cc690"
+    },
+    {
+     "path": "heroes/country-korea-mobile.mp4",
+     "bytes": 582983,
+     "sha256": "537e50ee00834d55d73d931288e1402eb55a3370b502b168a66d8e3eee12a5fa"
+    },
+    {
+     "path": "heroes/country-korea-poster-1280.avif",
+     "bytes": 32671,
+     "sha256": "97e274962f178b4556a8e14a8ca7789edfb8424d0afc52e6a9fe9b109550970d"
+    },
+    {
+     "path": "heroes/country-korea-poster-1280.webp",
+     "bytes": 53372,
+     "sha256": "086f21e845ce5e99d110d9b1e5133dcdcf212578c8d19ee3739759e4dbf5ab08"
+    },
+    {
+     "path": "heroes/country-korea-poster-640.avif",
+     "bytes": 10638,
+     "sha256": "7e58f20891723ee757b258b5242a68c497077af29784b39c7b947e7acb3c3bfb"
+    },
+    {
+     "path": "heroes/country-korea-poster-640.webp",
+     "bytes": 17014,
+     "sha256": "09f59f5e04c202edcdd1b7a8f6408c0064e007c015768008dc85cfff0cb3309c"
+    },
+    {
+     "path": "heroes/country-korea-poster-960.avif",
+     "bytes": 18196,
+     "sha256": "24ff54d1abd96de162781452ca8397c6547bf28e11e30d4f72106dfb978134d9"
+    },
+    {
+     "path": "heroes/country-korea-poster-960.webp",
+     "bytes": 31366,
+     "sha256": "eb7eb6b0e491c8d4270274d4d463bd9b2ca45ec9a955300e51a343d97e184280"
+    }
+   ],
+   "playbackPriority": 1
+  },
+  {
+   "id": "GNG-COUNTRY-002",
+   "key": "heroes/country-taiwan",
+   "type": "video",
+   "page": "国別ページ（taiwan）のヒーロー",
+   "component": "CinematicVideoBackground（カテゴリヒーロー）",
+   "model": {
+    "still": "gpt_image_2_6 (Higgsfield)",
+    "video": "minimax_h3_max 768p (Higgsfield)"
+   },
+   "source": {
+    "stillJob": "497c32e7-aa80-4187-9b05-e2c55c04a49e",
+    "videoJob": "4c510919-d99c-4d55-8648-3b682d96dc6a",
+    "loop": "start_image = end_image"
+   },
+   "prompt": {
+    "still": "Ultra-photorealistic premium travel editorial photograph of Taipei, Taiwan, Taipei 101 rising above the city skyline seen from Elephant Mountain at blue hour, deep midnight navy sky, elegant warm champagne-gold illumination, realistic natural colors, controlled highlights, calm water or street reflections where natural. Main landmark placed on the right third, the left 45% kept as dark, quiet negative space for website typography. Wide 16:9 cinematic composition, architecturally accurate, consistent color grading with the rest of the series. No text, no letters, no signage text, no logos, no watermark, no UI, no neon advertising, no people in the foreground, no oversaturation, no distorted architecture.",
+    "video": "Animate the reference image into a calm premium cinematic background loop. Locked-off, stabilized camera with an extremely slow, subtle drift that returns exactly to the original framing at the end. Only gentle natural motion: slowly drifting thin clouds, soft shimmer on water or wet pavement, a few distant lights changing naturally. Preserve the landmark's geometry, the composition, the lighting and the color grading exactly. Keep the left side dark and still. No cuts, no zoom jumps, no camera shake, no flashing or blinking lights, no new objects, no people, no vehicles in the foreground, no morphing, no text, no audio."
+   },
+   "size": {
+    "desktop": "1280x720",
+    "mobile": "768x432",
+    "poster": "1280 / 960 / 640"
+   },
+   "durationSec": 6.584,
+   "fps": 24,
+   "audio": false,
+   "poster": "heroes/country-taiwan-poster-1280.webp",
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真ではない。フッターに「背景の映像・画像は AI で生成したイメージです」と記載",
+   "status": "implemented",
+   "files": [
+    {
+     "path": "heroes/country-taiwan-desktop.mp4",
+     "bytes": 1385616,
+     "sha256": "a6145f9ab5eabe5aa327e1f5cb8068240213503edf99174bdf6652135e6752b3"
+    },
+    {
+     "path": "heroes/country-taiwan-mobile.mp4",
+     "bytes": 580249,
+     "sha256": "f52e3822b164a5e743f57d5923d017ad3c09029196ae42c08cea967bfdf18b13"
+    },
+    {
+     "path": "heroes/country-taiwan-poster-1280.avif",
+     "bytes": 34329,
+     "sha256": "efd5a8f3370d88008e8767e4c4bf6f04583eecfe71f1401111b780bde38071c0"
+    },
+    {
+     "path": "heroes/country-taiwan-poster-1280.webp",
+     "bytes": 51062,
+     "sha256": "9c11f3b9b03c9ddc3f5cfb3f48ab96d1c0de58c58296ef9f3c0ac84409123cb2"
+    },
+    {
+     "path": "heroes/country-taiwan-poster-640.avif",
+     "bytes": 10903,
+     "sha256": "c19233c94a342527291aeba18c653399153c3ea433aad3996e0ef935496f89bc"
+    },
+    {
+     "path": "heroes/country-taiwan-poster-640.webp",
+     "bytes": 16268,
+     "sha256": "8157b47bbc2da75a9090b3ed642affd4aa040ae51bcaf452dbec09817ac859b4"
+    },
+    {
+     "path": "heroes/country-taiwan-poster-960.avif",
+     "bytes": 19869,
+     "sha256": "edcf63c4acf0027b34f4e2ad8b8994ed20c0b8ca045c90ff57380e91c1f88f07"
+    },
+    {
+     "path": "heroes/country-taiwan-poster-960.webp",
+     "bytes": 30758,
+     "sha256": "dc971e306913e87f712f6ee501799d3117ee6c2cd83d59a0c126e9cb986b226f"
+    }
+   ],
+   "playbackPriority": 1
+  },
+  {
+   "id": "GNG-COUNTRY-003",
+   "key": "heroes/country-vietnam",
+   "type": "video",
+   "page": "国別ページ（vietnam）のヒーロー",
+   "component": "CinematicVideoBackground（カテゴリヒーロー）",
+   "model": {
+    "still": "gpt_image_2_6 (Higgsfield)",
+    "video": "minimax_h3_max 768p (Higgsfield)"
+   },
+   "source": {
+    "stillJob": "e1306905-a50a-4187-b475-c8c3c2278d36",
+    "videoJob": "0ae62f7a-3dee-47a3-b13f-72f167999f2c",
+    "loop": "start_image = end_image"
+   },
+   "prompt": {
+    "still": "Ultra-photorealistic premium travel editorial photograph of Ho Chi Minh City, Vietnam, the Saigon River waterfront and the Bitexco Financial Tower at blue hour, deep midnight navy sky, elegant warm champagne-gold illumination, realistic natural colors, controlled highlights, calm water or street reflections where natural. Main landmark placed on the right third, the left 45% kept as dark, quiet negative space for website typography. Wide 16:9 cinematic composition, architecturally accurate, consistent color grading with the rest of the series. No text, no letters, no signage text, no logos, no watermark, no UI, no neon advertising, no people in the foreground, no oversaturation, no distorted architecture.",
+    "video": "Animate the reference image into a calm premium cinematic background loop. Locked-off, stabilized camera with an extremely slow, subtle drift that returns exactly to the original framing at the end. Only gentle natural motion: slowly drifting thin clouds, soft shimmer on water or wet pavement, a few distant lights changing naturally. Preserve the landmark's geometry, the composition, the lighting and the color grading exactly. Keep the left side dark and still. No cuts, no zoom jumps, no camera shake, no flashing or blinking lights, no new objects, no people, no vehicles in the foreground, no morphing, no text, no audio."
+   },
+   "size": {
+    "desktop": "1280x720",
+    "mobile": "768x432",
+    "poster": "1280 / 960 / 640"
+   },
+   "durationSec": 6.584,
+   "fps": 24,
+   "audio": false,
+   "poster": "heroes/country-vietnam-poster-1280.webp",
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真ではない。フッターに「背景の映像・画像は AI で生成したイメージです」と記載",
+   "status": "implemented",
+   "files": [
+    {
+     "path": "heroes/country-vietnam-desktop.mp4",
+     "bytes": 1382439,
+     "sha256": "cf207dd82a0b69d3c6f029c5f9812b57b0e6495e7d68ed4ca7add45ddac95612"
+    },
+    {
+     "path": "heroes/country-vietnam-mobile.mp4",
+     "bytes": 580826,
+     "sha256": "e7ef05d221fde9fde93fd11b8078907daf0ba71aa93e6cf125b3c4b031b808ec"
+    },
+    {
+     "path": "heroes/country-vietnam-poster-1280.avif",
+     "bytes": 28705,
+     "sha256": "a68aab15fc49925b5debca7273b670a5e299a986362d57b8f51e9c8f7fa0fdff"
+    },
+    {
+     "path": "heroes/country-vietnam-poster-1280.webp",
+     "bytes": 46642,
+     "sha256": "585043633b304752434b05b2eae1dee3092451ab407733ddd9fbc4ed41dc17d6"
+    },
+    {
+     "path": "heroes/country-vietnam-poster-640.avif",
+     "bytes": 10460,
+     "sha256": "055e1d600ed6d3981f38c66c00941c4002650d19635916b436d42be1e57d6bca"
+    },
+    {
+     "path": "heroes/country-vietnam-poster-640.webp",
+     "bytes": 16210,
+     "sha256": "6e5b26f52052bf7bedb34996c3d419dcc7d778be5e9bf70a2b32132d3c736d60"
+    },
+    {
+     "path": "heroes/country-vietnam-poster-960.avif",
+     "bytes": 16985,
+     "sha256": "0c814212cb82869a2951c71ec6feb3ab7211b30b96ffa519e1f7b6275696c166"
+    },
+    {
+     "path": "heroes/country-vietnam-poster-960.webp",
+     "bytes": 28536,
+     "sha256": "0bf7894d36b278606c0a2d56f68365e94c83c3abfb3eec6e26d8bdfe230b3ac2"
+    }
+   ],
+   "playbackPriority": 1
+  },
+  {
+   "id": "GNG-COUNTRY-004",
+   "key": "heroes/country-philippines",
+   "type": "video",
+   "page": "国別ページ（philippines）のヒーロー",
+   "component": "CinematicVideoBackground（カテゴリヒーロー）",
+   "model": {
+    "still": "gpt_image_2_6 (Higgsfield)",
+    "video": "minimax_h3_max 768p (Higgsfield)"
+   },
+   "source": {
+    "stillJob": "c30149d6-d4af-4fe6-9858-74612339c800",
+    "videoJob": "714b7047-010c-4ad2-934d-7ae38c5c55c2",
+    "loop": "start_image = end_image"
+   },
+   "prompt": {
+    "still": "Ultra-photorealistic premium travel editorial photograph of Manila, Philippines, Manila Bay waterfront promenade with the Makati skyline at blue hour, deep midnight navy sky, elegant warm champagne-gold illumination, realistic natural colors, controlled highlights, calm water or street reflections where natural. Main landmark placed on the right third, the left 45% kept as dark, quiet negative space for website typography. Wide 16:9 cinematic composition, architecturally accurate, consistent color grading with the rest of the series. No text, no letters, no signage text, no logos, no watermark, no UI, no neon advertising, no people in the foreground, no oversaturation, no distorted architecture.",
+    "video": "Animate the reference image into a calm premium cinematic background loop. Locked-off, stabilized camera with an extremely slow, subtle drift that returns exactly to the original framing at the end. Only gentle natural motion: slowly drifting thin clouds, soft shimmer on water or wet pavement, a few distant lights changing naturally. Preserve the landmark's geometry, the composition, the lighting and the color grading exactly. Keep the left side dark and still. No cuts, no zoom jumps, no camera shake, no flashing or blinking lights, no new objects, no people, no vehicles in the foreground, no morphing, no text, no audio."
+   },
+   "size": {
+    "desktop": "1280x720",
+    "mobile": "768x432",
+    "poster": "1280 / 960 / 640"
+   },
+   "durationSec": 6.584,
+   "fps": 24,
+   "audio": false,
+   "poster": "heroes/country-philippines-poster-1280.webp",
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真ではない。フッターに「背景の映像・画像は AI で生成したイメージです」と記載",
+   "status": "implemented",
+   "files": [
+    {
+     "path": "heroes/country-philippines-desktop.mp4",
+     "bytes": 1381766,
+     "sha256": "c20cff2d0010681a94282e3e63ed52a59424567fb32bbe060c3e417f511c9cab"
+    },
+    {
+     "path": "heroes/country-philippines-mobile.mp4",
+     "bytes": 576644,
+     "sha256": "cfb2c7e24fb39719cd47a20486379187232c03f88f472173b87f258c947337a5"
+    },
+    {
+     "path": "heroes/country-philippines-poster-1280.avif",
+     "bytes": 29774,
+     "sha256": "5b32c5590c248174275571e61e18d3f22924a8a12bb973f627a31235b9bb50e7"
+    },
+    {
+     "path": "heroes/country-philippines-poster-1280.webp",
+     "bytes": 48092,
+     "sha256": "de68bb9b9443c34677a3df996912db53b66ea660d62b00947f34021a2e662ee7"
+    },
+    {
+     "path": "heroes/country-philippines-poster-640.avif",
+     "bytes": 10566,
+     "sha256": "b7346351246fc26667fff7f4f378909bb68407307f3248bef205064a31845bea"
+    },
+    {
+     "path": "heroes/country-philippines-poster-640.webp",
+     "bytes": 16202,
+     "sha256": "a14d615b15f51d8e232861c88fcc33af1e4c1534ca4a8467eb196091c1a0eb8c"
+    },
+    {
+     "path": "heroes/country-philippines-poster-960.avif",
+     "bytes": 17343,
+     "sha256": "faf9024b85bb3376657ec8f048995b3bdce8b5e60830c69128594f606bd5a037"
+    },
+    {
+     "path": "heroes/country-philippines-poster-960.webp",
+     "bytes": 29336,
+     "sha256": "bbf33411cf9c56dfb1fd213f594e664120339a4df23f86ed9956ac794094b3f2"
+    }
+   ],
+   "playbackPriority": 1
+  },
+  {
+   "id": "GNG-COUNTRY-005",
+   "key": "heroes/country-cambodia",
+   "type": "video",
+   "page": "国別ページ（cambodia）のヒーロー",
+   "component": "CinematicVideoBackground（カテゴリヒーロー）",
+   "model": {
+    "still": "gpt_image_2_6 (Higgsfield)",
+    "video": "minimax_h3_max 768p (Higgsfield)"
+   },
+   "source": {
+    "stillJob": "22ac0ba1-b908-4308-b74a-8e1c97377130",
+    "videoJob": "0aaa637c-ce58-429d-b105-c6d698e01ed8",
+    "loop": "start_image = end_image"
+   },
+   "prompt": {
+    "still": "Ultra-photorealistic premium travel editorial photograph of Siem Reap, Cambodia, the towers of Angkor Wat reflected in the lotus pond at blue hour, deep midnight navy sky, elegant warm champagne-gold illumination, realistic natural colors, controlled highlights, calm water or street reflections where natural. Main landmark placed on the right third, the left 45% kept as dark, quiet negative space for website typography. Wide 16:9 cinematic composition, architecturally accurate, consistent color grading with the rest of the series. No text, no letters, no signage text, no logos, no watermark, no UI, no neon advertising, no people in the foreground, no oversaturation, no distorted architecture.",
+    "video": "Animate the reference image into a calm premium cinematic background loop. Locked-off, stabilized camera with an extremely slow, subtle drift that returns exactly to the original framing at the end. Only gentle natural motion: slowly drifting thin clouds, soft shimmer on water or wet pavement, a few distant lights changing naturally. Preserve the landmark's geometry, the composition, the lighting and the color grading exactly. Keep the left side dark and still. No cuts, no zoom jumps, no camera shake, no flashing or blinking lights, no new objects, no people, no vehicles in the foreground, no morphing, no text, no audio."
+   },
+   "size": {
+    "desktop": "1280x720",
+    "mobile": "768x432",
+    "poster": "1280 / 960 / 640"
+   },
+   "durationSec": 6.584,
+   "fps": 24,
+   "audio": false,
+   "poster": "heroes/country-cambodia-poster-1280.webp",
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真ではない。フッターに「背景の映像・画像は AI で生成したイメージです」と記載",
+   "status": "implemented",
+   "files": [
+    {
+     "path": "heroes/country-cambodia-desktop.mp4",
+     "bytes": 1381184,
+     "sha256": "36b8795e57bdbe28440b7cde214e8cc77706eaa9bbbb2431b86efb52e49bc949"
+    },
+    {
+     "path": "heroes/country-cambodia-mobile.mp4",
+     "bytes": 578119,
+     "sha256": "c538c04c81ea23ac45f326de7d88368991e4f511d28dce9baa96fb3d6e484c78"
+    },
+    {
+     "path": "heroes/country-cambodia-poster-1280.avif",
+     "bytes": 28413,
+     "sha256": "94cbe5072c18f45fcac87d8fb0f6e2d75692831267b903578bfc198fdb52c3c5"
+    },
+    {
+     "path": "heroes/country-cambodia-poster-1280.webp",
+     "bytes": 45946,
+     "sha256": "1eda66dd6729835a690a778c2ee27a63f84361e76ee3f0bc7523e407d895e5ec"
+    },
+    {
+     "path": "heroes/country-cambodia-poster-640.avif",
+     "bytes": 10481,
+     "sha256": "6ace6526d7215fa2a71ac0ef87a48563f4556168b31b6b54035d5e703b9530f3"
+    },
+    {
+     "path": "heroes/country-cambodia-poster-640.webp",
+     "bytes": 16466,
+     "sha256": "f6ede239ccd44e3028f17167fe2351d56edf314adbe51916388519ccb98e1cf3"
+    },
+    {
+     "path": "heroes/country-cambodia-poster-960.avif",
+     "bytes": 16740,
+     "sha256": "ffa95026f73574b2a133e6c14eecf97eb631bddd6fff2e84e52f758c34f124de"
+    },
+    {
+     "path": "heroes/country-cambodia-poster-960.webp",
+     "bytes": 28554,
+     "sha256": "4ebd60c103bbe504208259bb8ae798cf9a3efd455d60a6831e941060c0c78410"
+    }
+   ],
+   "playbackPriority": 1
+  },
+  {
+   "id": "GNG-COUNTRY-006",
+   "key": "heroes/country-indonesia",
+   "type": "video",
+   "page": "国別ページ（indonesia）のヒーロー",
+   "component": "CinematicVideoBackground（カテゴリヒーロー）",
+   "model": {
+    "still": "gpt_image_2_6 (Higgsfield)",
+    "video": "minimax_h3_max 768p (Higgsfield)"
+   },
+   "source": {
+    "stillJob": "7bcddb4e-5ce3-4894-a569-064405771a36",
+    "videoJob": "4bbe4f32-aca5-4795-9955-b778051830f4",
+    "loop": "start_image = end_image"
+   },
+   "prompt": {
+    "still": "Ultra-photorealistic premium travel editorial photograph of Bali, Indonesia, the Pura Ulun Danu Bratan water temple on Lake Bratan at blue hour, deep midnight navy sky, elegant warm champagne-gold illumination, realistic natural colors, controlled highlights, calm water or street reflections where natural. Main landmark placed on the right third, the left 45% kept as dark, quiet negative space for website typography. Wide 16:9 cinematic composition, architecturally accurate, consistent color grading with the rest of the series. No text, no letters, no signage text, no logos, no watermark, no UI, no neon advertising, no people in the foreground, no oversaturation, no distorted architecture.",
+    "video": "Animate the reference image into a calm premium cinematic background loop. Locked-off, stabilized camera with an extremely slow, subtle drift that returns exactly to the original framing at the end. Only gentle natural motion: slowly drifting thin clouds, soft shimmer on water or wet pavement, a few distant lights changing naturally. Preserve the landmark's geometry, the composition, the lighting and the color grading exactly. Keep the left side dark and still. No cuts, no zoom jumps, no camera shake, no flashing or blinking lights, no new objects, no people, no vehicles in the foreground, no morphing, no text, no audio."
+   },
+   "size": {
+    "desktop": "1280x720",
+    "mobile": "768x432",
+    "poster": "1280 / 960 / 640"
+   },
+   "durationSec": 6.584,
+   "fps": 24,
+   "audio": false,
+   "poster": "heroes/country-indonesia-poster-1280.webp",
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真ではない。フッターに「背景の映像・画像は AI で生成したイメージです」と記載",
+   "status": "implemented",
+   "files": [
+    {
+     "path": "heroes/country-indonesia-desktop.mp4",
+     "bytes": 1379276,
+     "sha256": "dd3161e821db20cb72dfe0dd114805484cdac6801139e70e1dab6a72ceb77048"
+    },
+    {
+     "path": "heroes/country-indonesia-mobile.mp4",
+     "bytes": 572289,
+     "sha256": "1d009e63bb2c3d9d1a119aa35ea093d9f31d8a1850a2ca76c0e52bfaade09d7a"
+    },
+    {
+     "path": "heroes/country-indonesia-poster-1280.avif",
+     "bytes": 22037,
+     "sha256": "b02bbcc4d7f2cfb34b6b333383360a0268806c06f89b1802b5ccb22b19d04aaa"
+    },
+    {
+     "path": "heroes/country-indonesia-poster-1280.webp",
+     "bytes": 37734,
+     "sha256": "2097a3d0bea59244af67053e3bd818b7bc874bde8edf7c72e899e3de887cfb0d"
+    },
+    {
+     "path": "heroes/country-indonesia-poster-640.avif",
+     "bytes": 8331,
+     "sha256": "873266a5f5dd2577a1f46b5a4703b3b41a05ad6735e45455327e0dfdc8a4d4ab"
+    },
+    {
+     "path": "heroes/country-indonesia-poster-640.webp",
+     "bytes": 13484,
+     "sha256": "17a9873c251b9422aac4dbaa8d5910b57ccde7b4ec5040e37525b4eb80b24433"
+    },
+    {
+     "path": "heroes/country-indonesia-poster-960.avif",
+     "bytes": 13261,
+     "sha256": "7f5c11b84f2044ff0e7c205183b5cd64d955ec6091b20201021df21c20d9a790"
+    },
+    {
+     "path": "heroes/country-indonesia-poster-960.webp",
+     "bytes": 23052,
+     "sha256": "347aa30684a66c7be286eb84c6ee6bf48101803ff6688bf15f5cafd1ec367a46"
+    }
+   ],
+   "playbackPriority": 1
+  },
+  {
+   "id": "GNG-COUNTRY-007",
+   "key": "heroes/country-singapore",
+   "type": "image",
+   "page": "国別ページ（singapore）のヒーロー",
+   "component": "CinematicVideoBackground（カテゴリヒーロー）",
+   "model": "gpt_image_2_6 (Higgsfield)",
+   "source": {
+    "stillJob": "e5dd9bf4-e915-4dbb-9e47-59ce1bb06eea"
+   },
+   "prompt": "Ultra-photorealistic premium travel editorial photograph of Singapore, Marina Bay waterfront with the Merlion area and the city skyline at blue hour, deep midnight navy sky, elegant warm champagne-gold illumination, realistic natural colors, controlled highlights, calm water or street reflections where natural. Main landmark placed on the right third, the left 45% kept as dark, quiet negative space for website typography. Wide 16:9 cinematic composition, architecturally accurate, consistent color grading with the rest of the series. No text, no letters, no signage text, no logos, no watermark, no UI, no neon advertising, no people in the foreground, no oversaturation, no distorted architecture.",
+   "size": "1280 / 960 / 640（ポスターのみ）",
+   "durationSec": null,
+   "fps": null,
+   "audio": false,
+   "poster": "heroes/country-singapore-poster-1280.webp",
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真ではない。フッターに「背景の映像・画像は AI で生成したイメージです」と記載",
+   "status": "implemented",
+   "files": [
+    {
+     "path": "heroes/country-singapore-poster-1280.avif",
+     "bytes": 45587,
+     "sha256": "148dfebf5fcf2909699302b4c56eb9fb046da4c6471e2c2da67d0a73bdfad56e"
+    },
+    {
+     "path": "heroes/country-singapore-poster-1280.webp",
+     "bytes": 71026,
+     "sha256": "93519389865f9fe06a3c4b56cd24067c7af810602480bb9f243517a2d1389584"
+    },
+    {
+     "path": "heroes/country-singapore-poster-640.avif",
+     "bytes": 15382,
+     "sha256": "0b67ae89b233bc4d91eaa8b85fac92bd9f7efac5837d349108fb2d9ff6fe2972"
+    },
+    {
+     "path": "heroes/country-singapore-poster-640.webp",
+     "bytes": 22216,
+     "sha256": "f912274e5ceb14cb06e2d1fde9c5b03e510890ae57e117070f49dee5c4322fa8"
+    },
+    {
+     "path": "heroes/country-singapore-poster-960.avif",
+     "bytes": 27430,
+     "sha256": "30c3e6928fde96ac51e17cda0661950d679883890ea18e3b4d04fe9e39ddb1be"
+    },
+    {
+     "path": "heroes/country-singapore-poster-960.webp",
+     "bytes": 42520,
+     "sha256": "336c72cbac906113e6fb31d5b9a057794ed2df3316c486636a57551e93ad5a02"
+    }
+   ]
+  },
+  {
+   "id": "GNG-COUNTRY-008",
+   "key": "heroes/country-germany",
+   "type": "image",
+   "page": "国別ページ（germany）のヒーロー",
+   "component": "CinematicVideoBackground（カテゴリヒーロー）",
+   "model": "gpt_image_2_6 (Higgsfield)",
+   "source": {
+    "stillJob": "f0d526d8-5bb6-44b4-b6d9-d31cd7c562b0"
+   },
+   "prompt": "Ultra-photorealistic premium travel editorial photograph of Berlin, Germany, the Brandenburg Gate on Pariser Platz at blue hour, deep midnight navy sky, elegant warm champagne-gold illumination, realistic natural colors, controlled highlights, calm water or street reflections where natural. Main landmark placed on the right third, the left 45% kept as dark, quiet negative space for website typography. Wide 16:9 cinematic composition, architecturally accurate, consistent color grading with the rest of the series. No text, no letters, no signage text, no logos, no watermark, no UI, no neon advertising, no people in the foreground, no oversaturation, no distorted architecture.",
+   "size": "1280 / 960 / 640（ポスターのみ）",
+   "durationSec": null,
+   "fps": null,
+   "audio": false,
+   "poster": "heroes/country-germany-poster-1280.webp",
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真ではない。フッターに「背景の映像・画像は AI で生成したイメージです」と記載",
+   "status": "implemented",
+   "files": [
+    {
+     "path": "heroes/country-germany-poster-1280.avif",
+     "bytes": 28291,
+     "sha256": "a2687beaf25f431944c6abab218090af098c4024a769df6ecb4879b27c551720"
+    },
+    {
+     "path": "heroes/country-germany-poster-1280.webp",
+     "bytes": 48544,
+     "sha256": "46451023bf23ec547d693464ae3a6e3145f1841b7895ecc1e563977b57e0f217"
+    },
+    {
+     "path": "heroes/country-germany-poster-640.avif",
+     "bytes": 9749,
+     "sha256": "8773df54a18d717df3dbfaf5efa919e8a7bc2c7881dcc831486064422b74e2d7"
+    },
+    {
+     "path": "heroes/country-germany-poster-640.webp",
+     "bytes": 15678,
+     "sha256": "e4c5609ee7b3cc188761ac027f855e075e342143c270b0084fbbbdae47e7f354"
+    },
+    {
+     "path": "heroes/country-germany-poster-960.avif",
+     "bytes": 16865,
+     "sha256": "2ac7a3917663450ba2b74e564bb27aba73bd853a533dc852316b9eceef999393"
+    },
+    {
+     "path": "heroes/country-germany-poster-960.webp",
+     "bytes": 28990,
+     "sha256": "614612ec7cddb669f1fa15739195404679843da8363dc18b9916795ec9acd5b6"
+    }
+   ]
+  },
+  {
+   "id": "GNG-COUNTRY-009",
+   "key": "heroes/country-malaysia",
+   "type": "image",
+   "page": "国別ページ（malaysia）のヒーロー",
+   "component": "CinematicVideoBackground（カテゴリヒーロー）",
+   "model": "gpt_image_2_6 (Higgsfield)",
+   "source": {
+    "stillJob": "4f72e9a4-cc9b-4ce6-b274-e1e8965d1f46"
+   },
+   "prompt": "Ultra-photorealistic premium travel editorial photograph of Kuala Lumpur, Malaysia, the Petronas Twin Towers above the city park at blue hour, deep midnight navy sky, elegant warm champagne-gold illumination, realistic natural colors, controlled highlights, calm water or street reflections where natural. Main landmark placed on the right third, the left 45% kept as dark, quiet negative space for website typography. Wide 16:9 cinematic composition, architecturally accurate, consistent color grading with the rest of the series. No text, no letters, no signage text, no logos, no watermark, no UI, no neon advertising, no people in the foreground, no oversaturation, no distorted architecture.",
+   "size": "1280 / 960 / 640（ポスターのみ）",
+   "durationSec": null,
+   "fps": null,
+   "audio": false,
+   "poster": "heroes/country-malaysia-poster-1280.webp",
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真ではない。フッターに「背景の映像・画像は AI で生成したイメージです」と記載",
+   "status": "implemented",
+   "files": [
+    {
+     "path": "heroes/country-malaysia-poster-1280.avif",
+     "bytes": 49930,
+     "sha256": "83ac5aa0259774ff474787c1872a96d38660e96cd6fe8ba36b50cf9abf0c0990"
+    },
+    {
+     "path": "heroes/country-malaysia-poster-1280.webp",
+     "bytes": 75162,
+     "sha256": "6996c16093cdf85179158b61f06230e625c3e9cddded83a5ceab76579a5c3948"
+    },
+    {
+     "path": "heroes/country-malaysia-poster-640.avif",
+     "bytes": 15690,
+     "sha256": "8f99e087ed2699a18c988e499cccacd85fc1463f35ef59fc2f1d9ea49c300ba9"
+    },
+    {
+     "path": "heroes/country-malaysia-poster-640.webp",
+     "bytes": 22340,
+     "sha256": "5a2896cd54e28752c495aa0830d57053aef670162d04ce1716cc9db8820aa472"
+    },
+    {
+     "path": "heroes/country-malaysia-poster-960.avif",
+     "bytes": 28962,
+     "sha256": "8457afa346b2ee9ad329a2f481f35ff17311fcdc8f5fd06890b23bf5625a3236"
+    },
+    {
+     "path": "heroes/country-malaysia-poster-960.webp",
+     "bytes": 43916,
+     "sha256": "a86c85a15f78452a1bc2366813d1432a77ae57e2591340142738a72a449f7249"
+    }
+   ]
+  },
+  {
+   "id": "GNG-COUNTRY-010",
+   "key": "heroes/country-uzbekistan",
+   "type": "image",
+   "page": "国別ページ（uzbekistan）のヒーロー",
+   "component": "CinematicVideoBackground（カテゴリヒーロー）",
+   "model": "gpt_image_2_6 (Higgsfield)",
+   "source": {
+    "stillJob": "70272cbd-3cc9-4a5c-b7c7-c4232c3248f3"
+   },
+   "prompt": "Ultra-photorealistic premium travel editorial photograph of Samarkand, Uzbekistan, the Registan square with its tiled madrasas at blue hour, deep midnight navy sky, elegant warm champagne-gold illumination, realistic natural colors, controlled highlights, calm water or street reflections where natural. Main landmark placed on the right third, the left 45% kept as dark, quiet negative space for website typography. Wide 16:9 cinematic composition, architecturally accurate, consistent color grading with the rest of the series. No text, no letters, no signage text, no logos, no watermark, no UI, no neon advertising, no people in the foreground, no oversaturation, no distorted architecture.",
+   "size": "1280 / 960 / 640（ポスターのみ）",
+   "durationSec": null,
+   "fps": null,
+   "audio": false,
+   "poster": "heroes/country-uzbekistan-poster-1280.webp",
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真ではない。フッターに「背景の映像・画像は AI で生成したイメージです」と記載",
+   "status": "implemented",
+   "files": [
+    {
+     "path": "heroes/country-uzbekistan-poster-1280.avif",
+     "bytes": 39352,
+     "sha256": "4250a6a2e71dba2e75e0f126643b7a440dffaf0bcf3ad761954be8b633fca35f"
+    },
+    {
+     "path": "heroes/country-uzbekistan-poster-1280.webp",
+     "bytes": 63098,
+     "sha256": "79df98ff46068c3ae51c2b0bf429ad353800b7a832c38c323be47fa7e4e9126b"
+    },
+    {
+     "path": "heroes/country-uzbekistan-poster-640.avif",
+     "bytes": 10504,
+     "sha256": "9c45737542cce26609a91b1cf550d009c82cc36740f6827527e5fc39decea340"
+    },
+    {
+     "path": "heroes/country-uzbekistan-poster-640.webp",
+     "bytes": 16614,
+     "sha256": "1a2fff347a077ed338ad9cf10fcfd2fa0f6f27fe09e02431a731b959245643bf"
+    },
+    {
+     "path": "heroes/country-uzbekistan-poster-960.avif",
+     "bytes": 21969,
+     "sha256": "9ec4c7c495cf8512ab867156d34b741042998221f10a5409acdc2c7979be0546"
+    },
+    {
+     "path": "heroes/country-uzbekistan-poster-960.webp",
+     "bytes": 35470,
+     "sha256": "be7bf4dc28d263481645277a23657f6255f92a1ca49b35be4890be6d57cc9afa"
+    }
+   ]
+  },
+  {
+   "id": "GNG-COUNTRY-011",
+   "key": "heroes/country-myanmar",
+   "type": "image",
+   "page": "国別ページ（myanmar）のヒーロー",
+   "component": "CinematicVideoBackground（カテゴリヒーロー）",
+   "model": "gpt_image_2_6 (Higgsfield)",
+   "source": {
+    "stillJob": "1bc1d09c-e824-4006-8951-c953d7f66b4a"
+   },
+   "prompt": "Ultra-photorealistic premium travel editorial photograph of Yangon, Myanmar, the golden Shwedagon Pagoda at blue hour, deep midnight navy sky, elegant warm champagne-gold illumination, realistic natural colors, controlled highlights, calm water or street reflections where natural. Main landmark placed on the right third, the left 45% kept as dark, quiet negative space for website typography. Wide 16:9 cinematic composition, architecturally accurate, consistent color grading with the rest of the series. No text, no letters, no signage text, no logos, no watermark, no UI, no neon advertising, no people in the foreground, no oversaturation, no distorted architecture.",
+   "size": "1280 / 960 / 640（ポスターのみ）",
+   "durationSec": null,
+   "fps": null,
+   "audio": false,
+   "poster": "heroes/country-myanmar-poster-1280.webp",
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真ではない。フッターに「背景の映像・画像は AI で生成したイメージです」と記載",
+   "status": "implemented",
+   "files": [
+    {
+     "path": "heroes/country-myanmar-poster-1280.avif",
+     "bytes": 34154,
+     "sha256": "c0bb185a9eb8f8fe05e8fd8bc060790e10a2b6027dcbdc556a6a1088b4e04667"
+    },
+    {
+     "path": "heroes/country-myanmar-poster-1280.webp",
+     "bytes": 53798,
+     "sha256": "a741aa6b2eb98a2bf7eb87199fd60d8ab1c631a70207ff252ef92c18b8ad8e47"
+    },
+    {
+     "path": "heroes/country-myanmar-poster-640.avif",
+     "bytes": 12310,
+     "sha256": "62d0ea0430f445b08d71f3e54d26d5b700c3ca1006a7fc3fce5cdcbfd3997149"
+    },
+    {
+     "path": "heroes/country-myanmar-poster-640.webp",
+     "bytes": 18046,
+     "sha256": "164001316efdb28bac5904072d46ab7e124df5e09bd9ac7e2b969c8775934ae0"
+    },
+    {
+     "path": "heroes/country-myanmar-poster-960.avif",
+     "bytes": 20756,
+     "sha256": "096eaba52434b7161188a4b16741717ef3f89f78e8bb20510906ee166a11354c"
+    },
+    {
+     "path": "heroes/country-myanmar-poster-960.webp",
+     "bytes": 33070,
+     "sha256": "3f4729909244405ca6d46a9b562ba6dd8f5ed8071986aeb542f78b076ce0c901"
+    }
+   ]
+  },
+  {
+   "id": "GNG-COUNTRY-012",
+   "key": "heroes/country-mongolia",
+   "type": "image",
+   "page": "国別ページ（mongolia）のヒーロー",
+   "component": "CinematicVideoBackground（カテゴリヒーロー）",
+   "model": "gpt_image_2_6 (Higgsfield)",
+   "source": {
+    "stillJob": "2e016c40-d33f-48ee-ac29-18e107dbc62a"
+   },
+   "prompt": "Ultra-photorealistic premium travel editorial photograph of Ulaanbaatar, Mongolia, the city skyline with Sukhbaatar Square and surrounding hills at blue hour, deep midnight navy sky, elegant warm champagne-gold illumination, realistic natural colors, controlled highlights, calm water or street reflections where natural. Main landmark placed on the right third, the left 45% kept as dark, quiet negative space for website typography. Wide 16:9 cinematic composition, architecturally accurate, consistent color grading with the rest of the series. No text, no letters, no signage text, no logos, no watermark, no UI, no neon advertising, no people in the foreground, no oversaturation, no distorted architecture.",
+   "size": "1280 / 960 / 640（ポスターのみ）",
+   "durationSec": null,
+   "fps": null,
+   "audio": false,
+   "poster": "heroes/country-mongolia-poster-1280.webp",
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真ではない。フッターに「背景の映像・画像は AI で生成したイメージです」と記載",
+   "status": "implemented",
+   "files": [
+    {
+     "path": "heroes/country-mongolia-poster-1280.avif",
+     "bytes": 31420,
+     "sha256": "79a68183bb4c923ee6394f4ed6337e900f5a2b78ff458df2f3e59429aaefb934"
+    },
+    {
+     "path": "heroes/country-mongolia-poster-1280.webp",
+     "bytes": 52278,
+     "sha256": "d0f4c28ea2930c74d68400ab9c6d8c72038d6c116ad979ea638c725d968aeb9b"
+    },
+    {
+     "path": "heroes/country-mongolia-poster-640.avif",
+     "bytes": 10309,
+     "sha256": "11aade2512bbe3108a62ff9bff662e562db57733e761bc114abbccfd2a4c1862"
+    },
+    {
+     "path": "heroes/country-mongolia-poster-640.webp",
+     "bytes": 16394,
+     "sha256": "722ad2147e18e692a452511cd8e7f4c729b4f1fd5e080e64646339295bcac0fe"
+    },
+    {
+     "path": "heroes/country-mongolia-poster-960.avif",
+     "bytes": 18099,
+     "sha256": "6e67aedec836034a9027ad8dbc2fdd8fa317c682382c49a88c7818b848c4c588"
+    },
+    {
+     "path": "heroes/country-mongolia-poster-960.webp",
+     "bytes": 30668,
+     "sha256": "a72ee42a7c944df2e99230737dc167c80461a167366328c1e6183c223c55c6fb"
+    }
+   ]
+  },
+  {
+   "id": "GNG-COUNTRY-013",
+   "key": "heroes/country-laos",
+   "type": "image",
+   "page": "国別ページ（laos）のヒーロー",
+   "component": "CinematicVideoBackground（カテゴリヒーロー）",
+   "model": "gpt_image_2_6 (Higgsfield)",
+   "source": {
+    "stillJob": "e00e4a90-ead0-470f-abfd-5b1f805fd2f8"
+   },
+   "prompt": "Ultra-photorealistic premium travel editorial photograph of Luang Prabang, Laos, the golden roofs of Wat Xieng Thong temple at blue hour, deep midnight navy sky, elegant warm champagne-gold illumination, realistic natural colors, controlled highlights, calm water or street reflections where natural. Main landmark placed on the right third, the left 45% kept as dark, quiet negative space for website typography. Wide 16:9 cinematic composition, architecturally accurate, consistent color grading with the rest of the series. No text, no letters, no signage text, no logos, no watermark, no UI, no neon advertising, no people in the foreground, no oversaturation, no distorted architecture.",
+   "size": "1280 / 960 / 640（ポスターのみ）",
+   "durationSec": null,
+   "fps": null,
+   "audio": false,
+   "poster": "heroes/country-laos-poster-1280.webp",
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真ではない。フッターに「背景の映像・画像は AI で生成したイメージです」と記載",
+   "status": "implemented",
+   "files": [
+    {
+     "path": "heroes/country-laos-poster-1280.avif",
+     "bytes": 63592,
+     "sha256": "dca3afe2298bc26a3ca909c5b9ebe79d58843968b7efec7f9162672defb692d9"
+    },
+    {
+     "path": "heroes/country-laos-poster-1280.webp",
+     "bytes": 92822,
+     "sha256": "90caf5dd5d7952ae94e947106f4776ffe023c46a4c0fae3ce57e2d4d8fa5ef73"
+    },
+    {
+     "path": "heroes/country-laos-poster-640.avif",
+     "bytes": 19003,
+     "sha256": "1d862f86a7c64bbe273a90d017731f6dd943d366ef320f6696e33cbfe09dba4b"
+    },
+    {
+     "path": "heroes/country-laos-poster-640.webp",
+     "bytes": 26772,
+     "sha256": "b964c0e21ded68396703801cd3162efae5f3f6db38f7256b8b9b09fb1e10987e"
+    },
+    {
+     "path": "heroes/country-laos-poster-960.avif",
+     "bytes": 36688,
+     "sha256": "22f2b18b3c94a6564d4bf67543839b80c288718643af83571fc93dc35be8393a"
+    },
+    {
+     "path": "heroes/country-laos-poster-960.webp",
+     "bytes": 53432,
+     "sha256": "0452d26faa5d6684f2454cc3aa969fc4c7c5bb538bade46ba715e18a633be703"
+    }
+   ]
+  },
+  {
+   "id": "GNG-VIDEO-006",
+   "key": "heroes/mypage-gold",
+   "type": "video",
+   "page": "マイページ",
+   "component": "ページ見出しの背景映像",
+   "playbackPriority": 3,
+   "model": {
+    "still": "gpt_image_2_6 (Higgsfield)",
+    "video": "minimax_h3_max 768p (Higgsfield)"
+   },
+   "source": {
+    "stillJob": "776db8c1-4987-403c-b667-7d39ac8b7c85",
+    "videoJob": "a62e74dd-78a8-429a-b8e7-bd1a5489b59d",
+    "loop": "start_image = end_image"
+   },
+   "prompt": {
+    "video": "Animate this minimal matte black and champagne-gold abstract banner: extremely slow, elegant flow of soft gold light along the existing contours, subtle shimmer on the brushed metallic texture, seamless loop returning to the first frame. Locked camera. No new shapes, no particles, no flashes, no text, no audio."
+   },
+   "size": {
+    "desktop": "1280x720",
+    "mobile": "768x432"
+   },
+   "durationSec": 6.584,
+   "fps": 24,
+   "audio": false,
+   "poster": "heroes/mypage-gold-poster-1280.webp",
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真ではない。フッターに「背景の映像・画像は AI で生成したイメージです」と記載",
+   "status": "implemented",
+   "files": [
+    {
+     "path": "heroes/mypage-gold-desktop.mp4",
+     "bytes": 738710,
+     "sha256": "7cc800b058848223dfbf5665edaa15e6edfbab88f358c5fc103a5ff448546713"
+    },
+    {
+     "path": "heroes/mypage-gold-mobile.mp4",
+     "bytes": 410383,
+     "sha256": "a536506ba4c35e936cdb70154cc4c830e1d99d638a65a576e64f66d52ac67189"
+    },
+    {
+     "path": "heroes/mypage-gold-poster-1280.avif",
+     "bytes": 6505,
+     "sha256": "104a660700f7db8e605199bbea94920149927da0a4c85a88760e35cfcc755c03"
+    },
+    {
+     "path": "heroes/mypage-gold-poster-1280.webp",
+     "bytes": 16090,
+     "sha256": "235ba687c0f4f910106ad63b3f177f106754ce3aac7b5ec6347f3602ff9eb9d6"
+    },
+    {
+     "path": "heroes/mypage-gold-poster-640.avif",
+     "bytes": 2394,
+     "sha256": "3c3461baca57c2b6ef1565254a994b7af1d4a1208a1f064fe7cc1acb5e39c7de"
+    },
+    {
+     "path": "heroes/mypage-gold-poster-640.webp",
+     "bytes": 4602,
+     "sha256": "04a98252c10efc15e1a6c81ff25f340ea54ed37f4b094bfe11509c4c0e7d0569"
+    },
+    {
+     "path": "heroes/mypage-gold-poster-960.avif",
+     "bytes": 3650,
+     "sha256": "a1ce1ed4c20d8a5cb5c35cba168f1919caea6b2e962ab99e55dc1b88060f6bb8"
+    },
+    {
+     "path": "heroes/mypage-gold-poster-960.webp",
+     "bytes": 8788,
+     "sha256": "1d9957afc997733c4dd818cb41ab4fd14f46b9b1d0d46ad0b2c9144148315924"
     }
    ]
   }

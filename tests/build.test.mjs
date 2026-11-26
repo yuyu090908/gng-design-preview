@@ -119,3 +119,8 @@ test('架空のデモデータが残っていない', () => {
   }
 });
 test("一覧ページの見出しの形", () => { for (const { f, $ } of pages) if ($("[data-listing]").length) assert.ok($(".chero h1").length, f); });
+
+// 4.2：画像・映像の上に説明の文字を重ねない／国別ページはその国のヒーローを使う
+test('画像・映像の上に「イメージ映像（AI生成）」などの表記がない', () => {
+  for (const { f, $ } of pages) assert.equal($('.art-note').length, 0, f);
+});

@@ -1,11 +1,11 @@
 {
- "version": "4.0",
+ "version": "4.1",
  "generated": "2026-11-26",
  "note": "映像・写真素材の台帳。本体は pack（無圧縮 ZIP）にまとめ、ビルド時に取得して各ファイルの SHA-256 を検証してから dist/assets/media/ に書き出す。取得できないときは従来の画像で表示する。",
  "pack": {
-  "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3GzEOW1cbzyPjySGkbYzv7L3rIa/f7feb64d-2c2f-44b0-bdfd-7a940c9c9b86.zip",
-  "sha256": "cfbee3f5ef2253dfeeb5610f58f18959bddf7cf33c5c10db17e23c45676940bc",
-  "bytes": 15153516
+  "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3GzEOW1cbzyPjySGkbYzv7L3rIa/2b5ecb46-30db-4878-bf5e-715f112d856a.zip",
+  "sha256": "4994530eb7ab0cab9e8570891c911981748f58a59debedafe3ca11bb495b7cd0",
+  "bytes": 15474599
  },
  "encoding": {
   "video": "H.264 High / yuv420p / 24fps / 2-pass / +faststart / 音声なし",
@@ -35,7 +35,7 @@
    "size": {
     "desktop": "1280x720",
     "mobile": "768x432",
-    "poster": "1280x731 / 640x366"
+    "poster": "1280x731 / 960x548 / 640x366"
    },
    "durationSec": 10.125,
    "fps": 24,
@@ -73,6 +73,16 @@
      "path": "heroes/home-tokyo-poster-640.webp",
      "bytes": 21302,
      "sha256": "243537d02e669fe5780a8f50a9b2de18b35bf119ab58e8d1dedf9982add67f42"
+    },
+    {
+     "path": "heroes/home-tokyo-poster-960.avif",
+     "bytes": 26254,
+     "sha256": "f2c450697bd720c35028c749b2bf77a5bb38ef7a008f248b616628a9e85d7705"
+    },
+    {
+     "path": "heroes/home-tokyo-poster-960.webp",
+     "bytes": 39574,
+     "sha256": "9f8260c77bcfe39434fd9ee0b9eddd97cbb51337f209bce5fff702a25c5d1499"
     }
    ]
   },
@@ -99,7 +109,7 @@
    "size": {
     "desktop": "1280x720",
     "mobile": "768x432",
-    "poster": "1280x731 / 640x366"
+    "poster": "1280x731 / 960x548 / 640x366"
    },
    "durationSec": 8.0,
    "fps": 24,
@@ -137,6 +147,16 @@
      "path": "heroes/domestic-poster-640.webp",
      "bytes": 21428,
      "sha256": "51bee390d81291de6c7273f76316f75c147b1103d4d8b77412bf239a87aafbee"
+    },
+    {
+     "path": "heroes/domestic-poster-960.avif",
+     "bytes": 23818,
+     "sha256": "9d7f71b048a191a4604d37ac31d169700d161aa30540e16636f72c29192c6711"
+    },
+    {
+     "path": "heroes/domestic-poster-960.webp",
+     "bytes": 38162,
+     "sha256": "f24a7fc366424dbedf88e42996774fb06dbfcc4cf2978adf54c3e40686692477"
     }
    ]
   },
@@ -163,7 +183,7 @@
    "size": {
     "desktop": "1280x720",
     "mobile": "768x432",
-    "poster": "1280x731 / 640x366"
+    "poster": "1280x731 / 960x548 / 640x366"
    },
    "durationSec": 10.125,
    "fps": 24,
@@ -201,6 +221,16 @@
      "path": "heroes/overseas-bangkok-poster-640.webp",
      "bytes": 19030,
      "sha256": "fcf5815fcb22aa972205f5a31a21cdd3cd46249040c78ec114afaa865f72cfc2"
+    },
+    {
+     "path": "heroes/overseas-bangkok-poster-960.avif",
+     "bytes": 20075,
+     "sha256": "3b6ef743ca536a70220a0eee8aceeb60c92a4ad309e4e6ebeae8b18e9ade3523"
+    },
+    {
+     "path": "heroes/overseas-bangkok-poster-960.webp",
+     "bytes": 33332,
+     "sha256": "cc5e4e454c8cb7dc7c8c339ee52e0ee1f8b053a9c214bb56deeb965e1b349a5b"
     }
    ]
   },
@@ -227,7 +257,7 @@
    "size": {
     "desktop": "1280x720",
     "mobile": "640x360",
-    "poster": "1280x731 / 640x366"
+    "poster": "1280x731 / 960x548 / 640x366"
    },
    "durationSec": 8.0,
    "fps": 24,
@@ -265,6 +295,16 @@
      "path": "features/asia-earth-poster-640.webp",
      "bytes": 14086,
      "sha256": "55ee9754f778254c1a22f8841779f9db4f3eec134a14e2857b3cd0b4b6440588"
+    },
+    {
+     "path": "features/asia-earth-poster-960.avif",
+     "bytes": 17168,
+     "sha256": "b1c6a96098e4388c9979b144a5fe2431798a0cfae543bc014750dcab3ac63f76"
+    },
+    {
+     "path": "features/asia-earth-poster-960.webp",
+     "bytes": 25362,
+     "sha256": "c498025bfda17184e19695661e9347f72ce620b3e85d8c48310ea66ad58abf76"
     }
    ]
   },
@@ -291,7 +331,7 @@
    "size": {
     "desktop": "1280x720",
     "mobile": "640x360",
-    "poster": "1280x731 / 640x366"
+    "poster": "1280x731 / 960x548 / 640x366"
    },
    "durationSec": 6.584,
    "fps": 24,
@@ -329,6 +369,16 @@
      "path": "features/editorial-feature-poster-640.webp",
      "bytes": 33316,
      "sha256": "f1b137cfcef8e728d877dc624e2b3855da5917760adc3aa4f05f38f958efae06"
+    },
+    {
+     "path": "features/editorial-feature-poster-960.avif",
+     "bytes": 37340,
+     "sha256": "bc1aaaa1382248f788f52b20df3e34af71d0a6850a597fe2b9d0db5cfc8a1031"
+    },
+    {
+     "path": "features/editorial-feature-poster-960.webp",
+     "bytes": 58518,
+     "sha256": "e9dd12d02492bdf9a21d7bec7203abdf52012d2a91fc35e6a8a1f9b39d839f7a"
     }
    ]
   },

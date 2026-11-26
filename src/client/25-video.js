@@ -11,6 +11,8 @@ if (cvs.length) {
   const allowed = () => !userOff() && !mqReduce.matches && !slowNet() && document.visibilityState === 'visible';
   const maxPlaying = () => (mqMobile.matches ? 1 : 2);
   const visible = new Map();
+  // 最初の表示（ポスター画像＝LCP）を優先し、動画の読み込みはページの読み込み完了後に始める
+  let ready = false;
 
   const ensureVideo = (el) => {
     if (el._v) return el._v;
@@ -33,7 +35,7 @@ if (cvs.length) {
 
   // 表示中の映像のうち、優先度が高く画面に大きく見えているものから順に再生する
   const sync = () => {
-    const ok = allowed();
+    const ok = ready && allowed();
     const order = [...visible.entries()].filter(([el]) => !el.dataset.failed).sort((a, b) => (Number(a[0].dataset.prio) || 9) - (Number(b[0].dataset.prio) || 9) || b[1] - a[1]).map(([el]) => el);
     const play = ok ? order.slice(0, maxPlaying()) : [];
     cvs.forEach((el) => {
@@ -69,5 +71,8 @@ if (cvs.length) {
     store.update((v) => { v.settings.video = off ? 'off' : 'auto'; });
     toast(off ? '背景の映像を停止しました（設定はこの端末に保存されます）' : '背景の映像を再生します');
   });
+  const start = () => { ready = true; sync(); };
+  const idle = () => (window.requestIdleCallback ? requestIdleCallback(start, { timeout: 1500 }) : setTimeout(start, 300));
+  if (document.readyState === 'complete') idle(); else addEventListener('load', idle, { once: true });
   sync();
 }

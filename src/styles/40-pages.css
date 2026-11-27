@@ -339,3 +339,58 @@
 /* マイページの見出しの映像（黒と金の抽象。文字の後ろで薄く動く） */
 .ph--bg .cv { -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 55%); mask-image: linear-gradient(90deg, transparent 0, #000 55%); --cv-pos: 100% 50%; }
 [data-theme="light"] .ph--bg .cv { opacity: .16; filter: grayscale(.4); }
+
+/* ---------- 4.4 カテゴリ・特集：広いヒーロー、ジャンルのカード、はじめての方への帯 ---------- */
+.chero { min-height: 232px; display: flex; align-items: flex-end; }
+.chero__in { width: 100%; padding: 18px 16px 18px; }
+.chero__t { font-size: 27px; }
+.cv--genre-soap { --cv-pos: 72% 55%; }
+.cv--genre-luxury { --cv-pos: 72% 50%; }
+.cv--genre-lounge { --cv-pos: 70% 50%; }
+.cv--genre-casual { --cv-pos: 70% 50%; }
+.cv--theme-encounter, .cv--theme-wellness, .cv--theme-guide { --cv-pos: 72% 50%; }
+
+.carousel--genre .carousel__track { grid-auto-columns: calc((100% - 2 * var(--pad) - 10px) / 2.15); gap: 10px; }
+.area--genre { height: 124px; }
+.area--genre .area__jp { font-size: 16px; }
+.area--genre .area__img { object-position: 72% 50%; }
+.area--genre::after { background: linear-gradient(180deg, rgba(8, 11, 16, .05) 0%, rgba(8, 11, 16, .45) 50%, rgba(8, 11, 16, .92) 100%); }
+.area--genre .area__b { padding: 0 14px 12px; }
+.area__n { margin-left: auto; margin-right: 6px; font: 700 12px/1 var(--f-en); color: #fff; letter-spacing: 0; }
+.area__n small { margin-left: 2px; font: 500 10px var(--f-sans, inherit); color: #C9D0DA; }
+.area--genre[aria-current="page"] { border-color: var(--gold); box-shadow: inset 0 0 0 1px var(--gold); }
+.area--genre[aria-current="page"] .area__jp::before { content: ""; display: inline-block; width: 6px; height: 6px; margin: 0 6px 3px 0; border-radius: 50%; background: var(--gold); vertical-align: middle; }
+
+.gband { position: relative; isolation: isolate; overflow: hidden; margin: var(--s-8, 32px) calc(-1 * var(--pad)) 0; min-height: 240px; display: flex; align-items: center; background: #080B10; color: #F3F4F6; }
+.gband picture, .gband__bg { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; object-position: 72% 50%; }
+.gband::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(8, 11, 16, .95) 0%, rgba(8, 11, 16, .8) 50%, rgba(8, 11, 16, .35) 100%); }
+.gband__in { padding: 28px 18px; max-width: 34em; }
+.gband__en { margin: 0 0 6px; font: 600 11px/1.4 var(--f-en); letter-spacing: .14em; color: var(--gold); }
+.gband__t { margin: 0 0 8px; font: 700 23px/1.35 var(--f-serif); color: #fff; letter-spacing: .03em; }
+.gband__d { margin: 0 0 16px; font-size: 13.5px; line-height: 1.8; color: #C9D0DA; }
+.gband__act { display: flex; flex-wrap: wrap; gap: 8px; }
+
+@media (min-width: 768px) {
+  .chero { min-height: 280px; }
+  .chero__in { padding: 22px 28px 24px; }
+  .chero__t { font-size: 32px; }
+  .carousel--genre .carousel__track { grid-auto-columns: calc((100% - 2 * var(--pad) - 2 * 12px) / 3.2); gap: 12px; }
+  .area--genre { height: 170px; }
+  .gband { margin: var(--s-10, 40px) 0 0; border-radius: var(--r-panel); border: 1px solid var(--c-border); min-height: 260px; }
+  .gband__in { padding: 32px 36px; }
+  .gband__t { font-size: 26px; }
+  .gband picture { left: auto; width: 70%; -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 35%); mask-image: linear-gradient(90deg, transparent 0, #000 35%); }
+}
+@media (min-width: 1024px) {
+  .chero { min-height: 320px; }
+  .chero__in { padding: 26px 36px 30px; }
+  .chero__t { font-size: 38px; }
+  .chero__d { font-size: 14.5px; max-width: 34em; }
+  .carousel--genre .carousel__track { grid-auto-columns: calc((100% - 3 * 12px) / 4); }
+  .area--genre { height: 180px; }
+  .area--genre .area__jp { font-size: 20px; }
+}
+@media (min-width: 1440px) {
+  .chero { min-height: 340px; }
+  .chero__t { font-size: 40px; }
+}

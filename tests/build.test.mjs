@@ -124,3 +124,23 @@ test("一覧ページの見出しの形", () => { for (const { f, $ } of pages) 
 test('画像・映像の上に「イメージ映像（AI生成）」などの表記がない', () => {
   for (const { f, $ } of pages) assert.equal($('.art-note').length, 0, f);
 });
+
+// 4.4：ジャンル・テーマごとのヒーロー、ジャンルカード、はじめての方への帯
+test('ジャンルのページはそのジャンルの背景を使い、映像はページに 1 本まで', async () => {
+  const media = await exists(join(DIST, 'assets/media')) ? await readdir(join(DIST, 'assets/media/heroes')).catch(() => []) : [];
+  const has = (k) => media.some((n) => n.startsWith(`${k}-poster-640`));
+  const want = { 'ソープランド': 'genre-soap', '高級デリヘル': 'genre-luxury', 'キャバクラ': 'genre-lounge', '激安デリヘル': 'genre-casual' };
+  for (const { f, $ } of pages) {
+    if ($('[data-listing]').length) assert.ok($('[data-cv]').length <= 1, `${f}: 映像が ${$('[data-cv]').length} 本`);
+    const h1 = $('.chero h1').first().text().replace(/（.*$/, '');
+    const k = want[h1];
+    if (k && has(k) && $('[data-listing]').length) assert.ok($(`.chero .cv--${k}`).length, `${f}: ${k} の背景がない`);
+  }
+});
+test('国内ジャンルとテーマの一覧・特集ページに、ジャンルのカードとはじめての方への帯がある', () => {
+  const feat = pages.find((p) => p.f === join(DIST, 'features/index.html'));
+  if (!feat) return;
+  if (!feat.$('.area--genre').length) return; // 素材が無いビルドでは出さない
+  assert.ok(feat.$('.gband').length, '特集ページに帯がない');
+  for (const { f, $ } of pages) if ($('.area--genre[aria-current="page"]').length) assert.ok($('.carousel--genre .carousel__item').first().find('[aria-current="page"]').length, `${f}: いまのジャンルが先頭にない`);
+});

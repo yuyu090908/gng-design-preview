@@ -107,7 +107,7 @@ test('サイドバー：今いるカテゴリのまとまりが開き、現在�
   assert.equal(await page.$$eval('.gh .pill', (els) => els.length), 0, 'ヘッダーにカテゴリのピルを重複させない');
   assert.ok(await page.isVisible('.chero h1'));
   const h = await page.$eval('.chero', (e) => e.getBoundingClientRect().height);
-  assert.ok(h >= 140 && h <= 220, `category hero ${h}px`);
+  assert.ok(h >= 260 && h <= 380, `category hero ${h}px`); // 4.4：写真の主題が見える高さに広げた
   await ctx.close();
 });
 

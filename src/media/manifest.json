@@ -1,6 +1,6 @@
 {
- "version": "4.2",
- "generated": "2026-11-26",
+ "version": "4.4",
+ "generated": "2026-11-27",
  "note": "映像・写真素材の台帳。素材は src/media/<種類>/ に置き、ビルド時に各ファイルの SHA-256 を照合してから dist/assets/media/ に書き出す。",
  "encoding": {
   "video": "H.264 High / yuv420p / 24fps / 2-pass / +faststart / 音声なし",
@@ -1736,6 +1736,444 @@
      "path": "heroes/mypage-gold-poster-960.webp",
      "bytes": 8788,
      "sha256": "1d9957afc997733c4dd818cb41ab4fd14f46b9b1d0d46ad0b2c9144148315924"
+    }
+   ]
+  },
+  {
+   "id": "GNG-VIDEO-007",
+   "key": "heroes/genre-soap",
+   "type": "video",
+   "page": "ソープランドのヒーロー、ジャンルカード（カテゴリ・特集・新着）",
+   "component": "CinematicVideoBackground（ヒーロー）／GenreCard",
+   "playbackPriority": 1,
+   "model": {
+    "still": "gpt_image_2_6 (Higgsfield)",
+    "video": "minimax_h3_max 768p (Higgsfield)"
+   },
+   "source": {
+    "stillJob": "e6ced06a-7edd-43bc-b738-78010f7ef4a7",
+    "videoJob": "ddb1ae33-3004-40b7-87c9-8f50368039c7",
+    "loop": "start_image = end_image（同じ静止画）"
+   },
+   "prompt": {
+    "still": "Ultra-photorealistic premium editorial interior photograph of an elegant modern Japanese private bath room at night: hinoki wooden bathtub, dark stone, rising steam, paper andon lantern, bamboo garden window. Deep midnight navy and black palette with elegant warm champagne-gold light, controlled highlights, soft atmospheric depth, high-end cinematic color grading consistent with a luxury travel magazine. Main subject placed on the right third; the left 45% kept as dark, quiet negative space for website typography. Wide 16:9 composition. Empty scene with no people. No text, no letters, no signage text, no logos, no watermark, no UI, no nudity, no suggestive content, no oversaturation.",
+    "video": "Animate the reference image into a calm premium cinematic background loop. Locked-off, stabilized camera with an extremely slow, subtle drift that returns exactly to the original framing at the end. Only gentle natural motion: soft white steam slowly rising and curling above the wooden bath, a gentle trickle of water from the spout, faint ripples, the lantern glow flickering very slightly. Preserve the composition, the lighting and the color grading exactly. Keep the left side dark and still. No cuts, no zoom jumps, no camera shake, no flashing lights, no new objects, no people, no morphing, no text, no audio."
+   },
+   "size": {
+    "desktop": "1280x720",
+    "mobile": "768x432",
+    "poster": "1280x716 / 960x537 / 640x358"
+   },
+   "durationSec": 6.584,
+   "fps": 24,
+   "audio": false,
+   "poster": "heroes/genre-soap-poster-1280.webp",
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真ではない。人物・露出なし。フッターに「背景の映像・画像は AI で生成したイメージです」と記載",
+   "status": "implemented",
+   "files": [
+    {
+     "path": "heroes/genre-soap-desktop.mp4",
+     "bytes": 1457581,
+     "sha256": "7a674d560114f1725e3b213ba3e517e7c63bbd78f36dacb73c1a77eceb50f5ee"
+    },
+    {
+     "path": "heroes/genre-soap-mobile.mp4",
+     "bytes": 670401,
+     "sha256": "686ff08d82fbe49ac79be53deaf25305bed9a1e7079f6f140a145db52763d0fc"
+    },
+    {
+     "path": "heroes/genre-soap-poster-1280.avif",
+     "bytes": 35601,
+     "sha256": "c52cda5380acb6b853616cd569db49ecc5a8da7512e7a7e98d9812e7d627ec98"
+    },
+    {
+     "path": "heroes/genre-soap-poster-1280.webp",
+     "bytes": 45162,
+     "sha256": "14504c7faed1844a484819007f7590eb13885dfff5af7ff36806228442ed8ac1"
+    },
+    {
+     "path": "heroes/genre-soap-poster-640.avif",
+     "bytes": 10232,
+     "sha256": "441012ab0439ef76c949531be73649be3683aff87c66670437c6bfb87e8aef90"
+    },
+    {
+     "path": "heroes/genre-soap-poster-640.webp",
+     "bytes": 12608,
+     "sha256": "a3e44f3da07f93bbc2a4157d706260e4138a652c3233206d6936239c125112fd"
+    },
+    {
+     "path": "heroes/genre-soap-poster-960.avif",
+     "bytes": 22427,
+     "sha256": "89907bd992e4b8800ac23b4a66714cf9788232218e56b06491755381e6fdc15c"
+    },
+    {
+     "path": "heroes/genre-soap-poster-960.webp",
+     "bytes": 27196,
+     "sha256": "bc9586b3c3fdc89226b994a837c3699c1bdacd0eb483feb512f3aedf03176058"
+    }
+   ]
+  },
+  {
+   "id": "GNG-VIDEO-008",
+   "key": "heroes/genre-luxury",
+   "type": "video",
+   "page": "高級デリヘル（国内風俗/高級デリヘル）のヒーロー、ジャンルカード（カテゴリ・特集・新着）",
+   "component": "CinematicVideoBackground（ヒーロー）／GenreCard",
+   "playbackPriority": 1,
+   "model": {
+    "still": "gpt_image_2_6 (Higgsfield)",
+    "video": "minimax_h3_max 768p (Higgsfield)"
+   },
+   "source": {
+    "stillJob": "1b22787f-85ba-4985-9ccc-adf8da076aa3",
+    "videoJob": "2dbb4407-f2e6-4591-9265-2f05ae26f098",
+    "loop": "start_image = end_image（同じ静止画）"
+   },
+   "prompt": {
+    "still": "Ultra-photorealistic premium editorial interior photograph of a luxury high-floor Tokyo hotel suite at night overlooking the skyline and Tokyo Tower, champagne in a silver ice bucket with two flutes, lounge chair, brass floor lamp, no bed in view. Deep midnight navy and black palette with elegant warm champagne-gold light, controlled highlights, soft atmospheric depth, high-end cinematic color grading consistent with a luxury travel magazine. Main subject placed on the right third; the left 45% kept as dark, quiet negative space for website typography. Wide 16:9 composition. Empty scene with no people. No text, no letters, no signage text, no logos, no watermark, no UI, no nudity, no suggestive content, no oversaturation.",
+    "video": "Animate the reference image into a calm premium cinematic background loop. Locked-off, stabilized camera with an extremely slow, subtle drift that returns exactly to the original framing at the end. Only gentle natural motion: distant city lights twinkling softly, tiny champagne bubbles rising, a faint shimmer on the ice bucket. Preserve the composition, the lighting and the color grading exactly. Keep the left side dark and still. No cuts, no zoom jumps, no camera shake, no flashing lights, no new objects, no people, no morphing, no text, no audio."
+   },
+   "size": {
+    "desktop": "1280x720",
+    "mobile": "768x432",
+    "poster": "1280x716 / 960x537 / 640x358"
+   },
+   "durationSec": 6.584,
+   "fps": 24,
+   "audio": false,
+   "poster": "heroes/genre-luxury-poster-1280.webp",
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真ではない。人物・露出なし。フッターに「背景の映像・画像は AI で生成したイメージです」と記載",
+   "status": "implemented",
+   "files": [
+    {
+     "path": "heroes/genre-luxury-desktop.mp4",
+     "bytes": 1467315,
+     "sha256": "fc43df39d77ea68b9de305db5cf357b6530560e113fa5fd80de49f2a7435a988"
+    },
+    {
+     "path": "heroes/genre-luxury-mobile.mp4",
+     "bytes": 676628,
+     "sha256": "dc180f593b66d1e467957a41d584f7c447ace36c2f6d2676de879964efef9379"
+    },
+    {
+     "path": "heroes/genre-luxury-poster-1280.avif",
+     "bytes": 38169,
+     "sha256": "be532b40d72e98f89591898c226220fcaf337cffa7477e37ccb7530f642a53ec"
+    },
+    {
+     "path": "heroes/genre-luxury-poster-1280.webp",
+     "bytes": 45698,
+     "sha256": "e87e577ecd403098fb7ddd079c93d9f7a68e8c3f4a5c7e3982a7a8f93c5d5e29"
+    },
+    {
+     "path": "heroes/genre-luxury-poster-640.avif",
+     "bytes": 13426,
+     "sha256": "4dcf55ed1bcfbd099e6d96366938a577906f4e1fd4a1806d2c0766996bcead65"
+    },
+    {
+     "path": "heroes/genre-luxury-poster-640.webp",
+     "bytes": 15382,
+     "sha256": "57b1b7a5a9aefc800e909caf603d54cac83b02fa6d2fb7be5e7a95c2b50b3fe6"
+    },
+    {
+     "path": "heroes/genre-luxury-poster-960.avif",
+     "bytes": 25361,
+     "sha256": "1e1f010e025d315d738c3d16138ca8c19f4b79a1609aeeaabf4e923aeaf3cb4a"
+    },
+    {
+     "path": "heroes/genre-luxury-poster-960.webp",
+     "bytes": 29694,
+     "sha256": "e81bd0512cacdd10a1f2ae74528ad72ec7932b74f4d293b49390eccf6b29d9ec"
+    }
+   ]
+  },
+  {
+   "id": "GNG-VIDEO-009",
+   "key": "heroes/genre-lounge",
+   "type": "video",
+   "page": "キャバクラのヒーロー、ジャンルカード（カテゴリ・特集・新着）",
+   "component": "CinematicVideoBackground（ヒーロー）／GenreCard",
+   "playbackPriority": 1,
+   "model": {
+    "still": "gpt_image_2_6 (Higgsfield)",
+    "video": "minimax_h3_max 768p (Higgsfield)"
+   },
+   "source": {
+    "stillJob": "247e9c0a-bdaa-40f8-ae44-fc6a3fe581d9",
+    "videoJob": "3e699ff5-526a-41c0-bc8d-068b35a577ab",
+    "loop": "start_image = end_image（同じ静止画）"
+   },
+   "prompt": {
+    "still": "Ultra-photorealistic premium editorial interior photograph of an upscale Tokyo members lounge bar at night: crystal chandeliers, midnight-blue velvet sofas, champagne flutes, black marble floor. Deep midnight navy and black palette with elegant warm champagne-gold light, controlled highlights, soft atmospheric depth, high-end cinematic color grading consistent with a luxury travel magazine. Main subject placed on the right third; the left 45% kept as dark, quiet negative space for website typography. Wide 16:9 composition. Empty scene with no people. No text, no letters, no signage text, no logos, no watermark, no UI, no nudity, no suggestive content, no oversaturation.",
+    "video": "Animate the reference image into a calm premium cinematic background loop. Locked-off, stabilized camera with an extremely slow, subtle drift that returns exactly to the original framing at the end. Only gentle natural motion: chandeliers sparkling softly, candle flames flickering gently, subtle shifting reflections on marble and glass, distant city lights twinkling. Preserve the composition, the lighting and the color grading exactly. Keep the left side dark and still. No cuts, no zoom jumps, no camera shake, no flashing lights, no new objects, no people, no morphing, no text, no audio."
+   },
+   "size": {
+    "desktop": "1280x720",
+    "mobile": "768x432",
+    "poster": "1280x716 / 960x537 / 640x358"
+   },
+   "durationSec": 6.584,
+   "fps": 24,
+   "audio": false,
+   "poster": "heroes/genre-lounge-poster-1280.webp",
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真ではない。人物・露出なし。フッターに「背景の映像・画像は AI で生成したイメージです」と記載",
+   "status": "implemented",
+   "files": [
+    {
+     "path": "heroes/genre-lounge-desktop.mp4",
+     "bytes": 1469704,
+     "sha256": "51f3f30ae47176e9634ed558020175d5edfc4323d8672649a8f7a18829a158df"
+    },
+    {
+     "path": "heroes/genre-lounge-mobile.mp4",
+     "bytes": 679327,
+     "sha256": "8588dbe1195a240eb1e9748edbc8d91b8a2035b6b5488c1272c93cc6f69160fb"
+    },
+    {
+     "path": "heroes/genre-lounge-poster-1280.avif",
+     "bytes": 62633,
+     "sha256": "6f5a4fc3498ecaf42134eb0fda9f15253927ab4f1cb7bddd63133f567c200544"
+    },
+    {
+     "path": "heroes/genre-lounge-poster-1280.webp",
+     "bytes": 71568,
+     "sha256": "f14929af625ae1eb9046af22ae336508628a17b847d025af2392ad2da4c8df43"
+    },
+    {
+     "path": "heroes/genre-lounge-poster-640.avif",
+     "bytes": 23871,
+     "sha256": "d932a6502f7cc72460f565fc881a85b03a6d46fc61b938d8f47c368a1cba3df5"
+    },
+    {
+     "path": "heroes/genre-lounge-poster-640.webp",
+     "bytes": 24386,
+     "sha256": "a76d3e673a6bc584123c7904f7b0c7fe05da0d01c7efc1a97de0903871472690"
+    },
+    {
+     "path": "heroes/genre-lounge-poster-960.avif",
+     "bytes": 43673,
+     "sha256": "57fbeb1e923cc5d47db52ca4c8b5feff9ae3d91840d294d92b3559e74bee92d9"
+    },
+    {
+     "path": "heroes/genre-lounge-poster-960.webp",
+     "bytes": 47336,
+     "sha256": "e6f5e9290f07d7a3c310692f09eca8ab691267936ccceb54d45c5d1589905bbb"
+    }
+   ]
+  },
+  {
+   "id": "GNG-IMAGE-004",
+   "key": "heroes/genre-casual",
+   "type": "image",
+   "page": "激安デリヘルのヒーロー、ジャンルカード（カテゴリ・特集・新着）",
+   "component": "CinematicVideoBackground（ヒーロー）／GenreCard",
+   "model": {
+    "still": "gpt_image_2_6 (Higgsfield)"
+   },
+   "source": {
+    "stillJob": "93fb4208-3e3b-4e8c-91ec-e136aefeddb2"
+   },
+   "prompt": {
+    "still": "Ultra-photorealistic premium editorial night photograph of a narrow Tokyo back alley just after rain with glowing paper lanterns, wooden storefronts with blank signboards, wet stone pavement. Deep midnight navy and black palette with elegant warm champagne-gold light, controlled highlights, soft atmospheric depth, high-end cinematic color grading consistent with a luxury travel magazine. Main subject placed on the right third; the left 45% kept as dark, quiet negative space for website typography. Wide 16:9 composition. Empty scene with no people. No text, no letters, no signage text, no logos, no watermark, no UI, no nudity, no suggestive content, no oversaturation."
+   },
+   "size": {
+    "poster": "1280x716 / 960x537 / 640x358"
+   },
+   "poster": "heroes/genre-casual-poster-1280.webp",
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真ではない。人物・露出なし。フッターに「背景の映像・画像は AI で生成したイメージです」と記載",
+   "status": "implemented",
+   "files": [
+    {
+     "path": "heroes/genre-casual-poster-1280.avif",
+     "bytes": 61687,
+     "sha256": "183ba37dca6be45da2557f78fc8a10a0deacac8f647844c9c8c20ddf06d65ebc"
+    },
+    {
+     "path": "heroes/genre-casual-poster-1280.webp",
+     "bytes": 68906,
+     "sha256": "6ceb82b54e3bc21567f8965d2f17eb6645632eeb6867fc848b15e23e0235e0f4"
+    },
+    {
+     "path": "heroes/genre-casual-poster-640.avif",
+     "bytes": 21034,
+     "sha256": "9d99129040aba1e4196f749139e698c57e0901e0e987ae390ecf88bc5120fd0b"
+    },
+    {
+     "path": "heroes/genre-casual-poster-640.webp",
+     "bytes": 21888,
+     "sha256": "c0d9091b88653e49af4abf9a4f0b9585098821dc27ecaec5b2c6bae9389bfa4d"
+    },
+    {
+     "path": "heroes/genre-casual-poster-960.avif",
+     "bytes": 41798,
+     "sha256": "64085edff002694f27e1a927da3dc50a08e19498b6fd2cc4a6fba0257b32aa4a"
+    },
+    {
+     "path": "heroes/genre-casual-poster-960.webp",
+     "bytes": 44276,
+     "sha256": "55a206d07f8e093b52df5d67119203e4d3ebd6dd411419474c9268ce79712599"
+    }
+   ]
+  },
+  {
+   "id": "GNG-IMAGE-005",
+   "key": "heroes/theme-encounter",
+   "type": "image",
+   "page": "テーマ：セフレのヒーロー、ジャンルカード（カテゴリ・特集・新着）",
+   "component": "CinematicVideoBackground（ヒーロー）／GenreCard",
+   "model": {
+    "still": "gpt_image_2_6 (Higgsfield)"
+   },
+   "source": {
+    "stillJob": "687fd278-2b4a-4b5b-8212-891ca3c9e182"
+   },
+   "prompt": {
+    "still": "Ultra-photorealistic premium editorial interior photograph of a quiet hotel bar counter at night with two cocktail glasses, city bokeh window, brass details. Deep midnight navy and black palette with elegant warm champagne-gold light, controlled highlights, soft atmospheric depth, high-end cinematic color grading consistent with a luxury travel magazine. Main subject placed on the right third; the left 45% kept as dark, quiet negative space for website typography. Wide 16:9 composition. Empty scene with no people. No text, no letters, no signage text, no logos, no watermark, no UI, no nudity, no suggestive content, no oversaturation."
+   },
+   "size": {
+    "poster": "1280x716 / 960x537 / 640x358"
+   },
+   "poster": "heroes/theme-encounter-poster-1280.webp",
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真ではない。人物・露出なし。フッターに「背景の映像・画像は AI で生成したイメージです」と記載",
+   "status": "implemented",
+   "files": [
+    {
+     "path": "heroes/theme-encounter-poster-1280.avif",
+     "bytes": 25405,
+     "sha256": "971c8c9584525d47d1294b99882859d206e5432d5e017ef0787e6db74849646c"
+    },
+    {
+     "path": "heroes/theme-encounter-poster-1280.webp",
+     "bytes": 34748,
+     "sha256": "42541187bc9d5669583f75820f65b23ada2f4bc4bb2972c95d93dc198c74441b"
+    },
+    {
+     "path": "heroes/theme-encounter-poster-640.avif",
+     "bytes": 11661,
+     "sha256": "8bbb2930bf68ac1d42f6df05e09087e54ff0d4ebcee07f62c4d3f43b782add2a"
+    },
+    {
+     "path": "heroes/theme-encounter-poster-640.webp",
+     "bytes": 13726,
+     "sha256": "38edf908e20161f7e29fc7b8175366633704252f5203522fca5182a1d1ce04a4"
+    },
+    {
+     "path": "heroes/theme-encounter-poster-960.avif",
+     "bytes": 18715,
+     "sha256": "9b62b6ffff4d633d45c8a320b77ae5ce7de386a5e60f17b2dce866f91d66e4a5"
+    },
+    {
+     "path": "heroes/theme-encounter-poster-960.webp",
+     "bytes": 23916,
+     "sha256": "e51942dd4b4a3690e1b399e21f426f68808694e0f46213200d6520c92a2b7671"
+    }
+   ]
+  },
+  {
+   "id": "GNG-IMAGE-006",
+   "key": "heroes/theme-wellness",
+   "type": "image",
+   "page": "テーマ：精力剤のヒーロー、ジャンルカード（カテゴリ・特集・新着）",
+   "component": "CinematicVideoBackground（ヒーロー）／GenreCard",
+   "model": {
+    "still": "gpt_image_2_6 (Higgsfield)"
+   },
+   "source": {
+    "stillJob": "25b69dd8-9e77-455a-bd7c-f7efc6bfa889"
+   },
+   "prompt": {
+    "still": "Ultra-photorealistic premium editorial still life of amber glass apothecary bottles with brass caps, ginseng, maca, cinnamon and herbs on dark black marble. Deep midnight navy and black palette with elegant warm champagne-gold light, controlled highlights, soft atmospheric depth, high-end cinematic color grading consistent with a luxury travel magazine. Main subject placed on the right third; the left 45% kept as dark, quiet negative space for website typography. Wide 16:9 composition. Empty scene with no people. No text, no letters, no signage text, no logos, no watermark, no UI, no nudity, no suggestive content, no oversaturation."
+   },
+   "size": {
+    "poster": "1280x716 / 960x537 / 640x358"
+   },
+   "poster": "heroes/theme-wellness-poster-1280.webp",
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真ではない。人物・露出なし。フッターに「背景の映像・画像は AI で生成したイメージです」と記載",
+   "status": "implemented",
+   "files": [
+    {
+     "path": "heroes/theme-wellness-poster-1280.avif",
+     "bytes": 40238,
+     "sha256": "fe0f915a5fad62816fe73b7a671cd516faf4c3143982658284baaddd40b74c1f"
+    },
+    {
+     "path": "heroes/theme-wellness-poster-1280.webp",
+     "bytes": 49538,
+     "sha256": "03d53a359a5f93f7d235359f96cd7bff224ea63692e5158e6f3b452e5ed18f4e"
+    },
+    {
+     "path": "heroes/theme-wellness-poster-640.avif",
+     "bytes": 16211,
+     "sha256": "99193943249a434b1deeb418bfcf92da713b97f17d3a0bb6785fa8d31f3385be"
+    },
+    {
+     "path": "heroes/theme-wellness-poster-640.webp",
+     "bytes": 18158,
+     "sha256": "912cf11912469090896a50cdf21cc671bf58f56092f6bb87b4a63025c3349b94"
+    },
+    {
+     "path": "heroes/theme-wellness-poster-960.avif",
+     "bytes": 28429,
+     "sha256": "b679948ecc12f8a459bd3bd1ad38d663c159a489d86b6c320e89daf6acdcfb35"
+    },
+    {
+     "path": "heroes/theme-wellness-poster-960.webp",
+     "bytes": 33514,
+     "sha256": "f21fa8646ba964a6862128a75734385c060b9bb780ff2cc198d3ae455f0be4f3"
+    }
+   ]
+  },
+  {
+   "id": "GNG-IMAGE-007",
+   "key": "heroes/theme-guide",
+   "type": "image",
+   "page": "テーマ：HOWTO／はじめての方への帯（カテゴリ・特集・新着）のヒーロー、ジャンルカード（カテゴリ・特集・新着）",
+   "component": "CinematicVideoBackground（ヒーロー）／GenreCard／GuideBand",
+   "model": {
+    "still": "gpt_image_2_6 (Higgsfield)"
+   },
+   "source": {
+    "stillJob": "e27b6575-e586-4941-82c8-a5e45d44c180"
+   },
+   "prompt": {
+    "still": "Ultra-photorealistic premium editorial still life of a travel writer's desk at night: leather notebook, folded map, fountain pen, brass lamp, compass. Deep midnight navy and black palette with elegant warm champagne-gold light, controlled highlights, soft atmospheric depth, high-end cinematic color grading consistent with a luxury travel magazine. Main subject placed on the right third; the left 45% kept as dark, quiet negative space for website typography. Wide 16:9 composition. Empty scene with no people. No text, no letters, no signage text, no logos, no watermark, no UI, no nudity, no suggestive content, no oversaturation."
+   },
+   "size": {
+    "poster": "1280x716 / 960x537 / 640x358"
+   },
+   "poster": "heroes/theme-guide-poster-1280.webp",
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真ではない。人物・露出なし。フッターに「背景の映像・画像は AI で生成したイメージです」と記載",
+   "status": "implemented",
+   "files": [
+    {
+     "path": "heroes/theme-guide-poster-1280.avif",
+     "bytes": 38929,
+     "sha256": "dccb6f3a630c82df3bd1fb202c26b512c14e3c6796f784ecc960f78f190288aa"
+    },
+    {
+     "path": "heroes/theme-guide-poster-1280.webp",
+     "bytes": 49456,
+     "sha256": "c573e125da339d298211d79443de18bca983a447454f725761a56cdc7d233c0a"
+    },
+    {
+     "path": "heroes/theme-guide-poster-640.avif",
+     "bytes": 13669,
+     "sha256": "e3edfa4fcd2e930067ba5c520dd6925e699703a30dcf99b6893cb447e39f5dc4"
+    },
+    {
+     "path": "heroes/theme-guide-poster-640.webp",
+     "bytes": 15748,
+     "sha256": "894d2dc4cb283053a1361130ca86fabdf34da62f37dc8332c18502a5027d75be"
+    },
+    {
+     "path": "heroes/theme-guide-poster-960.avif",
+     "bytes": 26286,
+     "sha256": "6fb2d1cbe61fd0a72ca83b4eae81adcae4d40d84a81bf1eb321898dadbe5fb40"
+    },
+    {
+     "path": "heroes/theme-guide-poster-960.webp",
+     "bytes": 31926,
+     "sha256": "22c008cb54e98f5853e69151b93c6278285e8021a1b2710733f01e33c6db0f77"
     }
    ]
   }

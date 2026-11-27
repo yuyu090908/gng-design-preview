@@ -431,3 +431,4 @@
   .mfig--wide { flex: 1 1 auto; aspect-ratio: auto; min-height: 180px; }
   .mfig--wide .mfig__img { object-position: 70% 40%; }
 }
+@media (max-width: 767px) { .mfig--portrait { aspect-ratio: 1 / 1; } .mfig--portrait .mfig__img { object-position: 50% 18%; } }

@@ -39,6 +39,7 @@ const ERR = {
   offline: 'インターネットに接続されていません。接続を確認してからお試しください。',
   note_required: '理由（メモ）と数値を入力してください。', cannot_follow_self: '自分はフォローできません。', user_not_found: 'ユーザーが見つかりません。',
   not_question: '質問の投稿だけで選べます。', already_chosen: 'ベストアンサーはすでに選ばれています。', comment_not_found: 'コメントが見つかりません。',
+  ai_disabled: 'NIGHT AI は現在停止しています。', ai_quota: '今日の NIGHT AI の利用回数の上限に達しました。', invalid_location: '緯度・経度が正しくありません。',
   live_needs_place: '都市か店舗を選んでください。', use_post_live: 'NIGHT LIVE の投稿は NIGHT LIVE の画面から共有してください。',
 };
 const errText = (e) => ERR[e?.code] || e?.message || '処理できませんでした。時間をおいてお試しください。';
@@ -189,7 +190,7 @@ async function articleTitle(path) { const a = (await articles()).find((x) => x.u
 // 地域（国・都市・エリア）
 let regionsP = null;
 const regions = () => (regionsP ||= Promise.all([
-  select('countries', { select: 'code,name_ja', order: 'sort' }), select('cities', { select: 'id,country_code,name_ja', order: 'name_ja' }), select('areas', { select: 'id,city_id,name_ja', order: 'name_ja' }),
+  select('countries', { select: 'code,name_ja', order: 'sort' }), select('cities', { select: 'id,slug,country_code,name_ja,name_en', order: 'name_ja' }), select('areas', { select: 'id,city_id,name_ja', order: 'name_ja' }),
 ]).then(([countries, cities, areas]) => ({ countries, cities, areas })).catch(() => ({ countries: [], cities: [], areas: [] })));
 async function initRegion(box, value = {}, onChange = () => {}) {
   if (!box) return { get: () => ({}) };

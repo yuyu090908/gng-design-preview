@@ -429,8 +429,164 @@ test('管理画面：Phase 2 の数値、XP の調整には理由が必要', asy
   assert.deepEqual(errors, []);
 });
 
+// ---------------- Phase 3：NIGHT RADAR / NIGHT AI / 翻訳 / 管理 ----------------
+let radarVenue;
+test('管理画面：店舗の位置を登録すると監査ログに残り、範囲外の値は保存できない', async () => {
+  const [{ id: city }] = (await api.sql("select id from cities where slug = 'bangkok'")).rows;
+  radarVenue = (await api.sql("insert into venues (name, category, country_code, city_id, status) values ('RADAR テストバー', 'bar', 'TH', $1, 'published') returning id", [city])).rows[0].id;
+  const { page, errors } = users.alice;
+  await page.goto(`${base}/admin/community/`);
+  await page.click('[data-adm-tab="venues"]');
+  await page.selectOption('[data-adm-filter="venues"]', 'published');
+  const row = page.locator(`[data-adm-list="venues"] .arow[data-id="${radarVenue}"]`);
+  await row.waitFor();
+  await row.locator('[data-lat]').fill('123');
+  await row.locator('[data-lng]').fill('100.5');
+  await row.locator('[data-a="v-loc"]').click();
+  await page.waitForFunction(() => /緯度・経度/.test(document.querySelector('.toast')?.textContent || ''));
+  await row.locator('[data-lat]').fill('13.7375612');
+  await row.locator('[data-lng]').fill('100.5603');
+  await row.locator('[data-a="v-loc"]').click();
+  await page.waitForFunction(() => document.querySelector('.toast')?.textContent.includes('更新しました'));
+  const { rows } = await api.sql("select lat::text, lng::text, (select count(*)::int from admin_audit_logs where action = 'venue.location') n from venues where id = $1", [radarVenue]);
+  assert.deepEqual(rows[0], { lat: '13.73756', lng: '100.56030', n: 1 });
+  assert.deepEqual(errors, []);
+});
+
+test('NIGHT RADAR：投稿が少ない都市はグレー、増えると色が付き、店舗のプレビューに ACTIVITY INDEX', async () => {
+  const [{ id: city }] = (await api.sql("select id from cities where slug = 'bangkok'")).rows;
+  const sent = [];
+  const { ctx, page, errors } = await open('/night-radar/');
+  page.on('request', (r) => { if (/lat|lng|geolocation/i.test(r.postData() || '') || /geolocation/.test(r.url())) sent.push(r.url()); });
+  await page.waitForSelector('[data-radar-list][aria-busy="false"]');
+  // 地図の背景（外部）は読み込めない環境 → 背景だけの地図に切り替えて、印は表示する
+  const bkk = page.locator('[data-rcity]', { hasText: 'バンコク' });
+  const before = await page.locator('[data-radar-list] .lvl').first().getAttribute('class');
+  assert.match(before, /lvl--insufficient/);
+  assert.match(await page.textContent('[data-radar-list]'), /色を付けられるほどの投稿がまだありません/);
+  // 2人が店舗で NIGHT LIVE を共有（合計3件）→ 「通常」
+  for (const [who, crowd] of [['alice', 4], ['bob', 4], ['bob', 5]]) {
+    await asUser(users[who].id, 'post_live($2::jsonb)', [JSON.stringify({ country_code: 'TH', city_id: city, venue_id: radarVenue, body: '店内はかなり混んでいます。入口に列があります。', crowd, vibe: 'lively', open_status: 'open', event_now: true })]);
+  }
+  await page.reload();
+  await page.waitForSelector('[data-radar-list][aria-busy="false"]');
+  assert.match(await bkk.locator('.lvl').getAttribute('class'), /lvl--normal/);
+  assert.match(await bkk.textContent(), /通常・\d+件/);
+  // 都市のプレビュー
+  await bkk.click();
+  await page.waitForSelector('[data-radar-panel]:not([hidden]) .aix');
+  assert.match(await page.textContent('[data-radar-panel]'), /投稿者 2人/);
+  const feed = JSON.parse(await page.getAttribute('[data-radar-panel] [data-rfeed]', 'data-rfeed'));
+  assert.deepEqual(feed, { country: 'TH', city: Number(city), area: null });
+  // 店舗のプレビュー：ACTIVITY INDEX（実際の報告から）・保存（端末のみ）
+  await page.click(`[data-rvenue="${radarVenue}"]`);
+  await page.waitForSelector('[data-radar-panel] .aix:not(.aix--na)');
+  const txt = await page.textContent('[data-radar-panel]');
+  assert.match(txt, /RADAR テストバー/);
+  assert.match(txt, /報告 3件（2人）/);
+  assert.match(txt, /イベントの報告あり/);
+  assert.match(txt, /まだ口コミがありません/);
+  await page.click('[data-rsave]');
+  await page.waitForSelector('[data-rsave][aria-pressed="true"]');
+  assert.deepEqual(await page.evaluate(() => JSON.parse(localStorage.getItem('gnc:savedVenues') || '[]')), [radarVenue]);
+  await shot(page, 'radar-pc');
+  // 期間を切り替えると次回も使う
+  await page.click('[data-rperiod="30d"]');
+  await page.waitForSelector('[data-radar-list][aria-busy="false"]');
+  await page.reload();
+  await page.waitForSelector('[data-rperiod="30d"][aria-pressed="true"]');
+  assert.deepEqual(sent, []);
+  assert.deepEqual(errors, []);
+  await ctx.close();
+});
+
+test('NIGHT RADAR：地図が読み込めないときはリストだけで使える', async () => {
+  const ctx = await browser.newContext({ viewport: { width: 1440, height: 900 }, reducedMotion: 'reduce' });
+  await ctx.route(/maplibre/, (r) => r.abort());
+  const { page, errors } = await open('/night-radar/', { ctx });
+  await page.waitForSelector('[data-radar-fail]:not([hidden])');
+  await page.waitForSelector(`[data-rvenue="${radarVenue}"]`);
+  assert.ok(await page.locator('[data-radar].is-nomap').count());
+  assert.deepEqual(errors, []);
+  await ctx.close();
+});
+
+test('NIGHT AI（AI が OFF）：条件検索は実在の記事・店舗だけを出し、違法な内容には答えない', async () => {
+  const fnCalls = [];
+  const { ctx, page, errors } = await open('/night-ai/');
+  page.on('request', (r) => { if (r.url().includes('/functions/v1/')) fnCalls.push(r.url()); });
+  await page.waitForSelector('[data-ai-form]');
+  assert.match(await page.textContent('[data-ai-mode]'), /条件で検索/);
+  await page.fill('#ai-q', 'バンコクのバー');
+  await page.click('[data-ai-form] [type=submit]');
+  await page.waitForSelector('.ai__msg--bot:last-child .ai__chips');
+  const res = await page.locator('.ai__msg--bot').last();
+  const t = await res.textContent();
+  assert.match(t, /バンコク/); assert.match(t, /バー/);
+  assert.match(t, /RADAR テストバー/);
+  // 出てきた記事のリンクはすべてサイトに実在する
+  const hrefs = await res.locator('a[href]').evaluateAll((as) => as.map((a) => a.getAttribute('href')));
+  const known = new Set(index.map((a) => a.u));
+  for (const h of hrefs) assert.ok(known.has(h) || h.startsWith('/community/'), h);
+  // 口コミの無い店舗に評価を作らない
+  assert.equal(await res.locator('.aic', { hasText: 'RADAR テストバー' }).locator('.aic__r').count(), 0);
+  await shot(page, 'ai-pc');
+  await page.fill('#ai-q', '薬物が買える店');
+  await page.click('[data-ai-form] [type=submit]');
+  await page.waitForFunction(() => /お答えできません/.test(document.querySelector('.ai__msg--bot:last-child')?.textContent || ''));
+  assert.deepEqual(fnCalls, [], 'AI が OFF のときは Edge Function を呼ばない');
+  assert.deepEqual(errors, []);
+  await ctx.close();
+});
+
+test('翻訳：AI が OFF なら「準備中」、保存済みの翻訳は表示でき、原文に戻せる', async () => {
+  const { page, errors } = users.bob;
+  const { rows: [{ id: tp }] } = await asUser(users.alice.id, `save_post('{"type":"question","category":"question","body":"翻訳のテスト用の投稿です。バンコクのおすすめを教えてください。"}') as id`);
+  await page.goto(`${base}/community/post/?id=${tp}`);
+  await page.waitForSelector('[data-post-view] [data-tr]');
+  const orig = await page.textContent('[data-post-view] .pc__body');
+  await page.selectOption('[data-post-view] [data-tr]', 'th');
+  await page.waitForFunction(() => /準備中/.test(document.querySelector('[data-tr-state]')?.textContent || ''));
+  await api.sql("insert into post_translations (post_id, lang, title, body, source_hash, model) values ($1, 'en', '', 'Translated body for the test.', 'x', 'test')", [tp]);
+  await page.selectOption('[data-post-view] [data-tr]', 'en');
+  await page.waitForFunction(() => document.querySelector('[data-post-view] .pc__body')?.textContent === 'Translated body for the test.');
+  assert.match(await page.textContent('[data-tr-state]'), /AI による翻訳/);
+  await page.selectOption('[data-post-view] [data-tr]', '');
+  assert.equal(await page.textContent('[data-post-view] .pc__body'), orig);
+  assert.deepEqual(errors, []);
+});
+
+test('管理画面：NIGHT AI の設定は管理者だけが保存でき、AI 審査補助から確認して非表示にできる', async () => {
+  const { page, errors } = users.alice;
+  const { rows: [{ id: flagged }] } = await asUser(users.bob.id, `save_post('{"type":"question","category":"question","body":"AI 審査補助のテスト用の投稿です。内容に問題はありません。"}') as id`);
+  await api.sql("insert into moderation_flags (target_type, target_id, labels, score, reason, model) values ('post', $1, '{spam}', 0.82, 'テスト用の判定', 'test')", [flagged]);
+  await page.goto(`${base}/admin/community/`);
+  await page.waitForFunction(() => /NIGHT AI/.test(document.querySelector('[data-adm-kpis]')?.textContent || ''));
+  await page.click('[data-adm-panel="dash"] .vsug:has([data-adm-ai]) summary');
+  await page.waitForSelector('[data-adm-ai]:not([hidden])');
+  assert.equal(await page.isChecked('[data-adm-ai] [name=enabled]'), false);
+  await page.fill('[data-adm-ai] [name=user]', '5');
+  await page.click('[data-adm-ai] button');
+  await page.waitForFunction(() => document.querySelector('.toast')?.textContent.includes('保存しました'));
+  assert.deepEqual((await api.sql('select enabled, user_daily_limit from ai_config')).rows[0], { enabled: false, user_daily_limit: 5 });
+  await page.click('[data-adm-tab="flags"]');
+  const row = page.locator('[data-adm-list="flags"] .arow', { hasText: 'AI 審査補助のテスト用' });
+  await row.waitFor();
+  assert.match(await row.textContent(), /確からしさ 82%/);
+  assert.equal((await api.sql('select status from community_posts where id = $1', [flagged])).rows[0].status, 'published', 'AI の判定だけでは非表示にならない');
+  await shot(page, 'admin-flags-pc');
+  await row.locator('[data-a="f-hide-post"]').click();
+  const ok = page.locator('[role=alertdialog] [data-ok]');
+  if (await ok.isVisible().catch(() => false)) await ok.click();
+  await page.waitForFunction(() => document.querySelector('.toast')?.textContent.includes('更新しました'));
+  assert.deepEqual((await api.sql('select p.status, f.status fs from community_posts p join moderation_flags f on f.target_id = p.id where p.id = $1', [flagged])).rows[0], { status: 'hidden', fs: 'confirmed' });
+  // 一般ユーザーは AI の設定を変えられない（サーバー側で拒否）
+  await assert.rejects(asUser(users.bob.id, 'admin_ai_config(true, 100, 100)'));
+  assert.deepEqual(errors, []);
+});
+
 test('スマホ：横にはみ出さず、下部ナビにコミュニティがある', async () => {
-  for (const path of ['/community/', `/community/post/?id=${postId}`, '/community/new/', '/community/login/', '/community/rules/', '/community/live/', '/community/pulse/', '/community/passport/', '/community/notifications/', article.u]) {
+  for (const path of ['/community/', `/community/post/?id=${postId}`, '/community/new/', '/community/login/', '/community/rules/', '/community/live/', '/community/pulse/', '/community/passport/', '/community/notifications/', '/night-radar/', '/night-ai/', article.u]) {
     const { ctx, page, errors } = await open(path, { width: 390, height: 844 });
     await page.waitForTimeout(400);
     const sw = await page.evaluate(() => document.documentElement.scrollWidth);
@@ -440,6 +596,8 @@ test('スマホ：横にはみ出さず、下部ナビにコミュニティが�
     if (path === '/community/login/') await shot(page, 'login-mobile');
     if (path === '/community/live/') { await page.waitForSelector('[data-live-list] .pc:not(.pc--sk)'); await shot(page, 'live-mobile'); }
     if (path === '/community/pulse/') { await page.waitForSelector('[data-pulse][aria-busy="false"]'); await shot(page, 'pulse-mobile'); }
+    if (path === '/night-radar/') { await page.waitForSelector('[data-radar-list][aria-busy="false"]'); await shot(page, 'radar-mobile'); }
+    if (path === '/night-ai/') await shot(page, 'ai-mobile');
     assert.deepEqual(errors, [], path);
     await ctx.close();
   }

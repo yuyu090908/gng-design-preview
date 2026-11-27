@@ -1,4 +1,35 @@
 // ---------- /community/post/?id=：投稿の詳細とコメント ----------
+// 翻訳（キャッシュがあればそれを使う。無ければ AI が有効なときだけ翻訳する。原文にいつでも戻せる）
+const TR_LANGS = [['en', 'English'], ['th', 'ไทย'], ['ko', '한국어'], ['zh-Hans', '简体中文'], ['zh-Hant', '繁體中文'], ['ja', '日本語']];
+async function translateBar(view, post) {
+  const bodyEl = $('.pc__body', view), titleEl = $('.pc__title', view);
+  if (!bodyEl) return;
+  const orig = { body: bodyEl.textContent, title: titleEl?.textContent || '' };
+  const bar = document.createElement('p');
+  bar.className = 'trbar';
+  bar.innerHTML = `${icon('globe', 14)}<label><span class="sr">翻訳する言語</span><select class="input input--sm" data-tr><option value="">原文</option>${TR_LANGS.map(([v, l]) => `<option value="${v}">${l}</option>`).join('')}</select></label><span class="trbar__s" data-tr-state></span>`;
+  bodyEl.before(bar);
+  const st = $('[data-tr-state]', bar), sel = $('[data-tr]', bar);
+  sel.addEventListener('change', async () => {
+    const lang = sel.value;
+    if (!lang) { bodyEl.textContent = orig.body; if (titleEl) titleEl.textContent = orig.title; st.textContent = ''; return; }
+    st.textContent = '翻訳中…';
+    try {
+      let [t] = await select('post_translations', { select: 'title,body', post_id: `eq.${post.id}`, lang: `eq.${lang}` }).catch(() => []);
+      if (!t) {
+        const [cfg] = await select('ai_config', { select: 'enabled' }).catch(() => []);
+        if (!cfg?.enabled) { st.textContent = '翻訳は準備中です'; sel.value = ''; return; }
+        if (!uid()) { st.textContent = 'ログインすると翻訳できます'; sel.value = ''; return; }
+        const res = await fetch(`${CFG.url}/functions/v1/night-ai`, { method: 'POST', headers: { apikey: CFG.key, Authorization: `Bearer ${session.access_token}`, 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'translate', post_id: post.id, lang }) });
+        t = await res.json();
+        if (!res.ok) throw new ApiError(t.error, t.error);
+      }
+      bodyEl.textContent = t.body; if (titleEl && t.title) titleEl.textContent = t.title;
+      st.textContent = 'AI による翻訳です';
+    } catch (e) { st.textContent = e.code === 'ai_quota' ? '今日の利用回数の上限に達しました' : '翻訳できませんでした'; sel.value = ''; bodyEl.textContent = orig.body; }
+  });
+}
+
 (async function postPage() {
   const view = $('[data-post-view]');
   if (!view || !READY) return;
@@ -19,6 +50,7 @@
   $$('[data-w]', view).forEach((e) => { e.style.width = `${e.dataset.w}%`; });
   if (post.type === 'review') view.insertAdjacentHTML('beforeend', '<p class="adm__note">「訪問確認済み」は訪問の事実を運営が確認したことを示し、内容の正確さを保証するものではありません。</p>');
   if (post.status !== 'published') return;
+  if (has('ai')) translateBar(view, post);
 
   // コメント
   const box = $('[data-comments]'), list = $('[data-comment-list]'), form = $('[data-comment-form]');

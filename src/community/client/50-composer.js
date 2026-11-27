@@ -183,11 +183,13 @@
     if (p.article_path) { const t = await articleTitle(p.article_path); if (t) { target.label = t; showTarget(); } }
     $('[data-submit-l]').textContent = p.status === 'draft' ? '投稿する' : '更新する';
     document.querySelector('.ph__t').textContent = '投稿を編集';
-  } else if (qs.get('type') || qs.get('article')) {
+  } else if (qs.get('type') || qs.get('article') || qs.get('venue')) {
     const ty = form.querySelector(`[name=type][value="${qs.get('type')}"]`); if (ty) { ty.checked = true; form.category.value = DEFAULT_CAT[ty.value]; }
     syncType();
     const ap = safePath(qs.get('article'));
     if (ap) { const t = await articleTitle(ap); target = { kind: 'article', path: ap, label: t || ap }; showTarget(); }
+    const vq = qs.get('venue');
+    if (!ap && vq && UUID.test(vq)) { const [v] = await select('venues', { select: 'id,name,category', id: `eq.${vq}`, status: 'eq.published' }).catch(() => []); if (v) { target = { kind: 'venue', id: v.id, label: v.name }; vcat.value = v.category; syncAspects(); showTarget(); } }
   } else {
     const d = store.get(LOCAL);
     if (d && d.body && Date.now() - (d.at || 0) < 14 * 86400000) {

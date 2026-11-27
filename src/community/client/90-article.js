@@ -25,9 +25,40 @@
 ${asp.length ? `<ul class="rbars">${asp.map((a) => `<li><span>${esc(ASPECT_L[a.aspect] || a.aspect)}</span><span class="rbars__bar"><span data-w="${Number(a.score) * 20}"></span></span><b>${Number(a.score).toFixed(1)}</b></li>`).join('')}</ul>` : ''}`;
         $$('[data-w]', sum).forEach((e) => { e.style.width = `${e.dataset.w}%`; });
         trend(sum);
+        if (has('ai')) aiSummary(sum, s);
       }
     } catch (e) { sum.innerHTML = errorHTML(e); }
     show('latest');
+  }
+  // AI 口コミ要約（公開中の口コミが 3 件以上のときだけ。件数・分析日時・参照した口コミへのリンクを必ず表示する）
+  async function aiSummary(el, s) {
+    if (s.review_count < 3) return;
+    const box2 = document.createElement('div');
+    box2.className = 'aisum';
+    el.after(box2);
+    const draw = (x) => {
+      const S = x.summary || {};
+      const li = (a) => (a || []).filter(Boolean).map((t) => `<li>${esc(t)}</li>`).join('');
+      box2.innerHTML = `<p class="aisum__h">${icon('sparkles', 16)}AI 口コミ要約<small>口コミ ${Number(x.review_count)}件から・${esc(new Date(x.generated_at).toLocaleString('ja-JP', { dateStyle: 'medium', timeStyle: 'short' }))} に分析</small></p>
+${S.good?.length ? `<p class="aisum__l">高く評価されている点</p><ul>${li(S.good)}</ul>` : ''}${S.improve?.length ? `<p class="aisum__l">改善を求められている点</p><ul>${li(S.improve)}</ul>` : ''}
+${S.price ? `<p><b>料金：</b>${esc(S.price)}</p>` : ''}${S.trend ? `<p><b>最近の変化：</b>${esc(S.trend)}</p>` : ''}${S.beginner ? `<p><b>初めての方：</b>${esc(S.beginner)}</p>` : ''}
+<p class="aisum__src">参照した口コミ：${(S.cited_ids || []).slice(0, 12).map((id, i) => `<a href="/community/post/?id=${esc(id)}">${i + 1}</a>`).join(' ') || 'なし'}</p>
+<p class="adm__note">AI が口コミの内容だけをもとにまとめたものです。口コミに書かれていないことは補っていません。</p>`;
+    };
+    const [cached] = await select('ai_summaries', { select: '*', target: `eq.${path}`, lang: 'eq.ja' }).catch(() => []);
+    if (cached && cached.review_count === s.review_count) { draw(cached); return; }
+    const [cfg] = await select('ai_config', { select: 'enabled' }).catch(() => []);
+    if (!cfg?.enabled || !uid()) { if (cached) draw(cached); else box2.remove(); return; }
+    box2.innerHTML = `<button class="btn btn--ghost btn--sm" type="button" data-aisum>${icon('sparkles', 16)}AI で口コミを要約する</button>`;
+    $('[data-aisum]', box2).addEventListener('click', async (e) => {
+      try {
+        const x = await busy(e.currentTarget, async () => {
+          const res = await fetch(`${CFG.url}/functions/v1/night-ai`, { method: 'POST', headers: { apikey: CFG.key, Authorization: `Bearer ${session.access_token}`, 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'summary', target: path, lang: 'ja' }) });
+          const j = await res.json(); if (!res.ok) throw new ApiError(j.error, j.error); return j;
+        });
+        if (x.status === 'ok') draw(x); else box2.innerHTML = '<p class="adm__note">口コミが3件以上になると要約できます。</p>';
+      } catch (ex) { toast(ex.code === 'ai_quota' ? '今日の利用回数の上限に達しました' : '要約できませんでした'); }
+    });
   }
   // 評価の推移（月ごとの総合評価の平均。口コミが 5 件以上・2 か月以上あるときだけ）
   async function trend(el) {

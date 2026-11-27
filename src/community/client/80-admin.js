@@ -27,6 +27,13 @@
           $('[data-adm-kpis]').insertAdjacentHTML('beforeend', [['付与した XP（累計）', s2.xp_total], ['付与した XP（24時間）', s2.xp_24h], ['獲得されたバッジ', s2.badges], ['フォロー', s2.follows], ['NIGHT LIVE（24時間）', s2.live_24h], ['30日継続率', s2.retention_30d == null ? '—' : `${s2.retention_30d}%`]].map(([l, v]) => `<div><dt>${esc(l)}</dt><dd>${esc(v ?? 0)}</dd></div>`).join('') + `<div class="kpis__wide"><dt>ランクの分布</dt><dd>${esc(rk)}</dd></div>`);
         } catch {}
       }
+      if (has('ai') || has('radar')) {
+        try {
+          const s3 = await rpc('admin_stats_phase3');
+          const tk = s3.ai_tokens_30d || {};
+          $('[data-adm-kpis]').insertAdjacentHTML('beforeend', [['NIGHT AI', s3.ai_enabled ? 'ON' : 'OFF'], ['AI の利用（24時間）', s3.ai_24h], ['キャッシュで応答（24時間）', s3.ai_cached_24h], ['AI のトークン（30日・入力/出力）', `${tk.input ?? 0} / ${tk.output ?? 0}`], ['AI 審査補助（未対応）', s3.flags_open], ['位置を登録した店舗', s3.venues_located]].map(([l, v]) => `<div><dt>${esc(l)}</dt><dd>${esc(v ?? 0)}</dd></div>`).join(''));
+        } catch {}
+      }
       $('[data-adm-gen]').textContent = `集計：${new Date(s.generated_at).toLocaleString('ja-JP')}　国別の投稿：${bc || 'なし'}　※ DAU などは、ログイン中に操作した日を数えています（閲覧したページは記録していません）。AI の利用回数・費用は Phase 3 で追加します。`;
     },
     async reports() {
@@ -54,9 +61,14 @@ ${['open', 'reviewing'].includes(r.status) ? '<button class="btn btn--ghost btn-
       list('users').innerHTML = rows.length ? rows.map((u) => { const rs = roles.filter((r) => r.user_id === u.id).map((r) => r.role); return `<div class="arow" data-id="${esc(u.id)}"><p class="arow__hd"><b>${esc(u.display_name)}</b><span>@${esc(u.handle)}</span><span class="ptag${u.status === 'active' ? '' : ' ptag--warn'}">${esc({ active: '通常', limited: '投稿制限', banned: '利用停止' }[u.status])}</span>${rs.map((r) => `<span class="ptag ptag--type">${esc(r)}</span>`).join('')}<span>投稿 ${u.post_count}・参考 ${u.helpful_received}</span><span>${esc(ago(u.created_at))}に登録</span></p>
 <p class="arow__acts"><a class="btn btn--ghost btn--sm" href="/community/u/?h=${esc(u.handle)}" target="_blank" rel="noopener">プロフィール</a>${u.status !== 'active' ? '<button class="btn btn--ghost btn--sm" data-a="u-active">制限を解除</button>' : ''}${u.status !== 'limited' ? '<button class="btn btn--danger btn--sm" data-a="u-limited">投稿を制限</button>' : ''}${isAdmin && u.status !== 'banned' ? '<button class="btn btn--danger btn--sm" data-a="u-banned">利用停止</button>' : ''}${isAdmin && has('social') ? '<span class="adm__xp"><input class="input input--sm" type="number" step="1" min="-5000" max="5000" data-xp aria-label="調整する XP"><button class="btn btn--ghost btn--sm" data-a="u-xp">XP を調整</button></span>' : ''}${isAdmin ? (rs.includes('moderator') ? '<button class="btn btn--ghost btn--sm" data-a="r-mod-off">モデレーターを外す</button>' : '<button class="btn btn--ghost btn--sm" data-a="r-mod-on">モデレーターにする</button>') : ''}</p></div>`; }).join('') : empty('該当するユーザーはいません');
     },
+    async flags() {
+      const rows = await select('flag_queue', { select: '*', status: 'eq.open', order: 'score.desc,created_at.asc', limit: 100 });
+      list('flags').innerHTML = rows.length ? rows.map((f) => `<div class="arow" data-id="${esc(f.id)}" data-tt="${esc(f.target_type)}" data-tid="${esc(f.target_id)}"><p class="arow__hd">${(f.labels || []).map((l) => `<span class="ptag ptag--warn">${esc(l)}</span>`).join('')}<b>${esc({ post: '投稿', comment: 'コメント' }[f.target_type])}</b><span>確からしさ ${Math.round(Number(f.score) * 100)}%</span><span>${esc(ago(f.created_at))}</span></p><p class="arow__body">${esc(f.target_excerpt || '（対象は削除済み）')}</p>${f.reason ? `<p class="adm__note">AI の理由：${esc(f.reason)}</p>` : ''}
+<p class="arow__acts">${f.target_type === 'post' ? `<a class="btn btn--ghost btn--sm" href="/community/post/?id=${esc(f.target_id)}" target="_blank" rel="noopener">開く</a><button class="btn btn--danger btn--sm" data-a="f-hide-post">投稿を非表示</button>` : '<button class="btn btn--danger btn--sm" data-a="f-hide-comment">コメントを非表示</button>'}<button class="btn btn--ghost btn--sm" data-a="f-dismiss">問題なし</button></p></div>`).join('') : empty('確認待ちはありません');
+    },
     async venues() {
       const rows = await select('venues', { select: '*', status: `eq.${filt('venues')}`, order: 'created_at.desc', limit: 100 });
-      list('venues').innerHTML = rows.length ? rows.map((v) => `<div class="arow" data-id="${esc(v.id)}" data-v='${esc(JSON.stringify(v))}'><p class="arow__hd"><b>${esc(v.name)}</b><span>${esc(VENUE_L[v.category])}</span><span>${esc(v.country_code || '')}</span>${v.article_path ? `<a href="${esc(safePath(v.article_path) || '#')}" target="_blank" rel="noopener">記事</a>` : ''}<span>${esc(ago(v.created_at))}</span></p><p class="arow__acts">${v.status !== 'published' ? '<button class="btn btn--primary btn--sm" data-a="v-publish">公開する</button>' : ''}${v.status !== 'hidden' ? '<button class="btn btn--danger btn--sm" data-a="v-hide">非表示</button>' : ''}</p></div>`).join('') : empty('該当する店舗はありません');
+      list('venues').innerHTML = rows.length ? rows.map((v) => `<div class="arow" data-id="${esc(v.id)}" data-v='${esc(JSON.stringify(v))}'><p class="arow__hd"><b>${esc(v.name)}</b><span>${esc(VENUE_L[v.category])}</span><span>${esc(v.country_code || '')}</span>${v.article_path ? `<a href="${esc(safePath(v.article_path) || '#')}" target="_blank" rel="noopener">記事</a>` : ''}<span>${esc(ago(v.created_at))}</span></p><p class="arow__acts">${has('radar') ? `<span class="adm__xp"><input class="input input--sm" data-lat inputmode="decimal" aria-label="緯度" placeholder="緯度" value="${esc(v.lat ?? '')}"><input class="input input--sm" data-lng inputmode="decimal" aria-label="経度" placeholder="経度" value="${esc(v.lng ?? '')}"><button class="btn btn--ghost btn--sm" data-a="v-loc">位置を保存</button></span>` : ''}${v.status !== 'published' ? '<button class="btn btn--primary btn--sm" data-a="v-publish">公開する</button>' : ''}${v.status !== 'hidden' ? '<button class="btn btn--danger btn--sm" data-a="v-hide">非表示</button>' : ''}</p></div>`).join('') : empty('該当する店舗はありません');
     },
     async audit() {
       if (!isAdmin) { list('audit').innerHTML = stateHTML('lock', '監査ログは管理者だけが見られます'); return; }
@@ -103,11 +115,28 @@ ${['open', 'reviewing'].includes(r.status) ? '<button class="btn btn--ghost btn-
       'r-mod-on': () => rpc('admin_set_role', { p_user: id, p_role: 'moderator', p_grant: true }),
       'r-mod-off': () => rpc('admin_set_role', { p_user: id, p_role: 'moderator', p_grant: false }),
       'u-xp': () => { const v = Number($('[data-xp]', row)?.value || 0); if (!v || !n().trim()) { throw new ApiError('note_required'); } return rpc('admin_adjust_xp', { p_user: id, p_points: v, p_note: n() }); },
+      'f-hide-post': async () => { await rpc('mod_set_post_status', { p_id: row.dataset.tid, p_status: 'hidden', p_note: n() || 'AI 審査補助から確認' }); return rpc('mod_handle_flag', { p_id: id, p_status: 'confirmed' }); },
+      'f-hide-comment': async () => { await rpc('mod_set_comment_status', { p_id: row.dataset.tid, p_status: 'hidden', p_note: n() || 'AI 審査補助から確認' }); return rpc('mod_handle_flag', { p_id: id, p_status: 'confirmed' }); },
+      'f-dismiss': () => rpc('mod_handle_flag', { p_id: id, p_status: 'dismissed' }),
+      'v-loc': () => { const la = $('[data-lat]', row).value.trim(), lo = $('[data-lng]', row).value.trim(); return rpc('mod_set_venue_location', { p_id: id, p_lat: la === '' ? null : Number(la), p_lng: lo === '' ? null : Number(lo) }); },
       'v-publish': () => rpc('mod_upsert_venue', { p: { ...JSON.parse(row.dataset.v), status: 'published' } }),
       'v-hide': () => rpc('mod_upsert_venue', { p: { ...JSON.parse(row.dataset.v), status: 'hidden' } }),
     };
     if (M[a]) act(b, M[a], '更新しました');
   });
+
+  // NIGHT AI の設定（管理者のみ）
+  const aif = $('[data-adm-ai]');
+  if (aif) {
+    aif.hidden = !isAdmin;
+    const [c] = await select('ai_config', { select: '*' }).catch(() => []);
+    if (c) { aif.enabled.checked = c.enabled; aif.user.value = c.user_daily_limit; aif.global.value = c.global_daily_limit; }
+    aif.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      try { await busy($('button', aif), () => rpc('admin_ai_config', { p_enabled: aif.enabled.checked, p_user_limit: Number(aif.user.value), p_global_limit: Number(aif.global.value) })); toast('保存しました'); }
+      catch (ex) { toast(errText(ex)); }
+    });
+  }
 
   // 運営からのお知らせ（管理者のみ・通知センターの上部に表示）
   const af = $('[data-adm-announce]');

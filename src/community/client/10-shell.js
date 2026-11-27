@@ -1,7 +1,7 @@
 // ---------- ページ共通：接続の確認、ログイン状態による表示切り替え、通報・画像のダイアログ ----------
 if (!READY) {
   // 接続先が未設定：コミュニティの中身を隠し「準備中」を出す（ボタンだけ並んで動かない状態にしない）
-  $$('.clay, [data-composer], [data-auth], [data-me], [data-admin], [data-profile], .fab, .nhero__cta, [data-article-reviews], [data-home-community]').forEach((e) => { e.hidden = true; });
+  $$('.clay, [data-composer], [data-auth], [data-me], [data-admin], [data-profile], .fab, .nhero__cta, [data-article-reviews], [data-home-community], [data-radar], [data-ai]').forEach((e) => { e.hidden = true; });
   const off = $('[data-com-offline]');
   if (off && document.body.classList.contains('p-com')) off.hidden = false;
 }

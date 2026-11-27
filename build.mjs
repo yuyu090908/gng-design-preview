@@ -16,7 +16,7 @@ import { loadSite } from './lib/data.mjs';
 import { makeLinker, href } from './lib/content.mjs';
 import { PATHS, COM_PATHS } from './lib/icons.mjs';
 import { COMMUNITY, feature, FEATURES, BACKEND } from './lib/features.mjs';
-import { communityPage, postPage, composerPage, loginPage, mePage, profilePage, rulesPage, adminPage, livePage, passportPage, notificationsPage, pulsePage } from './lib/community.mjs';
+import { communityPage, postPage, composerPage, loginPage, mePage, profilePage, rulesPage, adminPage, livePage, passportPage, notificationsPage, pulsePage, radarPage, aiPage } from './lib/community.mjs';
 import { CANONICAL, INDEXABLE } from './lib/components.mjs';
 import { setArt, homePage, categoryPages, newPages, featuresPage, areaPage, rankingPage, guidePage, faqPage, articlePage, staticPage, searchPage, dashboardPage, notFoundPage } from './lib/pages.mjs';
 
@@ -129,6 +129,15 @@ async function buildAssets() {
     names.community = { css: `/assets/community.${hash(ccss)}.css`, js: `/assets/community.${hash(cjs)}.js` };
     await writeFile(join(OUT, names.community.css), ccss);
     await writeFile(join(OUT, names.community.js), cjs);
+    // NIGHT RADAR の地図ライブラリ（MapLibre GL JS・BSD-3-Clause）。CSP に合わせて、別ファイルの Worker を使う版を自前で配信する
+    if (feature('radar')) {
+      const ml = 'node_modules/maplibre-gl/dist/';
+      const [mjs, mcss, mw, lic] = await Promise.all(['maplibre-gl-csp.js', 'maplibre-gl.css', 'maplibre-gl-csp-worker.js', 'LICENSE.txt'].map((f) => readFile(ml + f, 'utf8')));
+      await mkdir(join(OUT, 'assets/vendor'), { recursive: true });
+      names.maplibre = { js: `/assets/vendor/maplibre-gl-csp.${hash(mjs)}.js`, css: `/assets/vendor/maplibre-gl.${hash(mcss)}.css`, worker: `/assets/vendor/maplibre-gl-csp-worker.${hash(mw)}.js` };
+      for (const [k, c] of [['js', mjs], ['css', mcss], ['worker', mw]]) await writeFile(join(OUT, names.maplibre[k]), c);
+      await writeFile(join(OUT, 'assets/vendor/maplibre-gl.LICENSE.txt'), lic);
+    }
   }
   return names;
 }
@@ -172,6 +181,8 @@ async function build() {
     if (feature('admin')) await write('/admin/community/', adminPage(site, assets));
     if (feature('live')) await put('/community/live/', livePage(site, assets));
     if (feature('pulse')) await put('/community/pulse/', pulsePage(site, assets));
+    if (feature('radar')) await put('/night-radar/', radarPage(site, assets));
+    if (feature('ai')) await put('/night-ai/', aiPage(site, assets));
     if (feature('social')) { await write('/community/passport/', passportPage(site, assets)); await write('/community/notifications/', notificationsPage(site, assets)); }
     console.log(`community: ${[...FEATURES].join(', ')}${BACKEND.ready ? '' : '（接続先が未設定のため「準備中」と表示）'}`);
   }

@@ -68,14 +68,14 @@ npm run test:e2e     # 画面の操作テスト（Playwright）
 
 Lighthouse の集計は `npx lighthouse ... --output=json` の結果フォルダに対して `node scripts/lighthouse-summary.mjs <フォルダ>` で表にできます。
 
-## GLOBAL NIGHT COMMUNITY（Phase 1〜2・機能フラグで段階公開）
+## GLOBAL NIGHT COMMUNITY（Phase 1〜3・機能フラグで段階公開）
 
 コミュニティ（掲示板・口コミ・コメント・参考になった・保存・通報・ブロック・プロフィール・管理画面）は、
 ブラウザから Supabase（PostgreSQL・Auth・Storage）に直接つなぐ。**既定ではすべて OFF** で、OFF のビルドは従来とまったく同じ HTML になる。
 
 | 変数 | 説明 |
 | --- | --- |
-| `GNG_FEATURES` | `all`（実装済みすべて）、`phase1`（Phase 1 だけ）、または `community,reviews,admin,social,live,pulse` から選んで有効化。空なら無効。`social` / `live` / `pulse` は Phase 2 のマイグレーションを適用してから |
+| `GNG_FEATURES` | `all`（実装済みすべて）、`phase1`（Phase 1 だけ）、または `community,reviews,admin,social,live,pulse,radar,ai` から選んで有効化。空なら無効。`social` / `live` / `pulse` は Phase 2、`radar` / `ai` は Phase 3 のマイグレーションを適用してから |
 | `SUPABASE_URL` | `https://<project>.supabase.co` |
 | `SUPABASE_ANON_KEY` | 公開用の anon キー（**service_role キーは入れない**。入れるとビルドを止める） |
 
@@ -84,7 +84,19 @@ Lighthouse の集計は `npx lighthouse ... --output=json` の結果フォルダ
 - 最初の管理者：SQL Editor で `insert into user_roles (user_id, role) select id, 'admin' from user_profiles where handle = '<ユーザー名>';`
 - ページ：`/community/`（一覧）、`/community/new/`（投稿）、`/community/post/?id=`、`/community/u/?h=`、`/community/me/`、`/community/login/`、`/community/rules/`、`/admin/community/`。記事ページに「口コミ・質問」欄、TOP にダイジェスト
 - Phase 2：`/community/live/`（NIGHT LIVE・24 時間以内）、`/community/pulse/`（NIGHT PULSE）、`/community/passport/`（ランク・XP・バッジ・TRUST SCORE）、`/community/notifications/`（通知センター）、プロフィールのフォロー、フィードの「フォロー中」、質問のベストアンサー、管理画面の XP 調整・お知らせ
+- Phase 3：`/night-radar/`（NIGHT RADAR：都市・エリアの活動度の地図とリスト、店舗プレビュー、NIGHT ACTIVITY INDEX）、`/night-ai/`（NIGHT AI：条件検索）、投稿の翻訳、記事の AI 口コミ要約、管理画面の AI 設定・AI 審査補助・店舗の位置
+  - 地図：MapLibre GL（BSD-3、`/assets/vendor/` に同梱）＋背景タイル OpenFreeMap（キー・アカウント不要）。読み込めないときはリストだけで動く。利用者の現在地は使わない。店舗は運営が位置を登録したものだけ表示
+  - 活動度は期間内の公開投稿の件数と投稿者数から決める（3 件未満または 2 人未満は「データ不足」）。ACTIVITY INDEX は直近 6 時間の NIGHT LIVE の報告（2 人以上）から
+  - NIGHT AI は既定で OFF（`ai_config.enabled = false`）。OFF のあいだは規則ベースの条件検索だけが動き、Claude API は呼ばない。紹介するのはサイトの記事とコミュニティの実際の口コミだけ
 - XP はサーバーだけで付与（台帳 `experience_transactions` に冪等キー付きで記録）。自分への評価・作成 24 時間以内のアカウント・同じ相手からの 30 日 4 回目以降・1 日 100 XP 超は付与しない
+
+### NIGHT AI（Claude API）を有効にする
+
+1. Anthropic Console（console.anthropic.com）で API キーを作る。月の利用上限（Spend limit）も設定しておく
+2. Supabase に Edge Function を置く：`supabase functions deploy night-ai`（中身は `supabase/functions/night-ai/index.ts`、モデルは `claude-opus-5-5`）
+3. Edge Function の Secrets に登録：`ANTHROPIC_API_KEY`、`ALLOWED_ORIGINS`（例：`https://gng-design-preview-4dlc.vercel.app`）、`MODERATION_WEBHOOK_SECRET`（任意の長い文字列）。`SUPABASE_URL` などは自動で入る。キーはブラウザ・Vercel・リポジトリには置かない
+4. 管理画面のダッシュボード「NIGHT AI の設定」で ON にし、1 人あたり・全体の 1 日の上限を決める（上限・キャッシュは DB 側で管理し、同じ翻訳・要約は再利用する）
+5. （任意）AI 審査補助：Database Webhook で `community_posts` / `post_comments` の INSERT を `night-ai` に送り、ヘッダー `x-webhook-secret` に 3 と同じ値を付ける。AI は「確認待ち」に入れるだけで、自動で非表示にはしない
 
 ### テスト
 

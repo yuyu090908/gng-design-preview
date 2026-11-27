@@ -394,3 +394,4 @@
   .chero { min-height: 340px; }
   .chero__t { font-size: 40px; }
 }
+.area--genre .area__en, .area__n { white-space: nowrap; }

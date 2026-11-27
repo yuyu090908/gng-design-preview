@@ -37,6 +37,9 @@ const ERR = {
   post_not_found: '投稿が見つかりません。', cannot_rate_own: '自分の投稿には押せません。', already_reported: 'この内容はすでに通報済みです。', blocked: 'この投稿にはコメントできません。',
   forbidden: 'この操作を行う権限がありません。', cannot_block_self: '自分はブロックできません。', parent_not_found: '返信先のコメントが見つかりません。',
   offline: 'インターネットに接続されていません。接続を確認してからお試しください。',
+  note_required: '理由（メモ）と数値を入力してください。', cannot_follow_self: '自分はフォローできません。', user_not_found: 'ユーザーが見つかりません。',
+  not_question: '質問の投稿だけで選べます。', already_chosen: 'ベストアンサーはすでに選ばれています。', comment_not_found: 'コメントが見つかりません。',
+  live_needs_place: '都市か店舗を選んでください。', use_post_live: 'NIGHT LIVE の投稿は NIGHT LIVE の画面から共有してください。',
 };
 const errText = (e) => ERR[e?.code] || e?.message || '処理できませんでした。時間をおいてお試しください。';
 class ApiError extends Error { constructor(code, message, status) { super(message || code); this.code = code; this.status = status; } }

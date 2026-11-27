@@ -30,10 +30,13 @@
   const comment = (c) => {
     const mine = uid() && c.author_id === uid();
     const gone = c.status !== 'published';
-    return `<li><div class="cmt" data-cmt="${esc(c.id)}">
+    const best = post.best_comment_id && post.best_comment_id === c.id;
+    const canBest = has('social') && post.type === 'question' && !post.best_comment_id && post.author_id === uid() && !mine && !c.parent_id && !gone;
+    return `<li><div class="cmt${best ? ' cmt--best' : ''}" data-cmt="${esc(c.id)}">
+${best ? `<p class="cmt__best">${icon('award', 14)}ベストアンサー</p>` : ''}
 <div class="cmt__hd">${avatar(c.author_avatar)}<a href="/community/u/?h=${encodeURIComponent(c.author_handle)}">${esc(c.author_name)}</a><time datetime="${esc(c.created_at)}">${esc(ago(c.created_at))}${c.edited_at ? '（編集済み）' : ''}</time></div>
 <p class="cmt__body${gone ? ' cmt__body--gone' : ''}">${gone ? (c.status === 'removed' ? 'このコメントは削除されました' : 'このコメントは運営により非表示になっています') : esc(c.body)}</p>
-${gone ? '' : `<div class="cmt__acts">${c.parent_id ? '' : `<button class="pact" type="button" data-c-reply>${icon('message', 14)}返信</button>`}${mine ? `<button class="pact" type="button" data-c-edit>${icon('pencil', 14)}編集</button><button class="pact" type="button" data-c-del>${icon('trash', 14)}削除</button>` : `<button class="pact" type="button" data-c-report>${icon('flag', 14)}通報</button>`}</div>`}
+${gone ? '' : `<div class="cmt__acts">${canBest ? `<button class="pact pact--gold" type="button" data-c-best>${icon('award', 14)}ベストアンサーに選ぶ</button>` : ''}${c.parent_id ? '' : `<button class="pact" type="button" data-c-reply>${icon('message', 14)}返信</button>`}${mine ? `<button class="pact" type="button" data-c-edit>${icon('pencil', 14)}編集</button><button class="pact" type="button" data-c-del>${icon('trash', 14)}削除</button>` : `<button class="pact" type="button" data-c-report>${icon('flag', 14)}通報</button>`}</div>`}
 </div>${c.replies?.length ? `<ol>${c.replies.map(comment).join('')}</ol>` : ''}</li>`;
   };
   async function loadComments() {
@@ -43,6 +46,7 @@ ${gone ? '' : `<div class="cmt__acts">${c.parent_id ? '' : `<button class="pact"
       top.forEach((c) => { c.replies = rows.filter((x) => x.parent_id === c.id); });
       // 返信の無い削除済みコメントは出さない
       const shown = top.filter((c) => c.status === 'published' || c.replies.length);
+      if (post.best_comment_id) shown.sort((a, b) => (b.id === post.best_comment_id) - (a.id === post.best_comment_id));
       list.innerHTML = shown.length ? shown.map(comment).join('') : `<li class="cside__empty">まだコメントはありません。</li>`;
     } catch (e) { list.innerHTML = `<li>${errorHTML(e)}</li>`; }
   }
@@ -70,6 +74,10 @@ ${gone ? '' : `<div class="cmt__acts">${c.parent_id ? '' : `<button class="pact"
       form.body.focus();
     }
     if (b.matches('[data-c-report]')) openReport('comment', cid);
+    if (b.matches('[data-c-best]')) {
+      if (!(await confirmBox('このコメントをベストアンサーに選びますか？', '選んだあとは変更できません。回答した人に通知と XP が届きます。', '選ぶ'))) return;
+      try { await busy(b, () => rpc('mark_best_answer', { p_post: id, p_comment: cid })); post.best_comment_id = cid; toast('ベストアンサーに選びました'); loadComments(); } catch (ex) { toast(errText(ex)); }
+    }
     if (b.matches('[data-c-del]')) {
       if (!(await confirmBox('コメントを削除しますか？', '削除したコメントは元に戻せません。', '削除する'))) return;
       try { await rpc('delete_comment', { p_id: cid }); toast('削除しました'); loadComments(); } catch (ex) { toast(errText(ex)); }

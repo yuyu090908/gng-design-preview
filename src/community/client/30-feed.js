@@ -5,6 +5,7 @@
   const listEl = $('[data-feed-list]', feed), moreBtn = $('[data-feed-more]', feed);
   const form = $('[data-filter-form]');
   const PAGE = 15;
+  let followingIds = null;
   let tab = store.get('tab', 'latest'), cursor = null, offset = 0, newest = null, loading = false, prefRegion = null;
   const saved = store.get('filter', {});
 
@@ -33,6 +34,7 @@
     if (form.category.value) f.category = `eq.${form.category.value}`;
     const t = tab === 'review' ? 'review' : tab === 'question' ? 'question' : form.type.value;
     if (t) f.type = `eq.${t}`;
+    if (tab === 'following') f.author_id = inList(followingIds.length ? followingIds : ['00000000-0000-0000-0000-000000000000']);
     if (tab === 'popular') { f.published_at = `gte.${new Date(Date.now() - 30 * 86400000).toISOString()}`; f.order = 'helpful_count.desc,published_at.desc,id.desc'; }
     else f.order = 'published_at.desc,id.desc';
     return f;
@@ -47,6 +49,12 @@
     loading = true;
     feed.setAttribute('aria-busy', 'true');
     if (reset) { cursor = null; offset = 0; listEl.innerHTML = `<div aria-hidden="true">${'<div class="pc pc--sk"><div class="pc__hd"><span class="sk-c"></span><span class="sk-l"></span></div><span class="sk-l sk-l--w"></span><span class="sk-l"></span></div>'.repeat(2)}</div>`; $('[data-new-banner]').hidden = true; }
+    if (tab === 'following') {
+      const stop = (html) => { listEl.innerHTML = html; moreBtn.hidden = true; loading = false; feed.setAttribute('aria-busy', 'false'); };
+      if (!uid()) return stop(stateHTML('users', 'ログインすると、フォローした人の投稿がここに表示されます', '', `<a class="btn btn--primary" href="${loginHref()}">ログイン</a>`));
+      if (!followingIds) followingIds = (await select('user_follows', { select: 'followee_id', follower_id: `eq.${uid()}`, limit: 500 }).catch(() => [])).map((r) => r.followee_id);
+      if (!followingIds.length) return stop(stateHTML('userplus', 'まだ誰もフォローしていません', '参考になった投稿の投稿者をフォローすると、ここにその人の新しい投稿が並びます。'));
+    }
     const f = { ...filters(), limit: PAGE };
     if (tab === 'popular') f.offset = offset;
     else if (cursor) f.or = `(published_at.lt.${cursor.t},and(published_at.eq.${cursor.t},id.lt.${cursor.id}))`;
@@ -74,6 +82,7 @@
 
   // タブ
   const tabs = $$('[data-feed-tabs] [data-tab]');
+  if (!tabs.some((b) => b.dataset.tab === tab)) tab = 'latest';
   const setTab = (k) => { tab = k; store.set('tab', k); tabs.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.tab === k))); load(true); };
   tabs.forEach((b) => b.addEventListener('click', () => setTab(b.dataset.tab)));
   tabs.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.tab === tab)));

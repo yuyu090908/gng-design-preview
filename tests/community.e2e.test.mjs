@@ -256,8 +256,181 @@ test('フィード：タブと地域の絞り込みが動き、選んだ条件�
   await ctx.close();
 });
 
+// ===================== Phase 2 =====================
+const asUser = (id, q, params = []) => api.sql(`select set_config('request.jwt.claim.sub', $1, true) as _s, ${q}`, [id, ...params]);
+let livePostId;
+
+test('NIGHT LIVE：都市を選んで共有すると24時間の一覧に出る（現在地は送らない）', async () => {
+  const { page, errors } = users.alice;
+  const sent = [];
+  page.on('request', (r) => { if (r.url().includes('/rpc/post_live')) sent.push(JSON.parse(r.postData() || '{}')); });
+  await page.goto(`${base}/community/live/`);
+  await page.waitForSelector('[data-live-feed][aria-busy="false"]');
+  assert.match(await page.textContent('[data-live-list]'), /24時間以内のライブ投稿はまだありません/);
+  await page.click('[data-live-compose] summary');
+  const [{ id: city }] = (await api.sql("select id from cities where slug = 'bangkok'")).rows;
+  await page.selectOption('[data-region="live"] [data-region-country]', 'TH');
+  await page.selectOption('[data-region="live"] [data-region-city]', String(city));
+  await page.click('[data-live-form] [name=crowd][value="4"] + span');
+  await page.click('[data-live-form] [name=vibe][value="lively"] + span');
+  await page.click('[data-live-form] [name=open_status][value="open"] + span');
+  await page.fill('[data-live-form] [name=price_note]', '入場無料');
+  // 本文が短いとエラー
+  await page.fill('[data-live-form] [name=body]', 'ab');
+  await page.click('[data-live-form] [type=submit]');
+  await page.waitForSelector('[data-live-form] [data-form-error]:not([hidden])');
+  await page.fill('[data-live-form] [name=body]', '22時ごろ。入口に少し列があり、店内は満席に近いです。');
+  await page.click('[data-live-form] [type=submit]');
+  await page.waitForSelector('[data-live-list] .pc:not(.pc--sk) .ptag--live');
+  const card = await page.textContent('[data-live-list] .pc');
+  assert.match(card, /NIGHT LIVE/); assert.match(card, /混んでいる/); assert.match(card, /賑やか/); assert.match(card, /入場無料/);
+  assert.equal(sent.length, 1);
+  assert.deepEqual(Object.keys(sent[0].p).filter((k) => /lat|lng|lon|geo|location|coords/i.test(k)), []);
+  livePostId = await page.getAttribute('[data-live-list] .pc', 'data-post');
+  const { rows } = await api.sql('select l.crowd, l.vibe, l.open_status, p.type from live_reports l join community_posts p on p.id = l.post_id where l.post_id = $1', [livePostId]);
+  assert.deepEqual(rows[0], { crowd: 4, vibe: 'lively', open_status: 'open', type: 'live' });
+  await shot(page, 'live-pc');
+  // 25 時間前の投稿は一覧に出ない
+  await api.sql("update community_posts set published_at = now() - interval '25 hours' where id = $1", [livePostId]);
+  const anon = await open('/community/live/');
+  await anon.page.waitForSelector('[data-live-feed][aria-busy="false"]');
+  assert.equal(await anon.page.locator(`[data-post="${livePostId}"]`).count(), 0);
+  await api.sql('update community_posts set published_at = now() where id = $1', [livePostId]);
+  await anon.page.reload();
+  await anon.page.waitForSelector(`[data-live-list] [data-post="${livePostId}"]`);
+  await anon.ctx.close();
+  assert.deepEqual(errors, []);
+});
+
+test('フォロー：プロフィールからフォローでき、「フォロー中」タブと通知に反映される', async () => {
+  const { page, errors } = users.bob;
+  await page.goto(`${base}/community/u/?h=alice_tester`);
+  await page.waitForSelector('[data-follow]');
+  assert.match(await page.textContent('.prof'), /フォロワー0/);
+  await page.click('[data-follow]');
+  await page.waitForSelector('[data-follow][aria-pressed="true"]');
+  assert.match(await page.textContent('.prof'), /フォロワー1/);
+  await page.goto(`${base}/community/`);
+  await page.click('[data-tab="following"]');
+  await page.waitForSelector(`[data-feed-list] [data-post="${livePostId}"]`);
+  const { rows } = await api.sql('select follower_count from user_profiles where id = $1', [users.alice.id]);
+  assert.equal(rows[0].follower_count, 1);
+  assert.deepEqual(errors, []);
+});
+
+test('XP：作ったばかりのアカウントからの「参考になった」では XP が入らず、24時間以上たったアカウントからは入る', async () => {
+  const { page, errors } = users.bob;
+  // 画面は先に切り替わる（楽観的更新）ので、サーバーの応答を待ってから確かめる
+  const toggle = async () => { const r = page.waitForResponse((x) => x.url().includes('/rpc/toggle_helpful')); await page.click('[data-helpful]'); await r; };
+  const xp = async () => (await api.sql('select xp from user_experience where user_id = $1', [users.alice.id])).rows[0].xp;
+  await page.goto(`${base}/community/post/?id=${livePostId}`);
+  await page.waitForSelector('[data-helpful]');
+  await toggle();
+  assert.equal(await page.textContent('[data-helpful-n]'), '1');
+  assert.equal(await xp(), 0);
+  // bob のアカウントを 3 日前に作られたことにして、押し直す
+  await api.sql("update user_profiles set created_at = now() - interval '3 days' where id = $1", [users.bob.id]);
+  await toggle(); await toggle();
+  assert.equal(await xp(), 5);
+  await toggle(); await toggle();
+  assert.equal(await xp(), 5, '付け外しで XP が増えない');
+  // カードにランクが出る
+  assert.match(await page.textContent('.pc .rk'), /Rookie/);
+  assert.deepEqual(errors, []);
+});
+
+test('NIGHT PASSPORT：ランク・XP・バッジ・TRUST SCORE（データ不足）・XP の履歴', async () => {
+  const { page, errors } = users.alice;
+  await page.goto(`${base}/community/passport/`);
+  await page.waitForSelector('.pp__rank');
+  assert.equal(await page.textContent('.pp__rank'), 'Rookie');
+  assert.match(await page.textContent('.pp__xp'), /5\s*XP/);
+  assert.match(await page.textContent('.pp__next'), /Night Explorer まであと 495 XP/);
+  assert.equal(await page.locator('.bdg__i').count(), 8);
+  assert.ok(await page.locator('.bdg__i.is-on').count() >= 1, 'First Review を獲得している');
+  assert.match(await page.textContent('[data-pp-trust]'), /データ不足/);
+  assert.match(await page.textContent('[data-pp-ledger]'), /「参考になった」を受けた[\s\S]*\+5 XP/);
+  assert.match(await page.textContent('[data-pp-cities]'), /バンコク/);
+  await shot(page, 'passport-pc');
+  assert.deepEqual(errors, []);
+});
+
+test('通知センター：フォロー・参考になったが届き、既読にでき、種類ごとに止められる', async () => {
+  const { page, errors } = users.alice;
+  await page.goto(`${base}/community/notifications/`);
+  await page.waitForSelector('[data-n-list] .nl');
+  const text = await page.textContent('[data-n-list]');
+  assert.match(text, /BOB さんがあなたをフォローしました/);
+  assert.match(text, /BOB さんが「参考になった」を押しました/);
+  assert.doesNotMatch(text, /ほか/, '同じ人の押し直しを人数に数えない');
+  await page.waitForSelector('#sidebar [data-notif-count]:not([hidden])');
+  await shot(page, 'notifications-pc');
+  await page.click('[data-n-readall]');
+  await page.waitForSelector('#sidebar [data-notif-count][hidden]', { state: 'attached' });
+  assert.equal(await page.locator('.nl.is-unread').count(), 0);
+  await page.click('[data-n-tab="settings"]');
+  await page.uncheck('[data-n-settings] [name=follow]');
+  assert.ok(await page.isDisabled('[data-n-settings] [name=moderation]'));
+  await page.click('[data-n-settings] [type=submit]');
+  await page.waitForFunction(() => document.querySelector('.toast')?.textContent.includes('保存しました'));
+  const { rows } = await api.sql("select notify->>'follow' f, notify->>'moderation' m from user_preferences where user_id = $1", [users.alice.id]);
+  assert.deepEqual(rows[0], { f: 'false', m: 'true' });
+  assert.deepEqual(errors, []);
+});
+
+test('ベストアンサー：質問した人だけが選べ、回答者に XP と通知が届く', async () => {
+  const q = (await asUser(users.bob.id, `save_post('{"type":"question","category":"question","body":"バンコクで料金表がはっきりしているバーはありますか？"}') as id`)).rows[0].id;
+  const c = (await asUser(users.alice.id, 'add_comment($2, $3, null) as id', [q, 'アソーク周辺のホテルバーは料金表が明確でした'])).rows[0].id;
+  // 回答した本人の画面には「選ぶ」ボタンが出ない
+  await users.alice.page.goto(`${base}/community/post/?id=${q}`);
+  await users.alice.page.waitForSelector('.cmt');
+  assert.equal(await users.alice.page.locator('[data-c-best]').count(), 0);
+  const { page, errors } = users.bob;
+  await page.goto(`${base}/community/post/?id=${q}`);
+  await page.waitForSelector('[data-c-best]');
+  await page.click('[data-c-best]');
+  await page.click('[role=alertdialog] [data-ok]');
+  await page.waitForSelector('.cmt--best .cmt__best');
+  assert.equal(await page.locator('[data-c-best]').count(), 0);
+  const { rows } = await api.sql('select (select best_comment_id from community_posts where id = $1) b, (select xp from user_experience where user_id = $2) xp', [q, users.alice.id]);
+  assert.deepEqual(rows[0], { b: c, xp: 20 });
+  assert.deepEqual(errors, []);
+});
+
+test('NIGHT PULSE：実際の評価から集計し、件数が少ないものは出さない', async () => {
+  const { ctx, page, errors } = await open('/community/pulse/');
+  await page.waitForSelector('[data-pulse][aria-busy="false"]');
+  assert.match(await page.textContent('[data-pulse-sec="posts"]'), /22時ごろ/);
+  assert.match(await page.textContent('[data-pulse-sec="rising"]'), /まだ集計できるほどのデータがありません/);
+  assert.match(await page.textContent('[data-pulse-sec="areas"]'), /まだ集計できるほどのデータがありません/);
+  await page.click('[data-period="24h"]');
+  await page.waitForSelector('[data-period="24h"][aria-pressed="true"]');
+  await page.waitForSelector('[data-pulse][aria-busy="false"]');
+  await shot(page, 'pulse-pc');
+  assert.deepEqual(errors, []);
+  await ctx.close();
+});
+
+test('管理画面：Phase 2 の数値、XP の調整には理由が必要', async () => {
+  const { page, errors } = users.alice;
+  await page.goto(`${base}/admin/community/`);
+  await page.waitForFunction(() => /付与した XP/.test(document.querySelector('[data-adm-kpis]')?.textContent || ''));
+  await page.click('[data-adm-tab="users"]');
+  await page.waitForSelector('[data-adm-list="users"] [data-a="u-xp"]');
+  const row = page.locator('[data-adm-list="users"] .arow', { hasText: 'bob_tester' });
+  await row.locator('[data-xp]').fill('10');
+  await row.locator('[data-a="u-xp"]').click();
+  await page.waitForFunction(() => document.querySelector('.toast')?.textContent.includes('理由'));
+  await row.locator('[data-note]').fill('テストの調整');
+  await row.locator('[data-a="u-xp"]').click();
+  await page.waitForFunction(() => document.querySelector('.toast')?.textContent.includes('更新しました'));
+  const { rows } = await api.sql("select (select xp from user_experience where user_id = $1) xp, (select count(*)::int from admin_audit_logs where action = 'xp.adjust') n", [users.bob.id]);
+  assert.deepEqual(rows[0], { xp: 10, n: 1 });
+  assert.deepEqual(errors, []);
+});
+
 test('スマホ：横にはみ出さず、下部ナビにコミュニティがある', async () => {
-  for (const path of ['/community/', `/community/post/?id=${postId}`, '/community/new/', '/community/login/', '/community/rules/', article.u]) {
+  for (const path of ['/community/', `/community/post/?id=${postId}`, '/community/new/', '/community/login/', '/community/rules/', '/community/live/', '/community/pulse/', '/community/passport/', '/community/notifications/', article.u]) {
     const { ctx, page, errors } = await open(path, { width: 390, height: 844 });
     await page.waitForTimeout(400);
     const sw = await page.evaluate(() => document.documentElement.scrollWidth);
@@ -265,6 +438,8 @@ test('スマホ：横にはみ出さず、下部ナビにコミュニティが�
     assert.ok(await page.isVisible('.bn a[href="/community/"]'));
     if (path === '/community/') { await page.waitForSelector('[data-feed-list] .pc:not(.pc--sk)'); await shot(page, 'community-feed-mobile'); }
     if (path === '/community/login/') await shot(page, 'login-mobile');
+    if (path === '/community/live/') { await page.waitForSelector('[data-live-list] .pc:not(.pc--sk)'); await shot(page, 'live-mobile'); }
+    if (path === '/community/pulse/') { await page.waitForSelector('[data-pulse][aria-busy="false"]'); await shot(page, 'pulse-mobile'); }
     assert.deepEqual(errors, [], path);
     await ctx.close();
   }

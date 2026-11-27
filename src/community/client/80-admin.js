@@ -20,6 +20,13 @@
       const items = [['登録ユーザー', s.users], ['新規（7日）', s.users_7d], ['DAU', s.dau], ['WAU', s.wau], ['MAU', s.mau], ['公開中の投稿', s.posts], ['新規投稿（24時間）', s.posts_24h], ['口コミ', s.reviews], ['コメント', s.comments], ['投稿したユーザー（30日）', s.posters_30d], ['投稿率（30日）', s.mau ? `${Math.round((s.posters_30d / s.mau) * 100)}%` : '—'], ['未対応の通報', s.reports_open], ['通報（累計）', s.reports_total], ['申請中の店舗', s.venues_pending]];
       $('[data-adm-kpis]').innerHTML = items.map(([l, v]) => `<div><dt>${esc(l)}</dt><dd>${esc(v ?? 0)}</dd></div>`).join('');
       const bc = Object.entries(s.by_country || {}).sort((a, b) => b[1] - a[1]).map(([k, v]) => `${k === '--' ? '地域なし' : k} ${v}`).join('・');
+      if (has('social')) {
+        try {
+          const s2 = await rpc('admin_stats_phase2');
+          const rk = Object.entries(s2.ranks || {}).map(([k, v]) => `${k} ${v}`).join('・') || 'なし';
+          $('[data-adm-kpis]').insertAdjacentHTML('beforeend', [['付与した XP（累計）', s2.xp_total], ['付与した XP（24時間）', s2.xp_24h], ['獲得されたバッジ', s2.badges], ['フォロー', s2.follows], ['NIGHT LIVE（24時間）', s2.live_24h], ['30日継続率', s2.retention_30d == null ? '—' : `${s2.retention_30d}%`]].map(([l, v]) => `<div><dt>${esc(l)}</dt><dd>${esc(v ?? 0)}</dd></div>`).join('') + `<div class="kpis__wide"><dt>ランクの分布</dt><dd>${esc(rk)}</dd></div>`);
+        } catch {}
+      }
       $('[data-adm-gen]').textContent = `集計：${new Date(s.generated_at).toLocaleString('ja-JP')}　国別の投稿：${bc || 'なし'}　※ DAU などは、ログイン中に操作した日を数えています（閲覧したページは記録していません）。AI の利用回数・費用は Phase 3 で追加します。`;
     },
     async reports() {
@@ -45,7 +52,7 @@ ${['open', 'reviewing'].includes(r.status) ? '<button class="btn btn--ghost btn-
       const rows = await select('user_profiles', { select: 'id,handle,display_name,status,post_count,helpful_received,created_at', ...(q ? { handle: `ilike.${like(q)}` } : {}), order: 'created_at.desc', limit: 50 });
       const roles = isAdmin ? await select('user_roles', { select: 'user_id,role' }).catch(() => []) : [];
       list('users').innerHTML = rows.length ? rows.map((u) => { const rs = roles.filter((r) => r.user_id === u.id).map((r) => r.role); return `<div class="arow" data-id="${esc(u.id)}"><p class="arow__hd"><b>${esc(u.display_name)}</b><span>@${esc(u.handle)}</span><span class="ptag${u.status === 'active' ? '' : ' ptag--warn'}">${esc({ active: '通常', limited: '投稿制限', banned: '利用停止' }[u.status])}</span>${rs.map((r) => `<span class="ptag ptag--type">${esc(r)}</span>`).join('')}<span>投稿 ${u.post_count}・参考 ${u.helpful_received}</span><span>${esc(ago(u.created_at))}に登録</span></p>
-<p class="arow__acts"><a class="btn btn--ghost btn--sm" href="/community/u/?h=${esc(u.handle)}" target="_blank" rel="noopener">プロフィール</a>${u.status !== 'active' ? '<button class="btn btn--ghost btn--sm" data-a="u-active">制限を解除</button>' : ''}${u.status !== 'limited' ? '<button class="btn btn--danger btn--sm" data-a="u-limited">投稿を制限</button>' : ''}${isAdmin && u.status !== 'banned' ? '<button class="btn btn--danger btn--sm" data-a="u-banned">利用停止</button>' : ''}${isAdmin ? (rs.includes('moderator') ? '<button class="btn btn--ghost btn--sm" data-a="r-mod-off">モデレーターを外す</button>' : '<button class="btn btn--ghost btn--sm" data-a="r-mod-on">モデレーターにする</button>') : ''}</p></div>`; }).join('') : empty('該当するユーザーはいません');
+<p class="arow__acts"><a class="btn btn--ghost btn--sm" href="/community/u/?h=${esc(u.handle)}" target="_blank" rel="noopener">プロフィール</a>${u.status !== 'active' ? '<button class="btn btn--ghost btn--sm" data-a="u-active">制限を解除</button>' : ''}${u.status !== 'limited' ? '<button class="btn btn--danger btn--sm" data-a="u-limited">投稿を制限</button>' : ''}${isAdmin && u.status !== 'banned' ? '<button class="btn btn--danger btn--sm" data-a="u-banned">利用停止</button>' : ''}${isAdmin && has('social') ? '<span class="adm__xp"><input class="input input--sm" type="number" step="1" min="-5000" max="5000" data-xp aria-label="調整する XP"><button class="btn btn--ghost btn--sm" data-a="u-xp">XP を調整</button></span>' : ''}${isAdmin ? (rs.includes('moderator') ? '<button class="btn btn--ghost btn--sm" data-a="r-mod-off">モデレーターを外す</button>' : '<button class="btn btn--ghost btn--sm" data-a="r-mod-on">モデレーターにする</button>') : ''}</p></div>`; }).join('') : empty('該当するユーザーはいません');
     },
     async venues() {
       const rows = await select('venues', { select: '*', status: `eq.${filt('venues')}`, order: 'created_at.desc', limit: 100 });
@@ -95,11 +102,23 @@ ${['open', 'reviewing'].includes(r.status) ? '<button class="btn btn--ghost btn-
       'u-banned': () => rpc('mod_set_user_status', { p_id: id, p_status: 'banned', p_note: n() || '' }),
       'r-mod-on': () => rpc('admin_set_role', { p_user: id, p_role: 'moderator', p_grant: true }),
       'r-mod-off': () => rpc('admin_set_role', { p_user: id, p_role: 'moderator', p_grant: false }),
+      'u-xp': () => { const v = Number($('[data-xp]', row)?.value || 0); if (!v || !n().trim()) { throw new ApiError('note_required'); } return rpc('admin_adjust_xp', { p_user: id, p_points: v, p_note: n() }); },
       'v-publish': () => rpc('mod_upsert_venue', { p: { ...JSON.parse(row.dataset.v), status: 'published' } }),
       'v-hide': () => rpc('mod_upsert_venue', { p: { ...JSON.parse(row.dataset.v), status: 'hidden' } }),
     };
     if (M[a]) act(b, M[a], '更新しました');
   });
+
+  // 運営からのお知らせ（管理者のみ・通知センターの上部に表示）
+  const af = $('[data-adm-announce]');
+  if (af) {
+    af.hidden = !isAdmin;
+    af.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      try { await busy($('button', af), () => rpc('admin_announce', { p_title: af.title.value, p_body: af.body.value, p_days: Number(af.days.value) || 14 })); af.reset(); toast('お知らせを公開しました'); }
+      catch (ex) { toast(errText(ex)); }
+    });
+  }
 
   const vf = $('[data-adm-venue-form]');
   const vreg = await initRegion($('[data-region="admvenue"]', vf));

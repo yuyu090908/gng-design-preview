@@ -1,0 +1,163 @@
+/* =========================================================
+   Phase 2：ランク・NIGHT LIVE・NIGHT PASSPORT・通知センター・NIGHT PULSE
+   ========================================================= */
+.nv__a .badge { position: static; margin-left: auto; }
+
+/* ---------- ランクの表示 ---------- */
+.rk { display: inline-flex; align-items: center; height: 20px; padding: 0 7px; border-radius: 999px; font: 700 10.5px/1 var(--f-en); letter-spacing: .04em; white-space: nowrap; border: 1px solid currentColor; color: #B98A5E; background: transparent; }
+.rk--night-explorer { color: #C9CED8; }
+.rk--night-expert { color: var(--gold-l); }
+.rk--night-master { color: var(--n-violet-ink); }
+.rk--night-legend { color: var(--n-blue-ink); }
+.rk--global-vip { color: var(--c-text); background: linear-gradient(120deg, rgba(232, 207, 153, .22), rgba(141, 182, 255, .22)); }
+[data-theme="light"] .rk { color: #7A5A3A; }
+[data-theme="light"] .rk--night-explorer { color: #5B6270; }
+[data-theme="light"] .rk--night-expert { color: #7A5A1E; }
+.pc__who:has(.rk) { grid-template-columns: minmax(0, auto) 1fr; }
+.pc__who .rk { grid-column: 2; grid-row: 1; justify-self: start; align-self: center; margin-left: 8px; }
+.pc__who .pc__sub { grid-column: 1 / -1; }
+
+/* ---------- NIGHT LIVE ---------- */
+.ptag--live { gap: 6px; color: #FCA5A5; background: rgba(248, 113, 113, .12); border-color: transparent; letter-spacing: .04em; font-family: var(--f-en); }
+[data-theme="light"] .ptag--live { color: #B42318; }
+.ldot { width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+@media (prefers-reduced-motion: no-preference) { .ldot { animation: nlive 1.8s ease-in-out infinite; } }
+@keyframes nlive { 50% { opacity: .35; } }
+.lv { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; }
+.lv > span { display: inline-flex; align-items: center; gap: 6px; min-height: 28px; padding: 0 10px; border-radius: 8px; background: var(--c-bg-2); border: 1px solid var(--c-border); font-size: 12.5px; color: var(--c-text-2); }
+.lv__m { display: inline-flex; gap: 2px; }
+.lv__m i { width: 5px; height: 12px; border-radius: 2px; background: var(--c-border); }
+.lv__m i.on { background: var(--n-premium); }
+.lv__ev { color: var(--n-violet-ink) !important; }
+.lcomp { margin-bottom: 12px; border-radius: var(--n-r-card); background: var(--c-card); border: 1px solid var(--c-border); }
+.lcomp__sum { display: flex; align-items: center; gap: 8px; min-height: 52px; padding: 0 16px; cursor: pointer; font-weight: 700; list-style: none; }
+.lcomp__sum::-webkit-details-marker { display: none; }
+.lcomp__sum .i:first-child { color: #FCA5A5; }
+.lcomp__sum .cf__chev { margin-left: auto; transition: transform var(--n-t); }
+.lcomp[open] .cf__chev { transform: rotate(180deg); }
+.lcomp__f { padding: 0 16px 16px; }
+.lcomp__notes { display: grid; gap: 6px; margin: 4px 0; padding: 0; list-style: none; color: var(--c-text-3); font-size: 12.5px; line-height: 1.6; }
+.lcomp__notes li { display: flex; gap: 6px; }
+.lcomp__notes .i { flex: none; margin-top: 2px; }
+.lcomp__guest { margin: 0 0 12px; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip span { display: inline-flex; align-items: center; min-height: 40px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--c-border); background: var(--c-bg-2); color: var(--c-text-2); font-size: 13.5px; font-weight: 600; cursor: pointer; transition: background var(--n-t), color var(--n-t), border-color var(--n-t); }
+.chip:hover span { background: var(--c-hover); color: var(--c-text); }
+.chip input:checked + span { border-color: var(--gold); color: var(--gold-l); background: color-mix(in srgb, var(--gold) 12%, transparent); }
+.chip input:focus-visible + span { outline: 2px solid var(--c-accent); outline-offset: 2px; }
+[data-theme="light"] .chip input:checked + span { color: #7A5A1E; }
+
+/* ---------- プロフィール（ランク・TRUST SCORE・バッジ） ---------- */
+.prof__p2 { grid-column: 1 / -1; display: grid; gap: 12px; }
+.prof__p2:empty { display: none; }
+.prof__rank { display: flex; align-items: center; gap: 12px; }
+.prof__rk { margin: 0; font: 700 16px var(--f-en); }
+.prof__xp { margin: 2px 0 0; color: var(--c-text-3); font: 500 13px var(--f-en); }
+.prof__pp { justify-self: start; }
+
+/* ---------- NIGHT PASSPORT ---------- */
+.pp { display: grid; gap: 16px; }
+.pp__card { position: relative; display: grid; grid-template-columns: auto 1fr; gap: 18px; align-items: center; padding: 22px; border-radius: 20px; overflow: hidden; border: 1px solid color-mix(in srgb, var(--n-premium) 35%, var(--c-border)); background: radial-gradient(120% 140% at 0% 0%, rgba(201, 168, 106, .16), transparent 55%), radial-gradient(90% 120% at 100% 100%, rgba(139, 92, 246, .14), transparent 60%), var(--c-card); }
+.pp__en { margin: 0; font: 700 11px var(--f-en); letter-spacing: .2em; color: var(--n-premium); }
+.pp__rank { margin: 2px 0 4px; font: 700 clamp(22px, 5vw, 30px)/1.15 var(--f-en); }
+.pp__who { margin: 0; color: var(--c-text-2); font-size: 14px; }
+.pp__who small { color: var(--c-text-3); font-family: var(--f-en); }
+.pp__xp { margin: 10px 0 6px; color: var(--c-text-2); font-family: var(--f-en); }
+.pp__xp b { font-size: 26px; color: var(--c-text); }
+.pp__bar { height: 8px; border-radius: 4px; background: var(--c-elev); overflow: hidden; }
+.pp__bar span { display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--n-premium), var(--gold-l)); }
+.pp__next { margin: 6px 0 0; font-size: 13px; color: var(--c-text-3); }
+.pp__sec { padding: 18px; border-radius: var(--n-r-card); background: var(--c-card); border: 1px solid var(--c-border); }
+.pp__t { display: flex; align-items: center; gap: 8px; margin: 0 0 12px; font-size: 16px; }
+.pp__t .i { color: var(--gold); }
+.pp__priv { display: inline-flex; align-items: center; gap: 4px; margin-left: auto; font-size: 12px; font-weight: 500; color: var(--c-text-3); }
+.pp__fine { display: grid; gap: 4px; margin: 12px 0 0; padding-left: 1.2em; }
+.emb { flex: none; display: block; }
+@media (max-width: 480px) { .pp__card { grid-template-columns: 1fr; justify-items: start; } }
+
+.bdg { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; margin: 0; padding: 0; list-style: none; }
+.bdg__i { display: grid; align-content: start; justify-items: center; gap: 4px; padding: 14px 10px; border-radius: 14px; background: var(--c-bg-2); border: 1px solid var(--c-border); text-align: center; }
+.bdg__svg { width: 64px; height: 64px; }
+.bdg__i:not(.is-on) .bdg__svg { opacity: .55; }
+.bdg__n { font: 700 13px var(--f-en); }
+.bdg__i:not(.is-on) .bdg__n { color: var(--c-text-3); }
+.bdg__d { font-size: 12px; line-height: 1.5; color: var(--c-text-3); }
+.bdg__s { font-size: 11.5px; color: var(--c-text-3); }
+.bdg__i.is-on .bdg__s { color: var(--n-premium); }
+.bdg--sm { grid-template-columns: repeat(auto-fill, minmax(84px, 1fr)); }
+.bdg--sm .bdg__i { padding: 8px 6px; font-size: 11px; font-weight: 600; }
+.bdg--sm .bdg__svg { width: 40px; height: 40px; }
+@media (prefers-reduced-motion: no-preference) {
+  .bdg__i.is-new { animation: nbadge 1.2s ease-out 1; }
+  .bdg__i.is-new .bdg__svg { animation: nbadge-s 1.2s ease-out 1; }
+}
+@keyframes nbadge { 0% { box-shadow: 0 0 0 0 rgba(232, 207, 153, .55); } 100% { box-shadow: 0 0 0 14px rgba(232, 207, 153, 0); } }
+@keyframes nbadge-s { 0% { transform: scale(.7) rotate(-8deg); } 60% { transform: scale(1.08); } 100% { transform: none; } }
+
+.trust { display: flex; gap: 16px; align-items: flex-start; }
+.trust__v { flex: none; display: grid; place-items: center; width: 64px; height: 64px; border-radius: 50%; border: 2px solid var(--n-premium); font: 700 22px var(--f-en); }
+.trust--na .trust__v { border-color: var(--c-border); color: var(--c-text-3); }
+.trust__main { flex: 1; min-width: 0; display: grid; gap: 8px; }
+.trust__l { margin: 0; font-weight: 700; }
+.trust__l small { color: var(--c-text-3); font-weight: 500; }
+.trust__d { margin: 4px 0 0; color: var(--c-text-3); font-size: 13px; }
+.trust .rbars li { grid-template-columns: 8.5em 1fr 2.6em; }
+
+.ppc, .ppl, .ppr { display: grid; gap: 2px; margin: 0; padding: 0; list-style: none; }
+.ppc { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; }
+.ppc li { display: grid; padding: 10px 12px; border-radius: 10px; background: var(--c-bg-2); border: 1px solid var(--c-border); }
+.ppc small { color: var(--c-text-3); font-size: 12px; }
+.ppl li, .ppr li { display: flex; align-items: baseline; gap: 10px; padding: 9px 4px; border-bottom: 1px solid var(--c-border); font-size: 13.5px; }
+.ppl li:last-child, .ppr li:last-child { border-bottom: 0; }
+.ppl time { margin-left: auto; color: var(--c-text-3); font-size: 12px; white-space: nowrap; }
+.ppl b, .ppr b { font: 700 13px var(--f-en); color: var(--n-pos); white-space: nowrap; }
+.ppr b { margin-left: auto; color: var(--n-premium); }
+.ppl b.neg { color: var(--n-err); }
+
+/* ---------- ベストアンサー ---------- */
+.cmt--best { border-color: color-mix(in srgb, var(--n-premium) 55%, var(--c-border)); background: linear-gradient(180deg, rgba(201, 168, 106, .08), transparent 60%), var(--c-card); }
+.cmt__best { display: inline-flex; align-items: center; gap: 6px; margin: 0; font-size: 12px; font-weight: 700; color: var(--n-premium); }
+.pact--gold { color: var(--n-premium); }
+
+/* ---------- 通知センター ---------- */
+.ann { display: grid; gap: 8px; margin: 0 0 14px; padding: 0; list-style: none; }
+.ann li { padding: 12px 14px; border-radius: 12px; border: 1px solid color-mix(in srgb, var(--n-blue) 40%, var(--c-border)); background: color-mix(in srgb, var(--n-blue) 8%, var(--c-card)); }
+.ann__t { display: flex; align-items: center; gap: 6px; margin: 0; font-weight: 700; font-size: 14px; }
+.ann__t time { margin-left: auto; font-weight: 500; font-size: 12px; color: var(--c-text-3); }
+.ann__b { margin: 6px 0 0; font-size: 13.5px; line-height: 1.7; color: var(--c-text-2); white-space: pre-wrap; }
+.nbar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 10px; }
+.nbar .ctabs { margin: 0; flex: 1 1 auto; }
+.nlist { display: grid; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.nl__a { display: flex; align-items: flex-start; gap: 12px; padding: 12px 14px; border-radius: 12px; background: var(--c-card); border: 1px solid var(--c-border); color: var(--c-text); text-decoration: none; transition: background var(--n-t); }
+a.nl__a:hover { background: var(--c-hover); }
+.nl.is-unread .nl__a { border-color: color-mix(in srgb, var(--n-premium) 45%, var(--c-border)); }
+.nl__ic { flex: none; display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: var(--c-bg-2); color: var(--gold); }
+.nl__ic .av { width: 36px; height: 36px; }
+.nl__main { flex: 1; min-width: 0; display: grid; gap: 2px; }
+.nl__t { font-size: 14px; line-height: 1.5; }
+.nl.is-unread .nl__t { font-weight: 700; }
+.nl__ex { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 12.5px; color: var(--c-text-3); }
+.nl__main time { font-size: 12px; color: var(--c-text-3); }
+.nl__dot { flex: none; width: 8px; height: 8px; margin-top: 6px; border-radius: 50%; background: var(--gold); }
+
+/* ---------- NIGHT PULSE ---------- */
+.pulse__seg { margin-bottom: 14px; }
+.pulse { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; }
+.pulse__sec { padding: 16px; border-radius: var(--n-r-card); background: var(--c-card); border: 1px solid var(--c-border); }
+.pulse__t { display: flex; align-items: center; gap: 8px; margin: 0 0 8px; font-size: 15px; }
+.pulse__t .i { color: var(--gold); }
+.pulse__list { display: grid; gap: 2px; margin: 0; padding: 0; list-style: none; counter-reset: cs; }
+.pulse__list a, .pulse__list .cside__row { display: grid; grid-template-columns: 1.6em 1fr; grid-template-areas: "n t" ". s"; gap: 0 6px; padding: 8px 6px; border-radius: 8px; color: var(--c-text); text-decoration: none; font-size: 13.5px; line-height: 1.5; }
+.pulse__list a::before, .pulse__list .cside__row::before { grid-area: n; counter-increment: cs; content: counter(cs); font: 700 12px var(--f-en); color: var(--n-premium); }
+.pulse__list a > span, .pulse__list .cside__row > span { grid-area: t; }
+.pulse__list small { grid-area: s; color: var(--c-text-3); font-size: 12px; }
+.pulse__list small b { color: var(--n-pos); }
+.pulse__list a:hover { background: var(--c-hover); }
+
+/* ---------- 管理画面 ---------- */
+.kpis__wide { grid-column: 1 / -1; }
+.kpis__wide dd { font-size: 14px !important; }
+.adm__xp { display: inline-flex; gap: 4px; }
+.adm__xp .input { width: 6.5em; }
+
+@media (prefers-reduced-motion: reduce) { .chip span, .nl__a, .lcomp__sum .cf__chev { transition: none; } }

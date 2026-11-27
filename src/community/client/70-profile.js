@@ -2,10 +2,31 @@
 function profileCard(p, { self = false } = {}) {
   return `${avatar(p.avatar_seed, 'av--lg')}<div><h2 class="prof__n">${esc(p.display_name)}</h2><p class="prof__h">@${esc(p.handle)}</p></div>
 ${p.bio ? `<p class="prof__bio">${esc(p.bio)}</p>` : ''}
-<dl class="prof__stats"><div><dt>投稿</dt><dd>${Number(p.post_count || 0)}</dd></div><div><dt>参考になった</dt><dd>${Number(p.helpful_received || 0)}</dd></div><div><dt>参加</dt><dd>${esc(new Date(p.created_at).toLocaleDateString('ja-JP', { year: 'numeric', month: 'short' }))}</dd></div></dl>
+<dl class="prof__stats"><div><dt>投稿</dt><dd>${Number(p.post_count || 0)}</dd></div><div><dt>参考になった</dt><dd>${Number(p.helpful_received || 0)}</dd></div>${has('social') ? `<div><dt>フォロワー</dt><dd data-followers>${Number(p.follower_count || 0)}</dd></div><div><dt>フォロー</dt><dd>${Number(p.following_count || 0)}</dd></div>` : ''}<div><dt>参加</dt><dd>${esc(new Date(p.created_at).toLocaleDateString('ja-JP', { year: 'numeric', month: 'short' }))}</dd></div></dl>
+${has('social') ? '<div class="prof__p2" data-prof-p2></div>' : ''}
 <p class="prof__note">${icon('shield', 14)}${Number(p.post_count || 0) < 3 ? '投稿がまだ少ないため、信頼の目安はまだ表示していません（データ不足）。' : '投稿数・参考になった数は、公開中の投稿だけを数えています。'}</p>
 ${self ? '' : '<div class="prof__acts" data-prof-acts></div>'}`;
 }
+
+// ランク・バッジ・TRUST SCORE（Phase 2）
+async function profileP2(root, id) {
+  const el = $('[data-prof-p2]', root);
+  if (!el) return;
+  try {
+    const [[x], bs, t] = await Promise.all([
+      select('user_experience', { select: 'xp,rank', user_id: `eq.${id}` }),
+      select('user_badges', { select: 'badge,awarded_at', user_id: `eq.${id}`, order: 'awarded_at.asc' }),
+      rpc('trust_score', { p_user: id }),
+    ]);
+    const B = await badgeList();
+    el.innerHTML = `<div class="prof__rank">${rankEmblem(x?.rank || 'Rookie', 56)}<div><p class="prof__rk">${esc(x?.rank || 'Rookie')}</p><p class="prof__xp">${Number(x?.xp || 0).toLocaleString('ja-JP')} XP</p></div></div>
+<div class="prof__tr">${trustHTML(t)}</div>
+${bs.length ? `<ul class="bdg bdg--sm">${bs.map((b) => `<li class="bdg__i is-on" title="${esc(B[b.badge]?.description || '')}">${badgeSvg(b.badge, true)}<span>${esc(B[b.badge]?.name || b.badge)}</span></li>`).join('')}</ul>` : ''}`;
+    applyWidths(el);
+  } catch { el.innerHTML = ''; }
+}
+let badgesP = null;
+const badgeList = () => (badgesP ||= select('badges', { select: 'code,name,description,sort', order: 'sort' }).then((r) => Object.fromEntries(r.map((b) => [b.code, b]))).catch(() => ({})));
 
 (async function mePage() {
   const box = $('[data-me]');
@@ -16,8 +37,9 @@ ${self ? '' : '<div class="prof__acts" data-prof-acts></div>'}`;
   if (!p) { $('[data-need-login]').hidden = false; return; }
   box.hidden = false;
   const card = $('[data-me-card]');
-  const drawCard = () => { card.innerHTML = profileCard(p, { self: true }) + `<div class="prof__acts"><a class="btn btn--ghost btn--sm" href="/community/u/?h=${encodeURIComponent(p.handle)}">公開プロフィールを見る</a>${p.roles?.length ? '<a class="btn btn--ghost btn--sm" href="/admin/community/">管理画面</a>' : ''}</div>`; };
+  const drawCard = () => { card.innerHTML = profileCard(p, { self: true }) + `${has('social') ? '<a class="btn btn--ghost btn--sm prof__pp" href="/community/passport/">NIGHT PASSPORT を見る</a>' : ''}<div class="prof__acts"><a class="btn btn--ghost btn--sm" href="/community/u/?h=${encodeURIComponent(p.handle)}">公開プロフィールを見る</a>${p.roles?.length ? '<a class="btn btn--ghost btn--sm" href="/admin/community/">管理画面</a>' : ''}</div>`; };
   drawCard();
+  profileP2(card, p.id);
   if (p.status !== 'active') card.insertAdjacentHTML('beforeend', `<p class="cform__err">${esc(ERR[p.status === 'banned' ? 'account_banned' : 'account_limited'])}</p>`);
 
   const panels = {
@@ -83,21 +105,34 @@ ${self ? '' : '<div class="prof__acts" data-prof-acts></div>'}`;
   const h = (qs.get('h') || '').toLowerCase();
   if (!/^[a-z0-9_]{3,20}$/.test(h)) { box.innerHTML = stateHTML('alert', 'ユーザーが見つかりません'); return; }
   let p;
-  try { [p] = await select('user_profiles', { select: 'id,handle,display_name,avatar_seed,bio,is_private,post_count,helpful_received,created_at', handle: `eq.${h}` }); }
+  try { [p] = await select('user_profiles', { select: `id,handle,display_name,avatar_seed,bio,is_private,post_count,helpful_received,created_at${has('social') ? ',follower_count,following_count' : ''}`, handle: `eq.${h}` }); }
   catch (e) { box.innerHTML = errorHTML(e); return; }
   box.setAttribute('aria-busy', 'false');
   if (!p) { box.innerHTML = stateHTML('alert', 'ユーザーが見つかりません', '退会したか、利用を停止されている可能性があります。'); return; }
   document.title = `${p.display_name}（@${p.handle}）| GLOBAL NIGHT COMMUNITY`;
   box.className = 'prof';
   box.innerHTML = profileCard(p);
+  profileP2(box, p.id);
   const acts = $('[data-prof-acts]', box);
   if (uid() && uid() !== p.id) {
     const [blk] = await select('user_blocks', { select: 'blocked_id', blocker_id: `eq.${uid()}`, blocked_id: `eq.${p.id}` }).catch(() => []);
     let blocked = !!blk;
-    const draw = () => { acts.innerHTML = `<button class="btn btn--${blocked ? 'ghost' : 'danger'} btn--sm" type="button" data-block>${icon('ban', 16)}${blocked ? 'ブロックを解除' : 'ブロックする'}</button><button class="btn btn--ghost btn--sm" type="button" data-report-user>${icon('flag', 16)}通報する</button>`; };
+    let following = false;
+    if (has('social')) following = !!(await select('user_follows', { select: 'followee_id', follower_id: `eq.${uid()}`, followee_id: `eq.${p.id}` }).catch(() => []))[0];
+    const draw = () => { acts.innerHTML = `${has('social') && !blocked ? followBtn(following) : ''}<button class="btn btn--${blocked ? 'ghost' : 'danger'} btn--sm" type="button" data-block>${icon('ban', 16)}${blocked ? 'ブロックを解除' : 'ブロックする'}</button><button class="btn btn--ghost btn--sm" type="button" data-report-user>${icon('flag', 16)}通報する</button>`; };
     draw();
     acts.addEventListener('click', async (e) => {
       if (e.target.closest('[data-report-user]')) openReport('user', p.id);
+      const fb = e.target.closest('[data-follow]');
+      if (fb) {
+        try {
+          await busy(fb, () => rpc('set_follow', { p_user: p.id, p_on: !following }));
+          following = !following;
+          const fc = $('[data-followers]', box); if (fc) fc.textContent = String(Math.max(0, Number(fc.textContent) + (following ? 1 : -1)));
+          draw(); toast(following ? 'フォローしました' : 'フォローを外しました');
+        } catch (ex) { toast(errText(ex)); }
+        return;
+      }
       const b = e.target.closest('[data-block]');
       if (!b) return;
       if (!blocked && !(await confirmBox(`@${p.handle} をブロックしますか？`, 'この人の投稿とコメントが表示されなくなり、あなたの投稿にコメントできなくなります。', 'ブロックする'))) return;

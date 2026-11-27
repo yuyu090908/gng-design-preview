@@ -17,7 +17,7 @@ function postCard(p, { detail = false, preview = false, articleTitles = {} } = {
   const region = [p.country_name, p.city_name, p.area_name].filter(Boolean).join(' / ');
   const art = safePath(p.article_path);
   const tags = [
-    `<span class="ptag ptag--type">${esc(TYPE_L[p.type] || '')}</span>`,
+    p.type === 'live' ? '<span class="ptag ptag--live"><span class="ldot" aria-hidden="true"></span>NIGHT LIVE</span>' : `<span class="ptag ptag--type">${esc(TYPE_L[p.type] || '')}</span>`,
     p.category && CAT_L[p.category] && p.category !== p.type ? `<span class="ptag">${esc(CAT_L[p.category])}</span>` : '',
     p.venue_name ? `<span class="ptag">${icon('pin', 12)}${esc(p.venue_name)}</span>` : '',
     art ? `<a class="ptag" href="${esc(art)}" data-lift>${icon('file', 12)}${esc((articleTitles[art] || '記事').slice(0, 28))}</a>` : '',
@@ -32,11 +32,12 @@ function postCard(p, { detail = false, preview = false, articleTitles = {} } = {
   const long = !detail && (p.body || '').length > 180;
   const title = p.title || (p.type === 'question' ? '質問' : '');
   return `<article class="pc${detail ? ' pc--detail' : ''}" data-post="${esc(p.id)}">
-<header class="pc__hd">${avatar(p.author_avatar)}<div class="pc__who"><a class="pc__name" href="/community/u/?h=${encodeURIComponent(p.author_handle || '')}" data-lift>${esc(p.author_name || 'Night Insider')}</a><span class="pc__sub"><span>@${esc(p.author_handle || '')}</span><span>投稿 ${Number(p.author_posts || 0)}・参考になった ${Number(p.author_helpful || 0)}</span><time datetime="${esc(p.published_at || p.created_at)}">${esc(ago(p.published_at || p.created_at))}</time>${p.edited_at ? '<span>（編集済み）</span>' : ''}</span></div>
+<header class="pc__hd">${avatar(p.author_avatar)}<div class="pc__who"><a class="pc__name" href="/community/u/?h=${encodeURIComponent(p.author_handle || '')}" data-lift>${esc(p.author_name || 'Night Insider')}</a>${rankChip(p.author_rank)}<span class="pc__sub"><span>@${esc(p.author_handle || '')}</span><span>投稿 ${Number(p.author_posts || 0)}・参考になった ${Number(p.author_helpful || 0)}</span><time datetime="${esc(p.published_at || p.created_at)}">${esc(ago(p.published_at || p.created_at))}</time>${p.edited_at ? '<span>（編集済み）</span>' : ''}</span></div>
 ${preview ? '' : `<button class="ibtn ibtn--sm pc__menu" type="button" data-post-menu aria-label="その他の操作" aria-haspopup="menu" data-lift>${icon('more', 18)}</button>`}</header>
 <p class="pc__tags">${tags}</p>
 ${title ? `<h${detail ? 1 : 3} class="pc__title">${detail || preview ? esc(title) : `<a href="${url}">${esc(title)}</a>`}</h${detail ? 1 : 3}>` : ''}
 ${rate}
+${p.type === 'live' ? liveInfo(p) : ''}
 <p class="pc__body${long ? ' is-clamped' : ''}">${esc(p.body)}</p>
 ${long ? '<button class="pc__more" type="button" data-more>続きを読む</button>' : ''}
 ${extra ? `<p class="pc__spend">${extra}</p>` : ''}

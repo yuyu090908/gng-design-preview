@@ -68,14 +68,14 @@ npm run test:e2e     # 画面の操作テスト（Playwright）
 
 Lighthouse の集計は `npx lighthouse ... --output=json` の結果フォルダに対して `node scripts/lighthouse-summary.mjs <フォルダ>` で表にできます。
 
-## GLOBAL NIGHT COMMUNITY（Phase 1・機能フラグで段階公開）
+## GLOBAL NIGHT COMMUNITY（Phase 1〜2・機能フラグで段階公開）
 
 コミュニティ（掲示板・口コミ・コメント・参考になった・保存・通報・ブロック・プロフィール・管理画面）は、
 ブラウザから Supabase（PostgreSQL・Auth・Storage）に直接つなぐ。**既定ではすべて OFF** で、OFF のビルドは従来とまったく同じ HTML になる。
 
 | 変数 | 説明 |
 | --- | --- |
-| `GNG_FEATURES` | `all`（Phase 1 すべて）、または `community,reviews,admin` を選んで有効化。空なら無効 |
+| `GNG_FEATURES` | `all`（実装済みすべて）、`phase1`（Phase 1 だけ）、または `community,reviews,admin,social,live,pulse` から選んで有効化。空なら無効。`social` / `live` / `pulse` は Phase 2 のマイグレーションを適用してから |
 | `SUPABASE_URL` | `https://<project>.supabase.co` |
 | `SUPABASE_ANON_KEY` | 公開用の anon キー（**service_role キーは入れない**。入れるとビルドを止める） |
 
@@ -83,6 +83,8 @@ Lighthouse の集計は `npx lighthouse ... --output=json` の結果フォルダ
 - 権限：読み取りは RLS、書き込みはすべて DB 関数（RPC）経由。本人確認・入力検証・回数制限・集計・監査ログを DB 側で行う
 - 最初の管理者：SQL Editor で `insert into user_roles (user_id, role) select id, 'admin' from user_profiles where handle = '<ユーザー名>';`
 - ページ：`/community/`（一覧）、`/community/new/`（投稿）、`/community/post/?id=`、`/community/u/?h=`、`/community/me/`、`/community/login/`、`/community/rules/`、`/admin/community/`。記事ページに「口コミ・質問」欄、TOP にダイジェスト
+- Phase 2：`/community/live/`（NIGHT LIVE・24 時間以内）、`/community/pulse/`（NIGHT PULSE）、`/community/passport/`（ランク・XP・バッジ・TRUST SCORE）、`/community/notifications/`（通知センター）、プロフィールのフォロー、フィードの「フォロー中」、質問のベストアンサー、管理画面の XP 調整・お知らせ
+- XP はサーバーだけで付与（台帳 `experience_transactions` に冪等キー付きで記録）。自分への評価・作成 24 時間以内のアカウント・同じ相手からの 30 日 4 回目以降・1 日 100 XP 超は付与しない
 
 ### テスト
 

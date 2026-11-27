@@ -16,7 +16,7 @@ import { loadSite } from './lib/data.mjs';
 import { makeLinker, href } from './lib/content.mjs';
 import { PATHS, COM_PATHS } from './lib/icons.mjs';
 import { COMMUNITY, feature, FEATURES, BACKEND } from './lib/features.mjs';
-import { communityPage, postPage, composerPage, loginPage, mePage, profilePage, rulesPage, adminPage } from './lib/community.mjs';
+import { communityPage, postPage, composerPage, loginPage, mePage, profilePage, rulesPage, adminPage, livePage, passportPage, notificationsPage, pulsePage } from './lib/community.mjs';
 import { CANONICAL, INDEXABLE } from './lib/components.mjs';
 import { setArt, homePage, categoryPages, newPages, featuresPage, areaPage, rankingPage, guidePage, faqPage, articlePage, staticPage, searchPage, dashboardPage, notFoundPage } from './lib/pages.mjs';
 
@@ -170,6 +170,9 @@ async function build() {
     await put('/community/rules/', rulesPage(site, assets));
     for (const [p, fn] of [['/community/post/', postPage], ['/community/new/', composerPage], ['/community/login/', loginPage], ['/community/me/', mePage], ['/community/u/', profilePage]]) await write(p, fn(site, assets));
     if (feature('admin')) await write('/admin/community/', adminPage(site, assets));
+    if (feature('live')) await put('/community/live/', livePage(site, assets));
+    if (feature('pulse')) await put('/community/pulse/', pulsePage(site, assets));
+    if (feature('social')) { await write('/community/passport/', passportPage(site, assets)); await write('/community/notifications/', notificationsPage(site, assets)); }
     console.log(`community: ${[...FEATURES].join(', ')}${BACKEND.ready ? '' : '（接続先が未設定のため「準備中」と表示）'}`);
   }
 
@@ -182,7 +185,7 @@ async function build() {
   const sm = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map((u) => `<url><loc>${CANONICAL}${href(u.path)}</loc>${u.lastmod ? `<lastmod>${u.lastmod.slice(0, 10)}</lastmod>` : ''}</url>`).join('\n')}\n</urlset>\n`;
   await write('/sitemap.xml', sm);
   await write('/robots.txt', INDEXABLE
-    ? `User-agent: *\nAllow: /\nDisallow: /my-dashboard/\nDisallow: /search/\n${COMMUNITY ? 'Disallow: /admin/\nDisallow: /community/login/\nDisallow: /community/me/\nDisallow: /community/new/\n' : ''}\nSitemap: ${CANONICAL}/sitemap.xml\n`
+    ? `User-agent: *\nAllow: /\nDisallow: /my-dashboard/\nDisallow: /search/\n${COMMUNITY ? `Disallow: /admin/\nDisallow: /community/login/\nDisallow: /community/me/\nDisallow: /community/new/\n${feature('social') ? 'Disallow: /community/passport/\nDisallow: /community/notifications/\n' : ''}` : ''}\nSitemap: ${CANONICAL}/sitemap.xml\n`
     : `# プレビュー環境のため、検索エンジンには登録しない（本番公開時は INDEXABLE=1 でビルド）\nUser-agent: *\nDisallow: /\n`);
 
   console.log(`built ${urls.length + 3} pages — ${site.posts.length} posts, ${site.cats.filter((c) => c.posts.length).length} categories, ${site.pages.length} pages, ranking ${site.popular.length} (${((Date.now() - t0) / 1000).toFixed(1)}s)`);

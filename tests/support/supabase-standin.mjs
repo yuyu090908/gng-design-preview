@@ -66,7 +66,7 @@ export async function startStandin({ port, database, pgHost = process.env.PGHOST
       const fn = path.slice(4);
       const args = body || {};
       const keys = Object.keys(args);
-      const params = keys.map((k) => (args[k] !== null && typeof args[k] === 'object' ? JSON.stringify(args[k]) : args[k] === null || args[k] === undefined ? null : String(args[k])));
+      const params = keys.map((k) => (Array.isArray(args[k]) && args[k].every((x) => typeof x !== "object") ? `{${args[k].join(",")}}` : args[k] !== null && typeof args[k] === "object" ? JSON.stringify(args[k]) : args[k] === null || args[k] === undefined ? null : String(args[k])));
       const r = await asUser(u, `select to_jsonb(${ident(fn)}(${keys.map((k, i) => `${ident(k)} => $${i + 1}`).join(', ')})) as r`, params);
       return send(res, 200, r.rows[0]?.r ?? null);
     }

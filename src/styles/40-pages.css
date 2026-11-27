@@ -423,3 +423,11 @@
 .mfig__note { position: absolute; left: 8px; bottom: 8px; padding: 3px 8px; border-radius: 999px; font-size: 11px; line-height: 1.4; color: #f5f7fa; background: rgba(9,11,16,.72); backdrop-filter: blur(4px); }
 @media (min-width: 768px) { .lintro__grid { grid-template-columns: minmax(220px, 300px) 1fr; align-items: stretch; } .mfig--portrait { aspect-ratio: 3 / 4; } }
 .chero__note { display: inline-block; margin: 0 0 8px; padding: 2px 8px; border-radius: 999px; font-size: 11px; line-height: 1.5; color: #f5f7fa; background: rgba(9,11,16,.6); }
+/* グリッドの子が画像の元の幅で広がらないようにする */
+.lintro__grid > * { min-width: 0; }
+.mfig picture { display: block; width: 100%; height: 100%; }
+@media (min-width: 768px) {
+  .lintro__grid { grid-template-columns: minmax(200px, 280px) minmax(0, 1fr); }
+  .mfig--wide { flex: 1 1 auto; aspect-ratio: auto; min-height: 180px; }
+  .mfig--wide .mfig__img { object-position: 70% 40%; }
+}

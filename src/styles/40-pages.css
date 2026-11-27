@@ -411,24 +411,23 @@
 .nf--art { position: relative; isolation: isolate; overflow: hidden; border-radius: var(--r-panel); }
 .nf__bg { opacity: .5; -webkit-mask-image: linear-gradient(0deg, transparent 0, #000 70%); mask-image: linear-gradient(0deg, transparent 0, #000 70%); }
 [data-theme="light"] .nf__bg { opacity: .14; }
-/* キャバクラの紹介：ポートレート（3:4）と出迎えの画像。人物には必ず「AI生成のイメージモデル」の注記 */
-.lintro__grid { display: grid; gap: var(--gap, 16px); }
-.lintro__b { display: flex; flex-direction: column; gap: 12px; }
+/* キャバクラの紹介：ポートレート・説明・出迎えの画像。人物には必ず「AI生成のイメージモデル」の注記 */
+.lintro__grid { display: grid; gap: 16px; }
+.lintro__grid > * { min-width: 0; }
+.lintro__b { display: flex; flex-direction: column; justify-content: center; gap: 12px; }
 .lintro__b p { margin: 0; line-height: 1.85; color: var(--c-text-sub, #9299a8); }
 .mfig { position: relative; margin: 0; overflow: hidden; border-radius: var(--r-card, 14px); background: #10131b; }
-.mfig__img { display: block; width: 100%; height: 100%; object-fit: cover; }
-.mfig--portrait { aspect-ratio: 4 / 5; }
-.mfig--portrait .mfig__img { object-position: 60% 25%; }
-.mfig--wide { aspect-ratio: 16 / 9; margin-top: auto; }
-.mfig__note { position: absolute; left: 8px; bottom: 8px; padding: 3px 8px; border-radius: 999px; font-size: 11px; line-height: 1.4; color: #f5f7fa; background: rgba(9,11,16,.72); backdrop-filter: blur(4px); }
-@media (min-width: 768px) { .lintro__grid { grid-template-columns: minmax(220px, 300px) 1fr; align-items: stretch; } .mfig--portrait { aspect-ratio: 3 / 4; } }
-.chero__note { display: inline-block; margin: 0 0 8px; padding: 2px 8px; border-radius: 999px; font-size: 11px; line-height: 1.5; color: #f5f7fa; background: rgba(9,11,16,.6); }
-/* グリッドの子が画像の元の幅で広がらないようにする */
-.lintro__grid > * { min-width: 0; }
 .mfig picture { display: block; width: 100%; height: 100%; }
-@media (min-width: 768px) {
-  .lintro__grid { grid-template-columns: minmax(200px, 280px) minmax(0, 1fr); }
-  .mfig--wide { flex: 1 1 auto; aspect-ratio: auto; min-height: 180px; }
-  .mfig--wide .mfig__img { object-position: 70% 40%; }
+.mfig__img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.mfig--portrait { aspect-ratio: 1 / 1; }
+.mfig--portrait .mfig__img { object-position: 50% 18%; }
+.mfig--wide { aspect-ratio: 4 / 3; }
+.mfig--wide .mfig__img { object-position: 78% 40%; }
+.mfig__note { position: absolute; left: 8px; right: 8px; bottom: 8px; width: fit-content; padding: 3px 8px; border-radius: 10px; font-size: 11px; line-height: 1.4; color: #f5f7fa; background: rgba(9,11,16,.72); }
+@media (min-width: 640px) and (max-width: 1023px) { .lintro__grid { grid-template-columns: 1fr 1fr; } .lintro__b { grid-column: 1 / -1; grid-row: 1; } }
+@media (min-width: 1024px) {
+  .lintro__grid { grid-template-columns: 240px minmax(0, 1fr) 300px; height: 340px; }
+  .mfig--portrait, .mfig--wide { aspect-ratio: auto; height: 100%; }
+  .mfig--portrait .mfig__img { object-position: 50% 20%; }
 }
-@media (max-width: 767px) { .mfig--portrait { aspect-ratio: 1 / 1; } .mfig--portrait .mfig__img { object-position: 50% 18%; } }
+.chero__note { display: inline-block; margin: 0 0 8px; padding: 2px 8px; border-radius: 999px; font-size: 11px; line-height: 1.5; color: #f5f7fa; background: rgba(9,11,16,.6); }

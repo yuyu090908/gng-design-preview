@@ -133,7 +133,8 @@ test('ジャンルのページはそのジャンルの背景を使い、映像�
   for (const { f, $ } of pages) {
     if ($('[data-listing]').length) assert.ok($('[data-cv]').length <= 1, `${f}: 映像が ${$('[data-cv]').length} 本`);
     const h1 = $('.chero h1').first().text().replace(/（.*$/, '');
-    const k = want[h1];
+    // 5.0：キャバクラは人物入りの映像（genre-lounge-cast）があればそちらを使う
+    const k = h1 === 'キャバクラ' && has('genre-lounge-cast') ? 'genre-lounge-cast' : want[h1];
     if (k && has(k) && $('[data-listing]').length) assert.ok($(`.chero .cv--${k}`).length, `${f}: ${k} の背景がない`);
   }
 });
@@ -143,4 +144,12 @@ test('国内ジャンルとテーマの一覧・特集ページに、ジャン�
   if (!feat.$('.area--genre').length) return; // 素材が無いビルドでは出さない
   assert.ok(feat.$('.gband').length, '特集ページに帯がない');
   for (const { f, $ } of pages) if ($('.area--genre[aria-current="page"]').length) assert.ok($('.carousel--genre .carousel__item').first().find('[aria-current="page"]').length, `${f}: いまのジャンルが先頭にない`);
+});
+
+test('5.0：人物の画像には AI 生成のイメージモデルの注記がある', () => {
+  for (const { f, $ } of pages) {
+    $('.mfig').each((_, el) => assert.ok($(el).find('.mfig__note').text().includes('AI生成のイメージモデル'), `${f}: 人物の画像に注記がない`));
+    if ($('.chero .cv--genre-lounge-cast').length) assert.ok($('.chero__note').text().includes('AI生成のイメージモデル'), `${f}: 人物入りのヒーローに注記がない`);
+    assert.ok(!$('.area--genre .cv--genre-lounge-cast, .area--genre img[src*="genre-lounge-cast"]').length, `${f}: ジャンルカードに人物の画像`);
+  }
 });

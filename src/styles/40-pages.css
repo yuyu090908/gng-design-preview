@@ -395,3 +395,31 @@
   .chero__t { font-size: 40px; }
 }
 .area--genre .area__en, .area__n { white-space: nowrap; }
+
+/* ---------- 5.0 見出しの背景画像・キャバクラの紹介 ---------- */
+/* 文字だけだった見出し（エリア情報・ランキング・よくある質問・検索・固定ページ）に背景の静止画を敷く */
+.ph--art { min-height: 168px; display: flex; flex-direction: column; justify-content: flex-end; }
+.ph--art .ph__art { -webkit-mask-image: linear-gradient(90deg, rgba(0,0,0,.18) 0, #000 60%); mask-image: linear-gradient(90deg, rgba(0,0,0,.18) 0, #000 60%); opacity: 1; }
+.ph--art::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: linear-gradient(90deg, rgba(9,11,16,.88) 0, rgba(9,11,16,.55) 45%, rgba(9,11,16,.12) 100%), linear-gradient(0deg, rgba(9,11,16,.7) 0, transparent 60%); }
+.ph--art .ph__d { max-width: 560px; }
+.rd__hd.ph--art { position: relative; isolation: isolate; overflow: hidden; padding: 4px 16px 18px; }
+@media (min-width: 768px) { .ph--art { min-height: 200px; } .rd__hd.ph--art { border-radius: var(--r-panel); border: 1px solid var(--c-border); padding: 6px 24px 22px; } }
+[data-theme="light"] .ph--art::after { background: linear-gradient(90deg, rgba(255,255,255,.92) 0, rgba(255,255,255,.7) 55%, rgba(255,255,255,.35) 100%); }
+.ph--page-area .ph__art { object-position: 80% 50%; }
+.ph--page-ranking .ph__art, .ph--page-faq .ph__art, .ph--page-search .ph__art { object-position: 85% 50%; }
+/* 404 */
+.nf--art { position: relative; isolation: isolate; overflow: hidden; border-radius: var(--r-panel); }
+.nf__bg { opacity: .5; -webkit-mask-image: linear-gradient(0deg, transparent 0, #000 70%); mask-image: linear-gradient(0deg, transparent 0, #000 70%); }
+[data-theme="light"] .nf__bg { opacity: .14; }
+/* キャバクラの紹介：ポートレート（3:4）と出迎えの画像。人物には必ず「AI生成のイメージモデル」の注記 */
+.lintro__grid { display: grid; gap: var(--gap, 16px); }
+.lintro__b { display: flex; flex-direction: column; gap: 12px; }
+.lintro__b p { margin: 0; line-height: 1.85; color: var(--c-text-sub, #9299a8); }
+.mfig { position: relative; margin: 0; overflow: hidden; border-radius: var(--r-card, 14px); background: #10131b; }
+.mfig__img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.mfig--portrait { aspect-ratio: 4 / 5; }
+.mfig--portrait .mfig__img { object-position: 60% 25%; }
+.mfig--wide { aspect-ratio: 16 / 9; margin-top: auto; }
+.mfig__note { position: absolute; left: 8px; bottom: 8px; padding: 3px 8px; border-radius: 999px; font-size: 11px; line-height: 1.4; color: #f5f7fa; background: rgba(9,11,16,.72); backdrop-filter: blur(4px); }
+@media (min-width: 768px) { .lintro__grid { grid-template-columns: minmax(220px, 300px) 1fr; align-items: stretch; } .mfig--portrait { aspect-ratio: 3 / 4; } }
+.chero__note { display: inline-block; margin: 0 0 8px; padding: 2px 8px; border-radius: 999px; font-size: 11px; line-height: 1.5; color: #f5f7fa; background: rgba(9,11,16,.6); }

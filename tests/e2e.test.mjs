@@ -318,7 +318,7 @@ test('背景映像：ポスターが先に出て、画面内の映像だけが�
   await page.waitForSelector('.hero .cv video.cv__video', { state: 'attached' });
   const v = await page.$eval('.hero .cv video', (el) => ({ muted: el.muted, loop: el.loop, inline: el.playsInline, src: el.getAttribute('src') }));
   assert.deepEqual([v.muted, v.loop, v.inline], [true, true, true]);
-  assert.match(v.src, /home-tokyo-desktop\.[0-9a-f]+\.mp4$/);
+  assert.match(v.src, /home-(global|tokyo)-desktop\.[0-9a-f]+\.mp4$/);
   // 地球のパネルは画面外なので、まだ動画を作らない
   assert.equal(await page.$('.earth .cv video'), null);
   await page.locator('.earth').scrollIntoViewIfNeeded();

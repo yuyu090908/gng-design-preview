@@ -1,5 +1,5 @@
 {
- "version": "4.4",
+ "version": "5.0",
  "generated": "2026-11-27",
  "note": "映像・写真素材の台帳。素材は src/media/<種類>/ に置き、ビルド時に各ファイルの SHA-256 を照合してから dist/assets/media/ に書き出す。",
  "encoding": {
@@ -2174,6 +2174,1637 @@
      "path": "heroes/theme-guide-poster-960.webp",
      "bytes": 31926,
      "sha256": "22c008cb54e98f5853e69151b93c6278285e8021a1b2710733f01e33c6db0f77"
+    }
+   ]
+  },
+  {
+   "id": "GNG50-001",
+   "key": "heroes/home-global",
+   "type": "video",
+   "page": "TOP（/）",
+   "component": "ヒーローの背景映像（10秒）",
+   "description": "世界の夜景とルーフトップのテラス",
+   "model": {
+    "still": "gpt_image_2_6 (Higgsfield)",
+    "video": "minimax_h3_max 768p (Higgsfield)"
+   },
+   "source": {
+    "stillJob": "c6cdd183-96d3-4acb-b99f-1830c5b4ebbb",
+    "videoJob": "40ce5cfa-86c7-44a3-b725-a9b26c39fb92",
+    "loop": "start_image = end_image（同じ静止画）"
+   },
+   "prompt": {
+    "still": "Ultra-photorealistic premium editorial photograph, a breathtaking global nightlife panorama at blue hour turning to night: a sophisticated metropolitan skyline inspired by Tokyo and Bangkok, an elegant rooftop lounge terrace in the foreground with low warm lamps and an empty marble bar edge, wet reflective pavement and glass towers far below, distant river with soft city reflections. Deep midnight navy and black palette with refined warm champagne-gold light, controlled highlights, soft atmospheric depth, high-end cinematic color grading consistent with a luxury travel magazine. Main subject placed on the right third; the left 45% kept as dark, quiet negative space for website typography. Wide 16:9 composition. No text, no letters, no signage text, no logos, no watermark, no UI, no oversaturated neon, no cheap advertisement look, no distorted geometry. Empty scene with no people.",
+    "video": "Animate the reference image into a calm premium cinematic background loop. Locked-off, stabilized camera with an extremely slow, subtle drift that returns exactly to the original framing at the end. Only gentle natural motion: city lights far below twinkle softly, gentle reflections shimmer on the wet terrace floor, the table lamp glows steadily, a faint slow drift of clouds in the night sky, no people. Preserve the composition, the lighting and the color grading exactly. Keep the left side dark and still. No cuts, no zoom jumps, no camera shake, no flashing lights, no new objects, no morphing, no text, no audio."
+   },
+   "aiGenerated": true,
+   "people": false,
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真・人物・店舗ではない。人物なし。",
+   "status": "implemented",
+   "files": [
+    {
+     "path": "heroes/home-global-desktop.mp4",
+     "bytes": 874972,
+     "sha256": "7a4284f31dd0051622177f2a380d71802cebe6c7d65938ae87278c6e90fc43a7"
+    },
+    {
+     "path": "heroes/home-global-mobile.mp4",
+     "bytes": 151675,
+     "sha256": "0cf7cc0ef3a980be849ab104d9aa1230ef7a6686681ee05782051f7a4acc8cee"
+    },
+    {
+     "path": "heroes/home-global-poster-1280.avif",
+     "bytes": 60692,
+     "sha256": "1b587ff1f639fad3a380ba70f661072af8ef339bc8240a0c6e58bb6380ac100f"
+    },
+    {
+     "path": "heroes/home-global-poster-1280.webp",
+     "bytes": 79750,
+     "sha256": "ee524ebaafdccb250935d748488899f39fdc08625a4ce7bc8dfed55f1283ad1a"
+    },
+    {
+     "path": "heroes/home-global-poster-640.avif",
+     "bytes": 19266,
+     "sha256": "4d612cd0b7c68f6631a9cf0020bcc4bfcf2ee9be866e80d6e23050ce70dfc932"
+    },
+    {
+     "path": "heroes/home-global-poster-640.webp",
+     "bytes": 24576,
+     "sha256": "46d246645ba4214910c0ebe9ee29e3aac4170d1ea60a925c826acc0f36da3208"
+    },
+    {
+     "path": "heroes/home-global-poster-960.avif",
+     "bytes": 38430,
+     "sha256": "93c2e059f2a1a60b244904fcd8b20d80387607b1d2b5a7ec263753d6c6249403"
+    },
+    {
+     "path": "heroes/home-global-poster-960.webp",
+     "bytes": 49974,
+     "sha256": "6fbdf1adc1c639ee1a199bfbd1591e7ea4cac65ae9cf51932ca118721eb2b1a8"
+    }
+   ]
+  },
+  {
+   "id": "GNG50-002",
+   "key": "heroes/genre-lounge-cast",
+   "type": "video",
+   "page": "キャバクラのヒーロー・ジャンルカード",
+   "component": "ヒーローの背景映像",
+   "description": "ドレスの女性2人がいるシャンデリアのラウンジ",
+   "model": {
+    "still": "gpt_image_2_6 (Higgsfield)",
+    "video": "minimax_h3_max 768p (Higgsfield)"
+   },
+   "source": {
+    "stillJob": "885105c4-14b0-489f-8d67-41d6e6d910c8",
+    "videoJob": "925c4b7f-e97b-44a8-840a-91d9f195947a",
+    "loop": "start_image = end_image（同じ静止画）"
+   },
+   "prompt": {
+    "still": "Ultra-photorealistic premium editorial photograph, an ultra-luxury Japanese evening lounge interior with a soft crystal chandelier, black velvet sofas and dark marble table with champagne glasses; two elegant adult Japanese women aged 25 to 35 in sophisticated modest evening gowns (one deep navy, one champagne) seated gracefully and talking with a natural smile, placed on the right third, faces softly lit, calm hospitality atmosphere. Clearly adult fictional model in her late twenties to thirties, elegant modest attire, natural relaxed expression, realistic skin texture with natural pores, anatomically correct hands with five fingers, natural eyes and teeth, tasteful non-sexual editorial composition, no cleavage emphasis, no suggestive pose, no beauty filter, no plastic skin. Deep midnight navy and black palette with refined warm champagne-gold light, controlled highlights, soft atmospheric depth, high-end cinematic color grading consistent with a luxury travel magazine. Main subject placed on the right third; the left 45% kept as dark, quiet negative space for website typography. Wide 16:9 composition. No text, no letters, no signage text, no logos, no watermark, no UI, no oversaturated neon, no cheap advertisement look, no distorted geometry.",
+    "video": "Animate the reference image into a calm premium cinematic background loop. Locked-off, stabilized camera with an extremely slow, subtle drift that returns exactly to the original framing at the end. Only gentle natural motion: the chandelier crystals sparkle softly, candle flames flicker gently, the two women continue a relaxed conversation with small natural gestures and smiles, one slowly raises her glass slightly The people keep consistent faces, bodies, hands and clothing throughout; slow natural movements only; no face changes, no extra limbs.. Preserve the composition, the lighting and the color grading exactly. Keep the left side dark and still. No cuts, no zoom jumps, no camera shake, no flashing lights, no new objects, no morphing, no text, no audio."
+   },
+   "aiGenerated": true,
+   "people": true,
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真・人物・店舗ではない。人物は架空の成人モデル。サイトでは「AI生成のイメージモデル（在籍キャストではありません）」と注記する。",
+   "status": "implemented",
+   "files": [
+    {
+     "path": "heroes/genre-lounge-cast-desktop.mp4",
+     "bytes": 329383,
+     "sha256": "5e365e1d6190415ebce48149bd53af92fae88a43261c772e8ee29f2e5aedf13d"
+    },
+    {
+     "path": "heroes/genre-lounge-cast-mobile.mp4",
+     "bytes": 93588,
+     "sha256": "201500cd995a9b289546b30fadda3eb8003f49c3aa917a74649a6a35edfabde3"
+    },
+    {
+     "path": "heroes/genre-lounge-cast-poster-1280.avif",
+     "bytes": 32695,
+     "sha256": "c3b759c560b8081bb368912ef97c8562cb059a34f7cc1996f071565ad2a7b953"
+    },
+    {
+     "path": "heroes/genre-lounge-cast-poster-1280.webp",
+     "bytes": 42442,
+     "sha256": "b80d79442396de5fd9c217a21415bec5a88d15bfdf16f60b616771308fac9e8a"
+    },
+    {
+     "path": "heroes/genre-lounge-cast-poster-640.avif",
+     "bytes": 13314,
+     "sha256": "98d7917289c5563cdfc6e2701f0498e01a5be531b3e5c39b8f9b2970d60e9682"
+    },
+    {
+     "path": "heroes/genre-lounge-cast-poster-640.webp",
+     "bytes": 17970,
+     "sha256": "848b5026848d441866ac53b76edfcb63e3263e9b634986b7b025a0497bdd8146"
+    },
+    {
+     "path": "heroes/genre-lounge-cast-poster-960.avif",
+     "bytes": 22437,
+     "sha256": "71eadcdfbd425e95e60991f4b5a445357533773dccbb65804228389c16d5382e"
+    },
+    {
+     "path": "heroes/genre-lounge-cast-poster-960.webp",
+     "bytes": 29736,
+     "sha256": "c55fd27464cf0a1afbebf362b0b5e8f2b81927b926ea2fdf392e3f973629f37b"
+    }
+   ]
+  },
+  {
+   "id": "GNG50-003",
+   "key": "heroes/lounge-portrait",
+   "type": "image",
+   "page": "キャバクラ「キャバクラの楽しみ方」",
+   "component": "ポートレート 3:4",
+   "description": "黒のイブニングドレスの女性",
+   "model": {
+    "still": "gpt_image_2_6 (Higgsfield)"
+   },
+   "source": {
+    "stillJob": "22760209-9568-477d-9f20-bbbb9935f3eb"
+   },
+   "prompt": {
+    "still": "Ultra-photorealistic premium fashion editorial portrait, an elegant adult Japanese woman aged about 28 wearing a sophisticated long-sleeve black evening gown with a high neckline, refined natural makeup, softly styled dark hair, gentle welcoming smile, standing beside a velvet sofa in an ultra-luxury Japanese evening lounge with a soft crystal chandelier glow behind her, warm champagne-gold studio lighting, deep navy and black background, vertical 3:4 composition, subject centered with head and shoulders fully in frame and room above the head, three-quarter length. Clearly adult fictional model in her late twenties to thirties, elegant modest attire, natural relaxed expression, realistic skin texture with natural pores, anatomically correct hands with five fingers, natural eyes and teeth, tasteful non-sexual editorial composition, no cleavage emphasis, no suggestive pose, no beauty filter, no plastic skin. No text, no logos, no watermark."
+   },
+   "aiGenerated": true,
+   "people": true,
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真・人物・店舗ではない。人物は架空の成人モデル。サイトでは「AI生成のイメージモデル（在籍キャストではありません）」と注記する。",
+   "status": "implemented",
+   "files": [
+    {
+     "path": "heroes/lounge-portrait-480.avif",
+     "bytes": 16100,
+     "sha256": "c09a779d2829732f22ce02a885ebb5ab01aac613331748699a66b826c66f00b9"
+    },
+    {
+     "path": "heroes/lounge-portrait-480.webp",
+     "bytes": 21504,
+     "sha256": "1192d351b2641646adf59e5e15d1f1d6f85fab65bf51e0ffbe9c09654b16042e"
+    },
+    {
+     "path": "heroes/lounge-portrait-960.avif",
+     "bytes": 38451,
+     "sha256": "b769859e0237fbdb99696e8907b4fe69e8f28e6d39225490082d3bfe3927889d"
+    },
+    {
+     "path": "heroes/lounge-portrait-960.webp",
+     "bytes": 49220,
+     "sha256": "8e91e1813e4299d8e495a645f353f37825ad92d07503e0d58d8fc6a9f362af85"
+    }
+   ]
+  },
+  {
+   "id": "GNG50-004",
+   "key": "heroes/lounge-welcome",
+   "type": "image",
+   "page": "キャバクラ「キャバクラの楽しみ方」",
+   "component": "紹介の画像 16:9",
+   "description": "ラウンジで客を出迎えるスタッフ",
+   "model": {
+    "still": "gpt_image_2_6 (Higgsfield)"
+   },
+   "source": {
+    "stillJob": "56493c91-9fde-4849-9435-6a8f0a354e01"
+   },
+   "prompt": {
+    "still": "Ultra-photorealistic premium editorial photograph, an elegant adult hostess in a modest navy floor-length evening gown and a male manager in a black tuxedo politely welcoming arriving guests at the entrance of a sophisticated Japanese evening lounge, soft chandelier light, velvet seating and dark marble in the background, respectful composition, people placed on the right half, guests seen from behind. Clearly adult fictional model in her late twenties to thirties, elegant modest attire, natural relaxed expression, realistic skin texture with natural pores, anatomically correct hands with five fingers, natural eyes and teeth, tasteful non-sexual editorial composition, no cleavage emphasis, no suggestive pose, no beauty filter, no plastic skin. Deep midnight navy and black palette with refined warm champagne-gold light, controlled highlights, soft atmospheric depth, high-end cinematic color grading consistent with a luxury travel magazine. Main subject placed on the right third; the left 45% kept as dark, quiet negative space for website typography. Wide 16:9 composition. No text, no letters, no signage text, no logos, no watermark, no UI, no oversaturated neon, no cheap advertisement look, no distorted geometry."
+   },
+   "aiGenerated": true,
+   "people": true,
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真・人物・店舗ではない。人物は架空の成人モデル。サイトでは「AI生成のイメージモデル（在籍キャストではありません）」と注記する。",
+   "status": "implemented",
+   "files": [
+    {
+     "path": "heroes/lounge-welcome-poster-1280.avif",
+     "bytes": 23807,
+     "sha256": "99b4c37feb6674632acb72e789b9766532a6d6a4c451b68715e4c1f425640767"
+    },
+    {
+     "path": "heroes/lounge-welcome-poster-1280.webp",
+     "bytes": 28992,
+     "sha256": "7ec1669efe33d643b22cea90965c150142b8dceb4c18a0e7dda8652e6734df8e"
+    },
+    {
+     "path": "heroes/lounge-welcome-poster-640.avif",
+     "bytes": 9921,
+     "sha256": "da44c4c25288331c2c3d2d0a4e24cbb933db706f62a6193a48f48dde67175c6d"
+    },
+    {
+     "path": "heroes/lounge-welcome-poster-640.webp",
+     "bytes": 11752,
+     "sha256": "d936842da681e0bc8320a309894d1cec6ff3415c89fbe35259ffdf58d465842e"
+    },
+    {
+     "path": "heroes/lounge-welcome-poster-960.avif",
+     "bytes": 16611,
+     "sha256": "b217d3f3b8e06afa4ad31f32a398326b761e85ce4a385641502420e16025821e"
+    },
+    {
+     "path": "heroes/lounge-welcome-poster-960.webp",
+     "bytes": 19906,
+     "sha256": "7e55ae6904efc9a528e74b894793f44af0a6f45ccdd4e93b503428cd2253bed9"
+    }
+   ]
+  },
+  {
+   "id": "GNG50-005",
+   "key": "heroes/page-area",
+   "type": "image",
+   "page": "エリア情報（/area/）",
+   "component": "見出しの背景",
+   "description": "真鍮のコンパスとアジアの地図",
+   "model": {
+    "still": "gpt_image_2_6 (Higgsfield)"
+   },
+   "source": {
+    "stillJob": "c42fdf09-6d75-4029-a2af-7482a2a26f5c"
+   },
+   "prompt": {
+    "still": "Ultra-photorealistic premium editorial photograph, an antique brass navigation compass and a folded vintage map of East and Southeast Asia on a dark walnut desk, a small brass desk lamp glowing, night city lights blurred through a window behind. Deep midnight navy and black palette with refined warm champagne-gold light, controlled highlights, soft atmospheric depth, high-end cinematic color grading consistent with a luxury travel magazine. Main subject placed on the right third; the left 45% kept as dark, quiet negative space for website typography. Wide 16:9 composition. No text, no letters, no signage text, no logos, no watermark, no UI, no oversaturated neon, no cheap advertisement look, no distorted geometry. Empty scene with no people."
+   },
+   "aiGenerated": true,
+   "people": false,
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真・人物・店舗ではない。人物なし。",
+   "status": "implemented",
+   "files": [
+    {
+     "path": "heroes/page-area-poster-1280.avif",
+     "bytes": 43442,
+     "sha256": "b84542041bb5fd6cd4519022d16cb6618d2dfbb303f781a1d8750e9d1f1b65f6"
+    },
+    {
+     "path": "heroes/page-area-poster-1280.webp",
+     "bytes": 61750,
+     "sha256": "fbffd2c201c7b15841d0ea5723d183d46721e87aac1955130165c77015673ce4"
+    },
+    {
+     "path": "heroes/page-area-poster-640.avif",
+     "bytes": 14782,
+     "sha256": "6b9dd4ec454c67eb531b84a63075cdc7b8c02a12da9df6db5a6110c6abbb5723"
+    },
+    {
+     "path": "heroes/page-area-poster-640.webp",
+     "bytes": 20882,
+     "sha256": "eb531dfc696d932253fec3af78fff1e8b601f5afc095e57094d5f5759d3f38ae"
+    },
+    {
+     "path": "heroes/page-area-poster-960.avif",
+     "bytes": 28334,
+     "sha256": "f9c38f8af0fd0f3193d4e08dd4533ef0df2f0a38df4a25422da1cfb06bec7b0e"
+    },
+    {
+     "path": "heroes/page-area-poster-960.webp",
+     "bytes": 39722,
+     "sha256": "501f643b65efed195dadfff0631e9ac0865cf03e23d236591b9d8beb5c92e337"
+    }
+   ]
+  },
+  {
+   "id": "GNG50-006",
+   "key": "heroes/page-ranking",
+   "type": "image",
+   "page": "ランキング（/ranking/）",
+   "component": "見出しの背景",
+   "description": "金の月桂樹とグラス",
+   "model": {
+    "still": "gpt_image_2_6 (Higgsfield)"
+   },
+   "source": {
+    "stillJob": "eec2f587-6cb0-402d-b599-d22e201a20c3"
+   },
+   "prompt": {
+    "still": "Ultra-photorealistic premium editorial photograph, a minimalist golden laurel wreath sculpture and three crystal coupe glasses arranged in ascending height on a black marble pedestal, dramatic soft spotlight, night lounge bokeh in the background. Deep midnight navy and black palette with refined warm champagne-gold light, controlled highlights, soft atmospheric depth, high-end cinematic color grading consistent with a luxury travel magazine. Main subject placed on the right third; the left 45% kept as dark, quiet negative space for website typography. Wide 16:9 composition. No text, no letters, no signage text, no logos, no watermark, no UI, no oversaturated neon, no cheap advertisement look, no distorted geometry. Empty scene with no people."
+   },
+   "aiGenerated": true,
+   "people": false,
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真・人物・店舗ではない。人物なし。",
+   "status": "implemented",
+   "files": [
+    {
+     "path": "heroes/page-ranking-poster-1280.avif",
+     "bytes": 29590,
+     "sha256": "e458ae16fb3c493c6938753391c4a55bf45fd0d13dba526ece79b436533ba068"
+    },
+    {
+     "path": "heroes/page-ranking-poster-1280.webp",
+     "bytes": 42348,
+     "sha256": "401fe91d2f75de6bf89f1bd5bf5ba4cfcf142b8bedd961ed862ee7aed5f43ea0"
+    },
+    {
+     "path": "heroes/page-ranking-poster-640.avif",
+     "bytes": 11326,
+     "sha256": "0eaea6625dfcf1d1d455faee16e7ce50a40cd6b5b688aac4991927ddf5c0954a"
+    },
+    {
+     "path": "heroes/page-ranking-poster-640.webp",
+     "bytes": 15550,
+     "sha256": "58644e43a2ab56ba7c0a555a437d8d6b52fee58261ade2df8195de619bd8e995"
+    },
+    {
+     "path": "heroes/page-ranking-poster-960.avif",
+     "bytes": 20225,
+     "sha256": "5ce9277367362f56f0b6b606b6f703187e6b530e95322e41dd95671dfbb402e3"
+    },
+    {
+     "path": "heroes/page-ranking-poster-960.webp",
+     "bytes": 27892,
+     "sha256": "aa96a185069d48c8679f5aebc9fb53da468677a537d292ee2e75ba989bbaf990"
+    }
+   ]
+  },
+  {
+   "id": "GNG50-007",
+   "key": "heroes/page-faq",
+   "type": "image",
+   "page": "よくある質問（/faq/）",
+   "component": "見出しの背景",
+   "description": "ホテルラウンジの書棚",
+   "model": {
+    "still": "gpt_image_2_6 (Higgsfield)"
+   },
+   "source": {
+    "stillJob": "8f8e1109-0579-44f8-9856-abf23268cef5"
+   },
+   "prompt": {
+    "still": "Ultra-photorealistic premium editorial photograph, a quiet private library corner of a luxury hotel lounge at night, dark wood bookshelves with leather-bound books, a velvet reading chair and a warm brass floor lamp, a cup of tea on a side table. Deep midnight navy and black palette with refined warm champagne-gold light, controlled highlights, soft atmospheric depth, high-end cinematic color grading consistent with a luxury travel magazine. Main subject placed on the right third; the left 45% kept as dark, quiet negative space for website typography. Wide 16:9 composition. No text, no letters, no signage text, no logos, no watermark, no UI, no oversaturated neon, no cheap advertisement look, no distorted geometry. Empty scene with no people."
+   },
+   "aiGenerated": true,
+   "people": false,
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真・人物・店舗ではない。人物なし。",
+   "status": "implemented",
+   "files": [
+    {
+     "path": "heroes/page-faq-poster-1280.avif",
+     "bytes": 40811,
+     "sha256": "9bad46a2ba7e0fcae9376b747b4ba129f9888ad7cbb3158920d962188f6e4f9c"
+    },
+    {
+     "path": "heroes/page-faq-poster-1280.webp",
+     "bytes": 54842,
+     "sha256": "2eaa4d740ebc60f59f30e47b95feed65a9361c384503f5d1bf585ab7c2a40927"
+    },
+    {
+     "path": "heroes/page-faq-poster-640.avif",
+     "bytes": 13032,
+     "sha256": "b6c205f6c49b70b48f3b4c3abc1b98e49839af9d89ef577f5dd9d9e98b3d7d9b"
+    },
+    {
+     "path": "heroes/page-faq-poster-640.webp",
+     "bytes": 17750,
+     "sha256": "e53d54d062f0eee0fa9ded4ae70d25de82c454ebe6e98cf0300d93a6da046f91"
+    },
+    {
+     "path": "heroes/page-faq-poster-960.avif",
+     "bytes": 25847,
+     "sha256": "9918ccf2f06416a7e87de324d0819c775f3bfe4494549ac7122c476d069e9f93"
+    },
+    {
+     "path": "heroes/page-faq-poster-960.webp",
+     "bytes": 35132,
+     "sha256": "963490d27cf3408140f86bcbf445b668990921dc88cac6d8695c8df071c08195"
+    }
+   ]
+  },
+  {
+   "id": "GNG50-008",
+   "key": "heroes/page-search",
+   "type": "image",
+   "page": "検索（/search/）",
+   "component": "見出しの背景",
+   "description": "夜景を見下ろす窓辺の双眼鏡",
+   "model": {
+    "still": "gpt_image_2_6 (Higgsfield)"
+   },
+   "source": {
+    "stillJob": "f5c04275-332f-4a24-bef3-5a4b34386271"
+   },
+   "prompt": {
+    "still": "Ultra-photorealistic premium editorial photograph, a pair of vintage brass binoculars resting on the sill of a tall floor-to-ceiling window of a dark hotel suite, overlooking a vast glittering night city far below, reflections on the glass. Deep midnight navy and black palette with refined warm champagne-gold light, controlled highlights, soft atmospheric depth, high-end cinematic color grading consistent with a luxury travel magazine. Main subject placed on the right third; the left 45% kept as dark, quiet negative space for website typography. Wide 16:9 composition. No text, no letters, no signage text, no logos, no watermark, no UI, no oversaturated neon, no cheap advertisement look, no distorted geometry. Empty scene with no people."
+   },
+   "aiGenerated": true,
+   "people": false,
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真・人物・店舗ではない。人物なし。",
+   "status": "implemented",
+   "files": [
+    {
+     "path": "heroes/page-search-poster-1280.avif",
+     "bytes": 34029,
+     "sha256": "05a4527181c17bb41998fdd438fe9dd91ebc922b5c9c59159c79be368c3616eb"
+    },
+    {
+     "path": "heroes/page-search-poster-1280.webp",
+     "bytes": 45722,
+     "sha256": "560a9c43c5e6c31f71ce57c19aaae87a4c14eca2294e3f627211fd9b45c116d9"
+    },
+    {
+     "path": "heroes/page-search-poster-640.avif",
+     "bytes": 11400,
+     "sha256": "05cc35b9928b060b24918c86d41e7ce9ddffc90b24ea9be619dbcfc3be19ad15"
+    },
+    {
+     "path": "heroes/page-search-poster-640.webp",
+     "bytes": 15562,
+     "sha256": "75d0152813683266a944879570577dfb521baedee739849934bd3bc4b4519650"
+    },
+    {
+     "path": "heroes/page-search-poster-960.avif",
+     "bytes": 22045,
+     "sha256": "6f612a05647105a5aae096e6bf053b35a8ae7e38141587b5d943de81d189ffda"
+    },
+    {
+     "path": "heroes/page-search-poster-960.webp",
+     "bytes": 30064,
+     "sha256": "653290c66c70171287f4fe31f5a148a07aa6877559c8c71f3987eceee18e6a6d"
+    }
+   ]
+  },
+  {
+   "id": "GNG50-009",
+   "key": "heroes/page-about",
+   "type": "image",
+   "page": "運営者情報・ポリシー",
+   "component": "見出しの背景",
+   "description": "万年筆と封蝋",
+   "model": {
+    "still": "gpt_image_2_6 (Higgsfield)"
+   },
+   "source": {
+    "stillJob": "39d873e1-00db-4f33-8287-e6f058b470e9"
+   },
+   "prompt": {
+    "still": "Ultra-photorealistic premium editorial photograph, a black lacquer fountain pen, a sheet of thick cream letter paper and a gold wax seal stamp on a dark leather writing desk, soft warm lamp light, elegant editorial still life. Deep midnight navy and black palette with refined warm champagne-gold light, controlled highlights, soft atmospheric depth, high-end cinematic color grading consistent with a luxury travel magazine. Main subject placed on the right third; the left 45% kept as dark, quiet negative space for website typography. Wide 16:9 composition. No text, no letters, no signage text, no logos, no watermark, no UI, no oversaturated neon, no cheap advertisement look, no distorted geometry. Empty scene with no people."
+   },
+   "aiGenerated": true,
+   "people": false,
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真・人物・店舗ではない。人物なし。",
+   "status": "implemented",
+   "files": [
+    {
+     "path": "heroes/page-about-poster-1280.avif",
+     "bytes": 26368,
+     "sha256": "9bc60b38765ee486ea770638b00d454c4be9c37771f78a7e8c99ea6aad1bed69"
+    },
+    {
+     "path": "heroes/page-about-poster-1280.webp",
+     "bytes": 39756,
+     "sha256": "dd62ddb601fb0e1ddc2c818a0cd434d7daa283ef4c0a0b9891a9ec6e00c900ac"
+    },
+    {
+     "path": "heroes/page-about-poster-640.avif",
+     "bytes": 9568,
+     "sha256": "a252f88d2d4ecaede508fbc8515073ead15f23cb05eb5e53067033969091a138"
+    },
+    {
+     "path": "heroes/page-about-poster-640.webp",
+     "bytes": 13862,
+     "sha256": "a6fd1efd909cd7998b44a448e0ea8efc51392818901d3ce0a262681b98cd04a0"
+    },
+    {
+     "path": "heroes/page-about-poster-960.avif",
+     "bytes": 17573,
+     "sha256": "4bde7a0f7e99a899ffca7c52a0711a68c4eeec186cb5161729f211a448d99391"
+    },
+    {
+     "path": "heroes/page-about-poster-960.webp",
+     "bytes": 25838,
+     "sha256": "d68f740c19c3b50c403419e9934a00b930f364d8f8c771855ef2227c8ec64511"
+    }
+   ]
+  },
+  {
+   "id": "GNG50-010",
+   "key": "heroes/page-experience",
+   "type": "image",
+   "page": "体験（/experience/）",
+   "component": "見出しの背景",
+   "description": "旅のトランクとカメラ",
+   "model": {
+    "still": "gpt_image_2_6 (Higgsfield)"
+   },
+   "source": {
+    "stillJob": "120a3a20-330b-43e6-b221-5bb095af19c9"
+   },
+   "prompt": {
+    "still": "Ultra-photorealistic premium editorial photograph, a vintage leather travel trunk with brass corners, a folded passport-style notebook without text, an old film camera and a city map on a hotel bench, a rainy night city glowing through a window behind. Deep midnight navy and black palette with refined warm champagne-gold light, controlled highlights, soft atmospheric depth, high-end cinematic color grading consistent with a luxury travel magazine. Main subject placed on the right third; the left 45% kept as dark, quiet negative space for website typography. Wide 16:9 composition. No text, no letters, no signage text, no logos, no watermark, no UI, no oversaturated neon, no cheap advertisement look, no distorted geometry. Empty scene with no people."
+   },
+   "aiGenerated": true,
+   "people": false,
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真・人物・店舗ではない。人物なし。",
+   "status": "implemented",
+   "files": [
+    {
+     "path": "heroes/page-experience-poster-1280.avif",
+     "bytes": 40764,
+     "sha256": "9c6a4f119484188e4291e078030c010217c2bd39f55cdd75db0497f6ee22f670"
+    },
+    {
+     "path": "heroes/page-experience-poster-1280.webp",
+     "bytes": 55576,
+     "sha256": "94c29ed9a6b45e62ae012162d3721400b890fbc5e64a3c026eb4e37f840a9eb3"
+    },
+    {
+     "path": "heroes/page-experience-poster-640.avif",
+     "bytes": 12552,
+     "sha256": "5a43a35482e91d3ea75bf2e03d94135fd22f9ef18915a5b762e4e5075ebc9888"
+    },
+    {
+     "path": "heroes/page-experience-poster-640.webp",
+     "bytes": 17328,
+     "sha256": "15908e2dce003260393c700486f9d9bfd0b1e074c117266d3d1726dc0195a71c"
+    },
+    {
+     "path": "heroes/page-experience-poster-960.avif",
+     "bytes": 25325,
+     "sha256": "623b927ab1f2d9ec5e09528c73f6821fd2acb3a5e13607744c8bcb2a721db525"
+    },
+    {
+     "path": "heroes/page-experience-poster-960.webp",
+     "bytes": 34656,
+     "sha256": "cb7786d91c9601396b5f55354191a42fe6df3b1a1d19a4012e68a49a3ec06d5d"
+    }
+   ]
+  },
+  {
+   "id": "GNG50-011",
+   "key": "heroes/page-contact",
+   "type": "image",
+   "page": "お問い合わせ（/contact/）",
+   "component": "見出しの背景",
+   "description": "便箋と電話",
+   "model": {
+    "still": "gpt_image_2_6 (Higgsfield)"
+   },
+   "source": {
+    "stillJob": "ed507cb0-0f91-4f9b-8e72-199edbdf6f0e"
+   },
+   "prompt": {
+    "still": "Ultra-photorealistic premium editorial photograph, a stack of cream envelopes and a brass letter opener beside a vintage desk telephone on a dark marble reception counter of a luxury hotel at night, soft warm light. Deep midnight navy and black palette with refined warm champagne-gold light, controlled highlights, soft atmospheric depth, high-end cinematic color grading consistent with a luxury travel magazine. Main subject placed on the right third; the left 45% kept as dark, quiet negative space for website typography. Wide 16:9 composition. No text, no letters, no signage text, no logos, no watermark, no UI, no oversaturated neon, no cheap advertisement look, no distorted geometry. Empty scene with no people."
+   },
+   "aiGenerated": true,
+   "people": false,
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真・人物・店舗ではない。人物なし。",
+   "status": "implemented",
+   "files": [
+    {
+     "path": "heroes/page-contact-poster-1280.avif",
+     "bytes": 29266,
+     "sha256": "295cd3e9c2bd33558b7d542640901806111ec085d996353b5269351f6ec13aae"
+    },
+    {
+     "path": "heroes/page-contact-poster-1280.webp",
+     "bytes": 44396,
+     "sha256": "52ee89fb9b7af12dbce67fd3a99a075eda00dd72c398cafcefadfd18bd296612"
+    },
+    {
+     "path": "heroes/page-contact-poster-640.avif",
+     "bytes": 11386,
+     "sha256": "1fe3c49e33cbc1b1bb35fafd2a04914c784cb9b61c8047b9d387e32a5b7a88ae"
+    },
+    {
+     "path": "heroes/page-contact-poster-640.webp",
+     "bytes": 16848,
+     "sha256": "32605ae5fd40bbfa2805d627961ec1cadc72719aa56b8b9cad775759a8948970"
+    },
+    {
+     "path": "heroes/page-contact-poster-960.avif",
+     "bytes": 19650,
+     "sha256": "f3d513410d2ecf34b056a4375594251041ca1f2e87ffac1f3144ccc76b06ee74"
+    },
+    {
+     "path": "heroes/page-contact-poster-960.webp",
+     "bytes": 30154,
+     "sha256": "87dc4534d700fe68e2386623db9769a424cd434e0c3cf27b278df310ac863d90"
+    }
+   ]
+  },
+  {
+   "id": "GNG50-012",
+   "key": "heroes/page-404",
+   "type": "image",
+   "page": "404",
+   "component": "背景",
+   "description": "霧の路地と提灯",
+   "model": {
+    "still": "gpt_image_2_6 (Higgsfield)"
+   },
+   "source": {
+    "stillJob": "0b747f5e-cfe4-4ce3-8238-0b263007eee9"
+   },
+   "prompt": {
+    "still": "Ultra-photorealistic premium editorial photograph, a quiet misty narrow back alley in an Asian city at night after rain, softly glowing paper lanterns without letters, wet cobblestones reflecting warm light, the alley fading into fog, calm and mysterious. Deep midnight navy and black palette with refined warm champagne-gold light, controlled highlights, soft atmospheric depth, high-end cinematic color grading consistent with a luxury travel magazine. Main subject placed on the right third; the left 45% kept as dark, quiet negative space for website typography. Wide 16:9 composition. No text, no letters, no signage text, no logos, no watermark, no UI, no oversaturated neon, no cheap advertisement look, no distorted geometry. Empty scene with no people."
+   },
+   "aiGenerated": true,
+   "people": false,
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真・人物・店舗ではない。人物なし。",
+   "status": "implemented",
+   "files": [
+    {
+     "path": "heroes/page-404-poster-1280.avif",
+     "bytes": 41088,
+     "sha256": "613b237adb71d3b416b147a4d9a833bda67972553be008c4fcd123865a9bc19f"
+    },
+    {
+     "path": "heroes/page-404-poster-1280.webp",
+     "bytes": 56734,
+     "sha256": "3fc951310a0a13e55eae6072b64aab7f6a9a103e878fe36c8cc402fc6883e229"
+    },
+    {
+     "path": "heroes/page-404-poster-640.avif",
+     "bytes": 13821,
+     "sha256": "fcbff911d56d840976dba243823d9da966ff9b4ec7121a334c359e4546f1dd2c"
+    },
+    {
+     "path": "heroes/page-404-poster-640.webp",
+     "bytes": 18064,
+     "sha256": "5e439268755327af32cfb98d68fe7bd4f13567219962aac67799b41e4c27e973"
+    },
+    {
+     "path": "heroes/page-404-poster-960.avif",
+     "bytes": 26898,
+     "sha256": "9a2ea560e6e417a3d68f5d09cb047f02bc5140feb28ba2308cdb7b3a080bcce0"
+    },
+    {
+     "path": "heroes/page-404-poster-960.webp",
+     "bytes": 36032,
+     "sha256": "130c8456a4e8dd2bdea0869a92aa9c62b15ffcd2422e758186882924fb1bd64d"
+    }
+   ]
+  },
+  {
+   "id": "GNG50-013",
+   "key": "community/community",
+   "type": "video",
+   "page": "COMMUNITY（community-phase1 で配線予定）",
+   "component": "ヒーローの背景映像",
+   "description": "ルーフトップで談笑する旅行者（遠景・顔は判別できない）",
+   "model": {
+    "still": "gpt_image_2_6 (Higgsfield)",
+    "video": "minimax_h3_max 768p (Higgsfield)"
+   },
+   "source": {
+    "stillJob": "1d43b6fd-1803-45d5-85bb-1ba5005e6b94",
+    "videoJob": "5ccdf1d7-d742-4a46-88cf-31e04d03e435",
+    "loop": "start_image = end_image（同じ静止画）"
+   },
+   "prompt": {
+    "still": "Ultra-photorealistic premium cinematic photograph, a sophisticated metropolitan rooftop terrace at night, small groups of diverse adult travelers and locals in smart casual attire chatting and laughing naturally around low lounge tables, seen from a distance so faces are small and not identifiable, warm human atmosphere, glittering skyline behind with subtle purple and midnight blue grading, string of warm lights. Deep midnight navy and black palette with refined warm champagne-gold light, controlled highlights, soft atmospheric depth, high-end cinematic color grading. Main subject placed on the right third; the left 45% kept as dark, quiet negative space for website typography. Wide 16:9 composition. No text, no letters, no signage text, no logos, no watermark, no UI, no oversaturated neon, no distorted geometry.",
+    "video": "Animate the reference image into a calm premium cinematic background loop. Locked-off, stabilized camera with an extremely slow, subtle drift that returns exactly to the original framing at the end. Only gentle natural motion: the distant small groups of people chat with subtle natural movements, string lights glow, city lights twinkle far away The people keep consistent faces, bodies, hands and clothing throughout; slow natural movements only; no face changes, no extra limbs.. Preserve the composition, the lighting and the color grading exactly. Keep the left side dark and still. No cuts, no zoom jumps, no camera shake, no flashing lights, no new objects, no morphing, no text, no audio."
+   },
+   "aiGenerated": true,
+   "people": true,
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真・人物・店舗ではない。人物は遠景で特定できない。",
+   "status": "stored（コミュニティ側で配線予定）",
+   "files": [
+    {
+     "path": "community/community-desktop.mp4",
+     "bytes": 592754,
+     "sha256": "0a54c028dd5da5e8f78c86479def35d35aafe24bf98eeb18a7d5bd04e670e4b0"
+    },
+    {
+     "path": "community/community-mobile.mp4",
+     "bytes": 116926,
+     "sha256": "dbffb99574a1fce7881561a7c0133ec159213f8d7aca28e1f719b7ff38b29385"
+    },
+    {
+     "path": "community/community-poster-1280.avif",
+     "bytes": 54906,
+     "sha256": "13cd33a31ed2259a84e992bc7b4b4868c5429a0aa583183a1874bf9afeb2b648"
+    },
+    {
+     "path": "community/community-poster-1280.webp",
+     "bytes": 79044,
+     "sha256": "dc71aae6f5457b4d12c71d90abcd340c95cebe20435233175ec64c23e4900f21"
+    },
+    {
+     "path": "community/community-poster-640.avif",
+     "bytes": 18940,
+     "sha256": "873894bb0d351672cb1ddf7e7bf09b85d9ad691f639bd61e59f5e25fea8ca68d"
+    },
+    {
+     "path": "community/community-poster-640.webp",
+     "bytes": 27402,
+     "sha256": "6e7125d7e3b036bb88daf5d235f3af2f34ae8005971f4ec939e8e9cc2f2c5615"
+    },
+    {
+     "path": "community/community-poster-960.avif",
+     "bytes": 35933,
+     "sha256": "050cb0e634268219ff90f0c4c888d2890a199b36db0c2548ac8b5295da01fbe6"
+    },
+    {
+     "path": "community/community-poster-960.webp",
+     "bytes": 51556,
+     "sha256": "b7e99ceeca0380aaca17aff9059a8c0c76ac6eceb63c012f8bc43ff9633b4b64"
+    }
+   ]
+  },
+  {
+   "id": "GNG50-014",
+   "key": "community/community-review",
+   "type": "image",
+   "page": "COMMUNITY 店舗レビュー（配線予定）",
+   "component": "カテゴリ画像",
+   "description": "ノートと万年筆とグラス",
+   "model": {
+    "still": "gpt_image_2_6 (Higgsfield)"
+   },
+   "source": {
+    "stillJob": "11610dd2-b8aa-4fb6-9696-53536b93adaa"
+   },
+   "prompt": {
+    "still": "Ultra-photorealistic premium editorial still life, a leather-bound notebook open with blank pages, a fountain pen, a coupe glass and a small brass star-shaped paperweight on a dark marble bar counter at night, warm lounge bokeh behind. Empty scene with no people. Deep midnight navy and black palette with refined warm champagne-gold light, cinematic color grading, luxury magazine aesthetic. Main subject on the right third, left 45% dark negative space. Wide 16:9. No text, no letters, no logos, no watermark, no UI, no oversaturated neon."
+   },
+   "aiGenerated": true,
+   "people": false,
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真・人物・店舗ではない。人物なし。",
+   "status": "stored（コミュニティ側で配線予定）",
+   "files": [
+    {
+     "path": "community/community-review-poster-1280.avif",
+     "bytes": 39723,
+     "sha256": "cb9e356825339b398fcc0650f3ce14ade07b5028d14a7a517bab2bcffdb5ea52"
+    },
+    {
+     "path": "community/community-review-poster-1280.webp",
+     "bytes": 55070,
+     "sha256": "2f3ef6bf7464850ffb3f5026574db11e8e2a82c6c44ae0dff41c9a66def3a05d"
+    },
+    {
+     "path": "community/community-review-poster-640.avif",
+     "bytes": 15193,
+     "sha256": "e47fad2f17a3ee2de348ac010ff6c3d34e2370c01156e5860d1c26bfc5670c57"
+    },
+    {
+     "path": "community/community-review-poster-640.webp",
+     "bytes": 20564,
+     "sha256": "1e8b71134e8f3a2df148d62ab37323e6afadbe3a9d50fbf6a8e56407c84448e1"
+    },
+    {
+     "path": "community/community-review-poster-960.avif",
+     "bytes": 27050,
+     "sha256": "0d87aef6d1444b8eaf8c83115a4d9b19237eb2cbee56302f13070553ea7cdd82"
+    },
+    {
+     "path": "community/community-review-poster-960.webp",
+     "bytes": 37396,
+     "sha256": "3bf75e26251367fd77634d99bc9892be1f0f5ddb8d7d05b170ba108c3ab4835b"
+    }
+   ]
+  },
+  {
+   "id": "GNG50-015",
+   "key": "community/community-question",
+   "type": "image",
+   "page": "COMMUNITY 質問・相談（配線予定）",
+   "component": "カテゴリ画像",
+   "description": "向かい合う2脚の椅子",
+   "model": {
+    "still": "gpt_image_2_6 (Higgsfield)"
+   },
+   "source": {
+    "stillJob": "301f394f-870a-4aef-89a2-b95b67825c99"
+   },
+   "prompt": {
+    "still": "Ultra-photorealistic premium editorial photograph, two empty velvet armchairs facing each other beside a low table with two cups of tea in a quiet luxury hotel lounge at night, a warm brass lamp, intimate conversation atmosphere. Empty scene with no people. Deep midnight navy and black palette with refined warm champagne-gold light, cinematic color grading, luxury magazine aesthetic. Main subject on the right third, left 45% dark negative space. Wide 16:9. No text, no letters, no logos, no watermark, no UI, no oversaturated neon."
+   },
+   "aiGenerated": true,
+   "people": false,
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真・人物・店舗ではない。人物なし。",
+   "status": "stored（コミュニティ側で配線予定）",
+   "files": [
+    {
+     "path": "community/community-question-poster-1280.avif",
+     "bytes": 29304,
+     "sha256": "a124941738760375fb445054c227ae465aa1e828b30e39443fd35e8e35e30482"
+    },
+    {
+     "path": "community/community-question-poster-1280.webp",
+     "bytes": 38292,
+     "sha256": "d1326f7b520f84117fca7dc3566f860c073a186a39d59581387dd2e5d45f6a4c"
+    },
+    {
+     "path": "community/community-question-poster-640.avif",
+     "bytes": 10583,
+     "sha256": "16f04ab38d9dfe7342b746dbe400f6f62298524817526dd4815532e60dfbcdbb"
+    },
+    {
+     "path": "community/community-question-poster-640.webp",
+     "bytes": 14002,
+     "sha256": "0d504a989285fc53b028c64488ed46abbea0bd1a1c94fe799937b335ce3d315e"
+    },
+    {
+     "path": "community/community-question-poster-960.avif",
+     "bytes": 19344,
+     "sha256": "82333311388171ca50527a5240b3cb1636903e8f549fe192f465d675547ac5f0"
+    },
+    {
+     "path": "community/community-question-poster-960.webp",
+     "bytes": 25604,
+     "sha256": "b2331287b453be0d7352dd9ab0c07844feaf55c3cbd5d67d2c598ed67ae2b64f"
+    }
+   ]
+  },
+  {
+   "id": "GNG50-016",
+   "key": "community/community-empty",
+   "type": "image",
+   "page": "COMMUNITY 投稿がないとき（配線予定）",
+   "component": "空の状態",
+   "description": "開店前のバーカウンター",
+   "model": {
+    "still": "gpt_image_2_6 (Higgsfield)"
+   },
+   "source": {
+    "stillJob": "9b3749b0-2141-45c5-9872-ed273fd30061"
+   },
+   "prompt": {
+    "still": "Ultra-photorealistic premium editorial photograph, a single empty bar stool at a dark marble counter with one unlit candle and an empty coupe glass, calm quiet lounge at night just before opening, soft champagne-gold light. Empty scene with no people. Deep midnight navy and black palette with refined warm champagne-gold light, cinematic color grading, luxury magazine aesthetic. Main subject on the right third, left 45% dark negative space. Wide 16:9. No text, no letters, no logos, no watermark, no UI, no oversaturated neon."
+   },
+   "aiGenerated": true,
+   "people": false,
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真・人物・店舗ではない。人物なし。",
+   "status": "stored（コミュニティ側で配線予定）",
+   "files": [
+    {
+     "path": "community/community-empty-poster-1280.avif",
+     "bytes": 24806,
+     "sha256": "14fc33e60d033e4751a7121182793e5f3afe6a34fe42d9fbefc8bacf548c018f"
+    },
+    {
+     "path": "community/community-empty-poster-1280.webp",
+     "bytes": 33310,
+     "sha256": "8e63052c3611211cda6c95f1644bc666c634f037b2b022784f53bcb03b34048b"
+    },
+    {
+     "path": "community/community-empty-poster-640.avif",
+     "bytes": 8954,
+     "sha256": "2720b290d5e833e8de5aaedb89d8c8dae393003413f68c0cff2fdd11cc01c2fe"
+    },
+    {
+     "path": "community/community-empty-poster-640.webp",
+     "bytes": 12452,
+     "sha256": "856c62f39d5197a86f629850f320d01d686a8d093173a4045a3220b3935da161"
+    },
+    {
+     "path": "community/community-empty-poster-960.avif",
+     "bytes": 16250,
+     "sha256": "c9d1a978e017d71e2cf2ca4200ca90ac1290d7eccd7a572b6dc6a34ededb1ab9"
+    },
+    {
+     "path": "community/community-empty-poster-960.webp",
+     "bytes": 22548,
+     "sha256": "75bb685ae4f8ab0b26fd0f9262306bc4fb98d740c91b2a48fb825b2d88abc4de"
+    }
+   ]
+  },
+  {
+   "id": "GNG50-017",
+   "key": "night-live/night-live",
+   "type": "video",
+   "page": "NIGHT LIVE（配線予定）",
+   "component": "ヘッダーの背景映像。実際の現在の様子ではないことを明記して使う",
+   "description": "雨上がりの繁華街",
+   "model": {
+    "still": "gpt_image_2_6 (Higgsfield)",
+    "video": "minimax_h3_max 768p (Higgsfield)"
+   },
+   "source": {
+    "stillJob": "0d06d95d-6305-4c08-85fd-f892486faef6",
+    "videoJob": "6b3b1df9-c5a3-403e-902d-37fec1fda97c",
+    "loop": "start_image = end_image（同じ静止画）"
+   },
+   "prompt": {
+    "still": "Ultra-photorealistic premium cinematic photograph, a lively premium urban entertainment street at night after light rain, elegant illuminated restaurant and lounge entrances without readable signs, distant adult pedestrian silhouettes walking, soft out-of-focus, no identifiable faces, reflections on the wet pavement, violet and electric blue grading with warm amber accents. Deep midnight navy and black palette with refined warm champagne-gold light, controlled highlights, soft atmospheric depth, high-end cinematic color grading. Main subject placed on the right third; the left 45% kept as dark, quiet negative space for website typography. Wide 16:9 composition. No text, no letters, no signage text, no logos, no watermark, no UI, no oversaturated neon, no distorted geometry.",
+    "video": "Animate the reference image into a calm premium cinematic background loop. Locked-off, stabilized camera with an extremely slow, subtle drift that returns exactly to the original framing at the end. Only gentle natural motion: reflections ripple softly on the wet pavement, entrance lights glow, a light breeze moves the leaves, no people appear. Preserve the composition, the lighting and the color grading exactly. Keep the left side dark and still. No cuts, no zoom jumps, no camera shake, no flashing lights, no new objects, no morphing, no text, no audio."
+   },
+   "aiGenerated": true,
+   "people": false,
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真・人物・店舗ではない。人物なし。",
+   "status": "stored（コミュニティ側で配線予定）",
+   "files": [
+    {
+     "path": "night-live/night-live-desktop.mp4",
+     "bytes": 833416,
+     "sha256": "db01e9529218feb83f54af56fff405300cab095390f757ff119e6f8ee07c60d0"
+    },
+    {
+     "path": "night-live/night-live-mobile.mp4",
+     "bytes": 180092,
+     "sha256": "02459b0fe31dd75a5ce5f187428db4975669099efe617622bbe24ec2598699f5"
+    },
+    {
+     "path": "night-live/night-live-poster-1280.avif",
+     "bytes": 66115,
+     "sha256": "3ac4f85eff884109c616865e9b399f0d9a768079dcef693509a980ac3065dc6b"
+    },
+    {
+     "path": "night-live/night-live-poster-1280.webp",
+     "bytes": 97896,
+     "sha256": "b2ea1d08822ff330beee8b64fa5ae4b74c8b414529a8be939196ebf0c4a12941"
+    },
+    {
+     "path": "night-live/night-live-poster-640.avif",
+     "bytes": 21807,
+     "sha256": "c92b2c6df3ef2147bfa2df237e3edac50b60ad4c15566d4a6a2784fac32a7d57"
+    },
+    {
+     "path": "night-live/night-live-poster-640.webp",
+     "bytes": 32252,
+     "sha256": "a012aa1970cb43519e27490a713399258cac4e654d875b712bd05f6a56b45ba9"
+    },
+    {
+     "path": "night-live/night-live-poster-960.avif",
+     "bytes": 43237,
+     "sha256": "73bde49af4be69bb26ed0bb7e92e48dac03a21de6ca43472d8fef027e48a73dd"
+    },
+    {
+     "path": "night-live/night-live-poster-960.webp",
+     "bytes": 64320,
+     "sha256": "63cf6f377be15d7424992ce5f2181d757f638c487aff30b2fbb77d07732080d5"
+    }
+   ]
+  },
+  {
+   "id": "GNG50-018",
+   "key": "night-passport/night-passport",
+   "type": "video",
+   "page": "NIGHT PASSPORT（配線予定）",
+   "component": "紹介パネルの背景映像",
+   "description": "黒革と金の紋章のパスポート",
+   "model": {
+    "still": "gpt_image_2_6 (Higgsfield)",
+    "video": "minimax_h3_max 768p (Higgsfield)"
+   },
+   "source": {
+    "stillJob": "23ee3f40-7bb1-4dc1-88cf-473f15b4d967",
+    "videoJob": "d3383b7d-4d7e-4adc-adf7-bb28fe8bf018",
+    "loop": "start_image = end_image（同じ静止画）"
+   },
+   "prompt": {
+    "still": "Ultra-photorealistic luxury product photograph of a closed premium passport-style booklet with a matte black leather cover and a single embossed champagne-gold geometric globe emblem, standing slightly angled on a black stone plinth in a dark studio, refined metallic edge highlights, soft reflections. No text, no letters, no logos on the cover. Deep midnight navy and black palette with refined warm champagne-gold light, controlled highlights, soft atmospheric depth, high-end cinematic color grading. Main subject placed on the right third; the left 45% kept as dark, quiet negative space for website typography. Wide 16:9 composition. No text, no letters, no signage text, no logos, no watermark, no UI, no oversaturated neon, no distorted geometry.",
+    "video": "Animate the reference image into a calm premium cinematic background loop. Locked-off, stabilized camera with an extremely slow, subtle drift that returns exactly to the original framing at the end. Only gentle natural motion: a slow sweep of soft studio light glides across the leather cover and the gold emblem, subtle reflection changes, the booklet stays perfectly still. Preserve the composition, the lighting and the color grading exactly. Keep the left side dark and still. No cuts, no zoom jumps, no camera shake, no flashing lights, no new objects, no morphing, no text, no audio."
+   },
+   "aiGenerated": true,
+   "people": false,
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真・人物・店舗ではない。人物なし。",
+   "status": "stored（コミュニティ側で配線予定）",
+   "files": [
+    {
+     "path": "night-passport/night-passport-desktop.mp4",
+     "bytes": 473311,
+     "sha256": "bdd24d6f5ebc3de92a6ad3edd5f0bca7a87e0221c3ff26690ed19bbb60ee3765"
+    },
+    {
+     "path": "night-passport/night-passport-mobile.mp4",
+     "bytes": 114581,
+     "sha256": "a6a2309ab8cbd67efb9e43790583605aab874726be498552273cc84dc4cf35b9"
+    },
+    {
+     "path": "night-passport/night-passport-poster-1280.avif",
+     "bytes": 21319,
+     "sha256": "a46384d2afd2836105458b225037a14530b2457b2f6c1fee7c2e9480bdf939f9"
+    },
+    {
+     "path": "night-passport/night-passport-poster-1280.webp",
+     "bytes": 26696,
+     "sha256": "ddd6f7182ecc78425afb2ab11ed336324e28f6134e8a01b5b1c935f90d8e2ee4"
+    },
+    {
+     "path": "night-passport/night-passport-poster-640.avif",
+     "bytes": 6066,
+     "sha256": "5ec607ea95c3306a3c43698a31c61731b0904bf071fa74d87b160515604807dd"
+    },
+    {
+     "path": "night-passport/night-passport-poster-640.webp",
+     "bytes": 7256,
+     "sha256": "705ee63062a25cd008c4f2d7d6b2ffc88147e53f8e9a063f6ca89fceaf3e13fc"
+    },
+    {
+     "path": "night-passport/night-passport-poster-960.avif",
+     "bytes": 12207,
+     "sha256": "3ce9d8e21cbb1ad8b0bdc79198b9c14dd7e193b5df141cb71afa048e6f70d949"
+    },
+    {
+     "path": "night-passport/night-passport-poster-960.webp",
+     "bytes": 15736,
+     "sha256": "c8880949b7ed4989f6cdc7a7a16c3cbe8ca0297bfb5ded9a1cea7f726b7b48b0"
+    }
+   ]
+  },
+  {
+   "id": "GNG50-019",
+   "key": "night-ai/night-ai",
+   "type": "video",
+   "page": "NIGHT AI（Phase 3・画面は未作成）",
+   "component": "紹介パネルの背景映像",
+   "description": "光のネットワークの地球",
+   "model": {
+    "still": "gpt_image_2_6 (Higgsfield)",
+    "video": "minimax_h3_max 768p (Higgsfield)"
+   },
+   "source": {
+    "stillJob": "dca0e35f-528e-464d-a8cc-1b6b20e905f8",
+    "videoJob": "c01aead8-efe6-466d-9126-c7a587703dc8",
+    "loop": "start_image = end_image（同じ静止画）"
+   },
+   "prompt": {
+    "still": "Premium cinematic abstract visualization, an elegant luminous neural network forming a delicate abstract globe of fine violet and electric blue light filaments and tiny particles, floating in a refined matte black void, controlled glow, realistic depth of field, minimal futuristic luxury aesthetic. No robots, no text, no interface elements. Deep midnight navy and black palette with refined warm champagne-gold light, controlled highlights, soft atmospheric depth, high-end cinematic color grading. Main subject placed on the right third; the left 45% kept as dark, quiet negative space for website typography. Wide 16:9 composition. No text, no letters, no signage text, no logos, no watermark, no UI, no oversaturated neon, no distorted geometry.",
+    "video": "Animate the reference image into a calm premium cinematic background loop. Locked-off, stabilized camera with an extremely slow, subtle drift that returns exactly to the original framing at the end. Only gentle natural motion: the luminous globe rotates very slowly, light particles flow gently along the network filaments, soft pulsing glow. Preserve the composition, the lighting and the color grading exactly. Keep the left side dark and still. No cuts, no zoom jumps, no camera shake, no flashing lights, no new objects, no morphing, no text, no audio."
+   },
+   "aiGenerated": true,
+   "people": false,
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真・人物・店舗ではない。人物なし。",
+   "status": "stored（コミュニティ側で配線予定）",
+   "files": [
+    {
+     "path": "night-ai/night-ai-desktop.mp4",
+     "bytes": 771953,
+     "sha256": "c6d85890e1ce1d7ffff8a6ae0d292445441295bf561793723f9726e0c829a059"
+    },
+    {
+     "path": "night-ai/night-ai-mobile.mp4",
+     "bytes": 230563,
+     "sha256": "c59b0edc64fb1d51329e8de31a43f6b1cd8de393bf12b8f806253451f41ee7a3"
+    },
+    {
+     "path": "night-ai/night-ai-poster-1280.avif",
+     "bytes": 39196,
+     "sha256": "d488dfbf1e6eed5c5630890e798749f57a7c6abe84c4b7191917082c48b24e51"
+    },
+    {
+     "path": "night-ai/night-ai-poster-1280.webp",
+     "bytes": 52560,
+     "sha256": "708c5f8b11d88ef33cb2c5977ad8281028116dc862864b14e78fb2c0549fd99f"
+    },
+    {
+     "path": "night-ai/night-ai-poster-640.avif",
+     "bytes": 13464,
+     "sha256": "9ae0a3b9044df3b982e5bb37643a267310a220dde6bbfb6e1f1ca6681e0d9fe7"
+    },
+    {
+     "path": "night-ai/night-ai-poster-640.webp",
+     "bytes": 17552,
+     "sha256": "db847383f6e951f72fd2d26b7149243ccfdf8c2fbbf5a66cfd818c046c0fdfb1"
+    },
+    {
+     "path": "night-ai/night-ai-poster-960.avif",
+     "bytes": 25408,
+     "sha256": "9f72993d9e62c2837593d51aac796164ee7cb1bd27772175b081c6a00bdf47b6"
+    },
+    {
+     "path": "night-ai/night-ai-poster-960.webp",
+     "bytes": 33716,
+     "sha256": "d2dc496c674a2171b001a345fcc1f70807bc16468880825198901c75b925b216"
+    }
+   ]
+  },
+  {
+   "id": "GNG50-020",
+   "key": "night-radar/night-radar",
+   "type": "video",
+   "page": "NIGHT RADAR（Phase 3・画面は未作成）",
+   "component": "紹介パネルの背景映像（実際の地図ではない）",
+   "description": "夜の街の俯瞰と光るエリア",
+   "model": {
+    "still": "gpt_image_2_6 (Higgsfield)",
+    "video": "minimax_h3_max 768p (Higgsfield)"
+   },
+   "source": {
+    "stillJob": "323c8af2-1d6e-4448-bd47-4d837760894c",
+    "videoJob": "8bdddf1a-e081-4de4-93f3-f0dd8c64bd1e",
+    "loop": "start_image = end_image（同じ静止画）"
+   },
+   "prompt": {
+    "still": "Premium cinematic top-down conceptual view of a dark metropolitan city street grid at night, like a matte black architectural model, a few soft violet and warm amber glowing zones over city blocks, fine gold road lines, elegant data-visualization aesthetic, gentle perspective tilt. No text, no labels, no map pins, no interface elements. Deep midnight navy and black palette with refined warm champagne-gold light, controlled highlights, soft atmospheric depth, high-end cinematic color grading. Main subject placed on the right third; the left 45% kept as dark, quiet negative space for website typography. Wide 16:9 composition. No text, no letters, no signage text, no logos, no watermark, no UI, no oversaturated neon, no distorted geometry.",
+    "video": "Animate the reference image into a calm premium cinematic background loop. Locked-off, stabilized camera with an extremely slow, subtle drift that returns exactly to the original framing at the end. Only gentle natural motion: the violet and amber zones pulse gently and slowly, tiny light points travel along the gold road lines. Preserve the composition, the lighting and the color grading exactly. Keep the left side dark and still. No cuts, no zoom jumps, no camera shake, no flashing lights, no new objects, no morphing, no text, no audio."
+   },
+   "aiGenerated": true,
+   "people": false,
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真・人物・店舗ではない。人物なし。",
+   "status": "stored（コミュニティ側で配線予定）",
+   "files": [
+    {
+     "path": "night-radar/night-radar-desktop.mp4",
+     "bytes": 481657,
+     "sha256": "2b882190973e1c3a46be9a6d049ea86557c8fd40830f3b5d878980dd74c31392"
+    },
+    {
+     "path": "night-radar/night-radar-mobile.mp4",
+     "bytes": 94819,
+     "sha256": "ec1092d29045e5bc88009bea864c6fca6194989feb2a38453e2a3e7d9b7f45d1"
+    },
+    {
+     "path": "night-radar/night-radar-poster-1280.avif",
+     "bytes": 46980,
+     "sha256": "71c14d5c9b382bac5788bea06bb7ff6dff0b65188a63dcf987472839e063d220"
+    },
+    {
+     "path": "night-radar/night-radar-poster-1280.webp",
+     "bytes": 57672,
+     "sha256": "c41e17101e5d139e1b09136561638f131e986a40ef9b58c4e283cf0c443ce8c7"
+    },
+    {
+     "path": "night-radar/night-radar-poster-640.avif",
+     "bytes": 14795,
+     "sha256": "801663dea1e96689d8f55a6074f690d152a3ba97101a19f95efdba1693197869"
+    },
+    {
+     "path": "night-radar/night-radar-poster-640.webp",
+     "bytes": 18558,
+     "sha256": "46dfd5947d1560be6cc3750d83e4a925fc9cba59bc72bc4f664ef9b3f8fd7bbb"
+    },
+    {
+     "path": "night-radar/night-radar-poster-960.avif",
+     "bytes": 29653,
+     "sha256": "6d4533fff8055ecbe72ce59deffb72fb02ea99b3f214d098394b210748dd9d3d"
+    },
+    {
+     "path": "night-radar/night-radar-poster-960.webp",
+     "bytes": 36552,
+     "sha256": "73f1c21b5d416b4490bef2eb2fb00f1e3204ef96e9bc76bed4aebac65e8e452e"
+    }
+   ]
+  },
+  {
+   "id": "GNG50-021",
+   "key": "night-insider/night-insider",
+   "type": "image",
+   "page": "NIGHT INSIDER（Phase 3・画面は未作成）",
+   "component": "紹介の背景",
+   "description": "銀と金の盾",
+   "model": {
+    "still": "gpt_image_2_6 (Higgsfield)"
+   },
+   "source": {
+    "stillJob": "25e91f9c-22e1-407a-b296-ca5fca43cc8d"
+   },
+   "prompt": {
+    "still": "Ultra-photorealistic luxury product photograph of an elegant brushed silver shield emblem with subtle champagne-gold inlay, floating above a matte black surface in a dark studio, controlled cinematic rim lighting, realistic metal reflections. No text, no letters, no logos. Deep midnight navy and black palette with refined warm champagne-gold light, controlled highlights, soft atmospheric depth, high-end cinematic color grading. Main subject placed on the right third; the left 45% kept as dark, quiet negative space for website typography. Wide 16:9 composition. No text, no letters, no signage text, no logos, no watermark, no UI, no oversaturated neon, no distorted geometry."
+   },
+   "aiGenerated": true,
+   "people": false,
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真・人物・店舗ではない。人物なし。",
+   "status": "stored（コミュニティ側で配線予定）",
+   "files": [
+    {
+     "path": "night-insider/night-insider-poster-1280.avif",
+     "bytes": 17173,
+     "sha256": "99fe9ef6552cd076e753f6fc85fdc4f7e000c7f7c2352166f9dcd14c79f2c443"
+    },
+    {
+     "path": "night-insider/night-insider-poster-1280.webp",
+     "bytes": 26462,
+     "sha256": "302b3df2ccaeccc2762ebf60ef7ff0bdd4aad84dd24094607e28fa5637211f29"
+    },
+    {
+     "path": "night-insider/night-insider-poster-640.avif",
+     "bytes": 5612,
+     "sha256": "ed8450e421657f4e7d18f73e2b0e80aacd238d899f9ae81089da13f478e8f88b"
+    },
+    {
+     "path": "night-insider/night-insider-poster-640.webp",
+     "bytes": 7902,
+     "sha256": "081c6e372becc4130ae84249213f4c60c040198c13d8d09da43615d0c66bf64a"
+    },
+    {
+     "path": "night-insider/night-insider-poster-960.avif",
+     "bytes": 10592,
+     "sha256": "0f518929827ce4f7cbb989f6a6f33f290e088a4ab302209749bf1c34b4849b45"
+    },
+    {
+     "path": "night-insider/night-insider-poster-960.webp",
+     "bytes": 15954,
+     "sha256": "b700589801c03883410b8a822586cd0d69a97a2b3d67d15e6e353bfc0dd2908d"
+    }
+   ]
+  },
+  {
+   "id": "GNG50-022",
+   "key": "night-passport/rank-rookie",
+   "type": "image",
+   "page": "NIGHT PASSPORT（配線予定）",
+   "component": "ランクカード Rookie（16:10。ランク名は HTML で重ねる）",
+   "description": "ランクのカード",
+   "model": {
+    "still": "gpt_image_2_6 (Higgsfield)"
+   },
+   "source": {
+    "stillJob": "9b3e8697-ae72-4d49-95f1-5a83ed66dfe6"
+   },
+   "prompt": {
+    "still": "Ultra-photorealistic luxury product photograph of a single premium membership card lying flat at a slight angle on a matte black surface, card in 16:10 proportion with rounded corners, matte black and dark graphite grey card with a soft charcoal texture, one small abstract embossed globe emblem in the upper-left corner of the card and otherwise a completely plain surface, soft studio rim light, subtle reflections, centered composition with even dark margins on all sides. Absolutely no text, no letters, no numbers, no logos, no chip, no magnetic stripe, no watermark."
+   },
+   "aiGenerated": true,
+   "people": false,
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真・人物・店舗ではない。人物なし。",
+   "status": "stored（コミュニティ側で配線予定）",
+   "files": [
+    {
+     "path": "night-passport/rank-rookie-400.avif",
+     "bytes": 1706,
+     "sha256": "14c551c9f5ddb31cfbdeb9ad64d41cf7734f835f0ab05a99554d8c6ba7961ea0"
+    },
+    {
+     "path": "night-passport/rank-rookie-400.webp",
+     "bytes": 1320,
+     "sha256": "583a8e857952557b576bbf2e8224e20e7baff3c2c260e61eec54ba884ecf5583"
+    },
+    {
+     "path": "night-passport/rank-rookie-800.avif",
+     "bytes": 6500,
+     "sha256": "44340eed2169df534a6ad3ef6377a9a0db4900fb346f6f0e1766c7f76b82aaa6"
+    },
+    {
+     "path": "night-passport/rank-rookie-800.webp",
+     "bytes": 6226,
+     "sha256": "eb1120ddf4daf7ef6d22a21d1c6bc28b95082c26dd08d1baa23ab6409b24488f"
+    }
+   ]
+  },
+  {
+   "id": "GNG50-023",
+   "key": "night-passport/rank-explorer",
+   "type": "image",
+   "page": "NIGHT PASSPORT（配線予定）",
+   "component": "ランクカード Night Explorer（16:10。ランク名は HTML で重ねる）",
+   "description": "ランクのカード",
+   "model": {
+    "still": "gpt_image_2_6 (Higgsfield)"
+   },
+   "source": {
+    "stillJob": "6d297730-d36f-41db-940e-e702bd84cbc3"
+   },
+   "prompt": {
+    "still": "Ultra-photorealistic luxury product photograph of a single premium membership card lying flat at a slight angle on a matte black surface, card in 16:10 proportion with rounded corners, black card with brushed bronze edges and a bronze emblem, one small abstract embossed globe emblem in the upper-left corner of the card and otherwise a completely plain surface, soft studio rim light, subtle reflections, centered composition with even dark margins on all sides. Absolutely no text, no letters, no numbers, no logos, no chip, no magnetic stripe, no watermark."
+   },
+   "aiGenerated": true,
+   "people": false,
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真・人物・店舗ではない。人物なし。",
+   "status": "stored（コミュニティ側で配線予定）",
+   "files": [
+    {
+     "path": "night-passport/rank-explorer-400.avif",
+     "bytes": 2572,
+     "sha256": "f0c3bd0eadc45504477f78d6cb979d39c2c5cc054d91b12030970fd70b828f13"
+    },
+    {
+     "path": "night-passport/rank-explorer-400.webp",
+     "bytes": 3086,
+     "sha256": "a3eed7b6ca891527e9e9b5ff7aa23b0ad3098d3b07f5a979d41c6b098bab2f82"
+    },
+    {
+     "path": "night-passport/rank-explorer-800.avif",
+     "bytes": 6304,
+     "sha256": "53a1c37d97af3e58451c3918dda83cd95a726494cc7700ca4fe3cf35fa9cdd2a"
+    },
+    {
+     "path": "night-passport/rank-explorer-800.webp",
+     "bytes": 8398,
+     "sha256": "161692be7aa3db752e31c54bea3b0d00989cd28990e6b38a2f7421d2cfc8d717"
+    }
+   ]
+  },
+  {
+   "id": "GNG50-024",
+   "key": "night-passport/rank-expert",
+   "type": "image",
+   "page": "NIGHT PASSPORT（配線予定）",
+   "component": "ランクカード Night Expert（16:10。ランク名は HTML で重ねる）",
+   "description": "ランクのカード",
+   "model": {
+    "still": "gpt_image_2_6 (Higgsfield)"
+   },
+   "source": {
+    "stillJob": "51dc2eb1-840a-4372-a4eb-b3009d28d635"
+   },
+   "prompt": {
+    "still": "Ultra-photorealistic luxury product photograph of a single premium membership card lying flat at a slight angle on a matte black surface, card in 16:10 proportion with rounded corners, black card with polished silver edges and a silver emblem, one small abstract embossed globe emblem in the upper-left corner of the card and otherwise a completely plain surface, soft studio rim light, subtle reflections, centered composition with even dark margins on all sides. Absolutely no text, no letters, no numbers, no logos, no chip, no magnetic stripe, no watermark."
+   },
+   "aiGenerated": true,
+   "people": false,
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真・人物・店舗ではない。人物なし。",
+   "status": "stored（コミュニティ側で配線予定）",
+   "files": [
+    {
+     "path": "night-passport/rank-expert-400.avif",
+     "bytes": 2040,
+     "sha256": "5055e179c7f9abd98f6eba36c15942798486c72f25c024e5b51388efd5253a15"
+    },
+    {
+     "path": "night-passport/rank-expert-400.webp",
+     "bytes": 2082,
+     "sha256": "517641d75c075ee2eb7eab94ff913ecd0e12c1228e2890748e1bc9367b7e044b"
+    },
+    {
+     "path": "night-passport/rank-expert-800.avif",
+     "bytes": 5757,
+     "sha256": "905f71203117b7225a4138c8508aac5eb0edfa018688d4697a417cfb0f9fc2d8"
+    },
+    {
+     "path": "night-passport/rank-expert-800.webp",
+     "bytes": 6414,
+     "sha256": "0b4ef5553176ec23359e4cbb335f2746d514695aa6859c28036a43cece5a63c4"
+    }
+   ]
+  },
+  {
+   "id": "GNG50-025",
+   "key": "night-passport/rank-master",
+   "type": "image",
+   "page": "NIGHT PASSPORT（配線予定）",
+   "component": "ランクカード Night Master（16:10。ランク名は HTML で重ねる）",
+   "description": "ランクのカード",
+   "model": {
+    "still": "gpt_image_2_6 (Higgsfield)"
+   },
+   "source": {
+    "stillJob": "ad2e247f-fbdd-44cf-b7e9-7febbd6d6dc1"
+   },
+   "prompt": {
+    "still": "Ultra-photorealistic luxury product photograph of a single premium membership card lying flat at a slight angle on a matte black surface, card in 16:10 proportion with rounded corners, black card with champagne-gold edges and a champagne-gold emblem, subtle fine gold pinstripe pattern, one small abstract embossed globe emblem in the upper-left corner of the card and otherwise a completely plain surface, soft studio rim light, subtle reflections, centered composition with even dark margins on all sides. Absolutely no text, no letters, no numbers, no logos, no chip, no magnetic stripe, no watermark."
+   },
+   "aiGenerated": true,
+   "people": false,
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真・人物・店舗ではない。人物なし。",
+   "status": "stored（コミュニティ側で配線予定）",
+   "files": [
+    {
+     "path": "night-passport/rank-master-400.avif",
+     "bytes": 4026,
+     "sha256": "3c7d573fcdc5620c3dee226120453096013135c524fad2ccbb11ecb9714c2ec1"
+    },
+    {
+     "path": "night-passport/rank-master-400.webp",
+     "bytes": 5406,
+     "sha256": "58ec0a8c3cda1b9820b914d154c0b94c11ed1dca4a768dbb5099b5b74ff904e5"
+    },
+    {
+     "path": "night-passport/rank-master-800.avif",
+     "bytes": 14333,
+     "sha256": "5de35eab2def18ce85a336cada591d65d3c5a0fc14602854dceb42ea1dfa8c53"
+    },
+    {
+     "path": "night-passport/rank-master-800.webp",
+     "bytes": 19670,
+     "sha256": "2dfed652fe428f1f77f265b7fd0ef5248ee23ff61e454b7324f6df3da896404e"
+    }
+   ]
+  },
+  {
+   "id": "GNG50-026",
+   "key": "night-passport/rank-legend",
+   "type": "image",
+   "page": "NIGHT PASSPORT（配線予定）",
+   "component": "ランクカード Night Legend（16:10。ランク名は HTML で重ねる）",
+   "description": "ランクのカード",
+   "model": {
+    "still": "gpt_image_2_6 (Higgsfield)"
+   },
+   "source": {
+    "stillJob": "ffcfd5a2-43c8-4857-a1d3-a8f0e7a7a9b6"
+   },
+   "prompt": {
+    "still": "Ultra-photorealistic luxury product photograph of a single premium membership card lying flat at a slight angle on a matte black surface, card in 16:10 proportion with rounded corners, brushed platinum card with black inlay and platinum emblem, one small abstract embossed globe emblem in the upper-left corner of the card and otherwise a completely plain surface, soft studio rim light, subtle reflections, centered composition with even dark margins on all sides. Absolutely no text, no letters, no numbers, no logos, no chip, no magnetic stripe, no watermark."
+   },
+   "aiGenerated": true,
+   "people": false,
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真・人物・店舗ではない。人物なし。",
+   "status": "stored（コミュニティ側で配線予定）",
+   "files": [
+    {
+     "path": "night-passport/rank-legend-400.avif",
+     "bytes": 3976,
+     "sha256": "c6f84d66ec8cb475b5ca7843a5c0f6a62f354cb680f7eb942f66106f0759fd13"
+    },
+    {
+     "path": "night-passport/rank-legend-400.webp",
+     "bytes": 4690,
+     "sha256": "483dd6b9843d9bdea3b667f63421e8cd0bc82adb99f1e12c208b9065887e32ca"
+    },
+    {
+     "path": "night-passport/rank-legend-800.avif",
+     "bytes": 12363,
+     "sha256": "2c08b8b2675b3d8f7fd3553557b3d22c4d0878687a9878baf759b4dbb9e5364f"
+    },
+    {
+     "path": "night-passport/rank-legend-800.webp",
+     "bytes": 16824,
+     "sha256": "375876d1764bdc60d089d8d498a521d472f97def482578aadaae2becdc34ba40"
+    }
+   ]
+  },
+  {
+   "id": "GNG50-027",
+   "key": "night-passport/rank-vip",
+   "type": "image",
+   "page": "NIGHT PASSPORT（配線予定）",
+   "component": "ランクカード Global VIP（16:10。ランク名は HTML で重ねる）",
+   "description": "ランクのカード",
+   "model": {
+    "still": "gpt_image_2_6 (Higgsfield)"
+   },
+   "source": {
+    "stillJob": "35812b74-74cb-478c-b79e-ad92278af868"
+   },
+   "prompt": {
+    "still": "Ultra-photorealistic luxury product photograph of a single premium membership card lying flat at a slight angle on a matte black surface, card in 16:10 proportion with rounded corners, glossy black card with a faceted black diamond texture, tiny sparkling black diamond emblem, limited edition luxury feel, one small abstract embossed globe emblem in the upper-left corner of the card and otherwise a completely plain surface, soft studio rim light, subtle reflections, centered composition with even dark margins on all sides. Absolutely no text, no letters, no numbers, no logos, no chip, no magnetic stripe, no watermark."
+   },
+   "aiGenerated": true,
+   "people": false,
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真・人物・店舗ではない。人物なし。",
+   "status": "stored（コミュニティ側で配線予定）",
+   "files": [
+    {
+     "path": "night-passport/rank-vip-400.avif",
+     "bytes": 3575,
+     "sha256": "6e87d2075b2807a1d25af36bd9e5f9382e37ba59126c7a12fc5952920f196dfb"
+    },
+    {
+     "path": "night-passport/rank-vip-400.webp",
+     "bytes": 3370,
+     "sha256": "bc44b359b2755e10720fa0f0cdb4d8c7bff364a4712eee3b60682f0be15dfcf5"
+    },
+    {
+     "path": "night-passport/rank-vip-800.avif",
+     "bytes": 8420,
+     "sha256": "97cbfcab965cb47e7c0dc45684611e802bea8e88b9705065eb0c484858c4317c"
+    },
+    {
+     "path": "night-passport/rank-vip-800.webp",
+     "bytes": 9334,
+     "sha256": "4f269e2abf231c3561a18d53b2f43d375dc4d21b9906c64d8f5fdfb72a9362d4"
+    }
+   ]
+  },
+  {
+   "id": "GNG50-028",
+   "key": "community/avatar-moon",
+   "type": "image",
+   "page": "COMMUNITY（配線予定）",
+   "component": "匿名ユーザーの初期アバター 1:1",
+   "description": "moon",
+   "model": {
+    "still": "gpt_image_2_6 (Higgsfield)"
+   },
+   "source": {
+    "stillJob": "305773fe-651e-4b90-8ea9-3bd4fe3d0e86"
+   },
+   "prompt": {
+    "still": "Premium abstract avatar artwork, perfectly centered champagne-gold crescent moon inside a circle on a deep midnight navy background, elegant minimal luxury design, soft studio lighting, square 1:1 composition. No face, no person, no text, no letters, no logos."
+   },
+   "aiGenerated": true,
+   "people": false,
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真・人物・店舗ではない。人物なし。",
+   "status": "stored（コミュニティ側で配線予定）",
+   "files": [
+    {
+     "path": "community/avatar-moon-128.avif",
+     "bytes": 1476,
+     "sha256": "74559bbd3de43938266ea328e1d1533966ba1039f719665b0b768ffdad0bc0a7"
+    },
+    {
+     "path": "community/avatar-moon-128.webp",
+     "bytes": 2130,
+     "sha256": "d431ece8a332545edeb2c49eea3539fce00f61067b898b82a2882d77ac55369e"
+    },
+    {
+     "path": "community/avatar-moon-256.avif",
+     "bytes": 3407,
+     "sha256": "09dc08b9253ec297b8f59421589bd1b8d1c7064d219e962602fb989d51827017"
+    },
+    {
+     "path": "community/avatar-moon-256.webp",
+     "bytes": 4920,
+     "sha256": "63a0808bec6316fe75ad1d58581cc3ee4c4b8e6cc11db11e1d67b6b59f2d4038"
+    }
+   ]
+  },
+  {
+   "id": "GNG50-029",
+   "key": "community/avatar-star",
+   "type": "image",
+   "page": "COMMUNITY（配線予定）",
+   "component": "匿名ユーザーの初期アバター 1:1",
+   "description": "star",
+   "model": {
+    "still": "gpt_image_2_6 (Higgsfield)"
+   },
+   "source": {
+    "stillJob": "ed145653-da79-48a1-aeac-090277b68cf4"
+   },
+   "prompt": {
+    "still": "Premium abstract avatar artwork, perfectly centered faceted silver eight-pointed star inside a circle on a deep midnight navy background, elegant minimal luxury design, soft studio lighting, square 1:1 composition. No face, no person, no text, no letters, no logos."
+   },
+   "aiGenerated": true,
+   "people": false,
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真・人物・店舗ではない。人物なし。",
+   "status": "stored（コミュニティ側で配線予定）",
+   "files": [
+    {
+     "path": "community/avatar-star-128.avif",
+     "bytes": 1698,
+     "sha256": "9a47bd439fdac2ebdac1375df283ca60e62d6c3868850251829ac484bfe93a08"
+    },
+    {
+     "path": "community/avatar-star-128.webp",
+     "bytes": 2440,
+     "sha256": "ab0c135b6965221910807e248a2582caeb5fa62e4190aa2cc9190d57d2b6c90b"
+    },
+    {
+     "path": "community/avatar-star-256.avif",
+     "bytes": 3640,
+     "sha256": "c0f52f8676687bad78dd4a99d61dca64365c70f41bca4bb3808d98b65566f080"
+    },
+    {
+     "path": "community/avatar-star-256.webp",
+     "bytes": 5494,
+     "sha256": "80e0161b0cc0493c62760014e6853024f71a5b851bec79fa70c0daf51d5e18c7"
+    }
+   ]
+  },
+  {
+   "id": "GNG50-030",
+   "key": "community/avatar-globe",
+   "type": "image",
+   "page": "COMMUNITY（配線予定）",
+   "component": "匿名ユーザーの初期アバター 1:1",
+   "description": "globe",
+   "model": {
+    "still": "gpt_image_2_6 (Higgsfield)"
+   },
+   "source": {
+    "stillJob": "2b0c5a26-4cb0-49bc-8727-83d267c730e5"
+   },
+   "prompt": {
+    "still": "Premium abstract avatar artwork, perfectly centered fine violet wireframe globe with tiny gold points inside a circle on a deep midnight navy background, elegant minimal luxury design, soft studio lighting, square 1:1 composition. No face, no person, no text, no letters, no logos."
+   },
+   "aiGenerated": true,
+   "people": false,
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真・人物・店舗ではない。人物なし。",
+   "status": "stored（コミュニティ側で配線予定）",
+   "files": [
+    {
+     "path": "community/avatar-globe-128.avif",
+     "bytes": 1974,
+     "sha256": "28c16eb1b6d19b1c28547e166bffce086e54a2afaa00f18c0c313763498d8715"
+    },
+    {
+     "path": "community/avatar-globe-128.webp",
+     "bytes": 2392,
+     "sha256": "1134596abcb5a244bf2913abcbd4d4c417f2773d2b71ac8739ef3bdb5b126ea2"
+    },
+    {
+     "path": "community/avatar-globe-256.avif",
+     "bytes": 5018,
+     "sha256": "27d958dcc33b910b2c023cd2a715d572a094af95a7828767bfdc5cfd90a42e39"
+    },
+    {
+     "path": "community/avatar-globe-256.webp",
+     "bytes": 6502,
+     "sha256": "d86190bc364ca9449cf7bc75871d307a2a8441f84d816734dd8e69e62958bc48"
+    }
+   ]
+  },
+  {
+   "id": "GNG50-031",
+   "key": "community/avatar-cocktail",
+   "type": "image",
+   "page": "COMMUNITY（配線予定）",
+   "component": "匿名ユーザーの初期アバター 1:1",
+   "description": "cocktail",
+   "model": {
+    "still": "gpt_image_2_6 (Higgsfield)"
+   },
+   "source": {
+    "stillJob": "aa7d76e5-8a7f-460e-b2d9-a047bfa4d5f7"
+   },
+   "prompt": {
+    "still": "Premium abstract avatar artwork, perfectly centered minimal gold line art of a coupe glass inside a circle on a deep midnight navy background, elegant minimal luxury design, soft studio lighting, square 1:1 composition. No face, no person, no text, no letters, no logos."
+   },
+   "aiGenerated": true,
+   "people": false,
+   "rights": "AI生成（Higgsfield、本アカウントで生成）。実在の写真・人物・店舗ではない。人物なし。",
+   "status": "stored（コミュニティ側で配線予定）",
+   "files": [
+    {
+     "path": "community/avatar-cocktail-128.avif",
+     "bytes": 1411,
+     "sha256": "89e443374b735a9b7261b2616f23cdd4f674505d918b2190eb50e46eb73836a9"
+    },
+    {
+     "path": "community/avatar-cocktail-128.webp",
+     "bytes": 1918,
+     "sha256": "9c546b8ca88ceaa036ec0dc9ff054156bc6247d411160d992c3fdccb159dcc2e"
+    },
+    {
+     "path": "community/avatar-cocktail-256.avif",
+     "bytes": 3190,
+     "sha256": "cf4769483d45dcaa78b0b680c70ad592bf7fa330b7aff3e4e73fb0a8274c7135"
+    },
+    {
+     "path": "community/avatar-cocktail-256.webp",
+     "bytes": 4424,
+     "sha256": "3be121d1ff3c4cb4ee24f56f4c95976f7b2f0ac3f066eaddf8e4fe082ae72a4b"
     }
    ]
   }
